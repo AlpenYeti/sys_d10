@@ -1,5 +1,5 @@
 ## Introduction
-Vous trouverez ici la feuille de personnage type poour le système D10. Cette feuille a été créée pour fonctionner avec Roll20.
+Vous trouverez ici la feuille de personnage type pour le système D10. Cette feuille a été créée pour fonctionner avec Roll20.
 
 ## HTML
 
@@ -17,4 +17,4 @@ Vous trouverez ici la feuille de personnage type poour le système D10. Cette fe
    ```attr_```, ```roll_``` ou ```repeating_``` seront préfixées de
    ```sheet-```. Il faut donc prévoir le CSS en conséquence.
 
-   
+##### Ces informations proviennent de la doc Roll20, et plus particulièrement de la page [Building Character Sheet](https://wiki.roll20.net/Building_Character_Sheets). 

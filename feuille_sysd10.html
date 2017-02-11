@@ -57,20 +57,59 @@
                         <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception [[(@{base-Perception}*2) + @{exal-Perception} + @{dice}]]"></button></td>
                         <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception brute[[(@{base-Perception}*2) + @{exal-Perception} + 1d10]]">Brut</button></td>
                     </tr><tr>
+                        <td>Charisme</td>
+                        <td><input type="number" class="sheet-trait" name="attr_base-Charisme" value="0" min="0" max="10"/></td>
+                        <td><input type="number" class="sheet-trait" name="attr_exal-Charisme" value="0" min="0" max="10"/></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme [[(@{base-Charisme}*2) + @{exal-Charisme} + @{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme brute[[(@{base-Charisme}*2) + @{exal-Charisme} + 1d10]]">Brut</button></td>
+                    </tr>
+                </table>
+        </div>
+		<div class='sheet-col'>
+            <h3 class="sheet-center">&nbsp;</h3>
+                <table class="">
+                    <tr>
+                        <th>Carac</th>
+                        <th>Valeur</th>
+                        <th>Exaltée</th>
+                        <th colspan="2">Lancer</th>
+                    </tr>
+                    <tr>
                         <td>Intelligence</td>
-                        <td><input type="number" class="sheet-trait" name="attr_base-Intelligence" value="0" min="0" max="10"/></td>
-                        <td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" value="0" min="0" max="10"/></td>
+                        <td><input type="number" class="sheet-trait" name="attr_base-Intelligence" value="0" min="0" max="10" /></td>
+                        <td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" value="0" min="0" max="10" /></td>
                         <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Intelligence [[(@{base-Intelligence}*2) + @{exal-Intelligence} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Intelligence brute[[(@{base-Intelligence}*2) + @{exal-Intelligence} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Intelligence brute [[(@{base-Intelligence}*2) + @{exal-Intelligence} + 1d10]]">Brut</button></td>
+                    </tr>
+                    <tr>
+                        <td>Volonte</td>
+                        <td><input type="number" class="sheet-trait" name="attr_base-Volonte" value="0" min="0" max="10"/></td>
+                        <td><input type="number" class="sheet-trait" name="attr_exal-Volonte" value="0" min="0" max="10"/></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}*2) + @{exal-Volonte} + @{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}*2) + @{exal-Volonte} + 1d10]]">Brut</button></td>
+                    </tr><tr>
+                        <td>Psyché</td>
+                        <td><input type="number" class="sheet-trait" name="attr_base-Psyche" value="0" min="0" max="10"/></td>
+                        <td><input type="number" class="sheet-trait" name="attr_exal-Psyche" value="0" min="0" max="10"/></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyche [[(@{base-Psyche}*2) + @{exal-Psyche} + @{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyche brute[[(@{base-Psyche}*2) + @{exal-Psyche} + 1d10]]">Brut</button></td>
+                    </tr><tr>
+                        <td>Chance</td>
+                        <td><input type="number" class="sheet-trait" name="attr_base-Chance" value="0" min="0" max="10"/></td>
+                        <td><input type="number" class="sheet-trait" name="attr_exal-Chance" value="0" min="0" max="10"/></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}*2) + @{exal-Chance} + @{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}*2) + @{exal-Chance} + 1d10]]">Brut</button></td>
                     </tr>
                 </table>
         </div>
         <div class='sheet-col'>
             <h3 class="sheet-center">Ressources</h3>
+                <br/>
                 <table class="sheet-center sheet-black">
                     <tr>
                         <td><h3>Points de Vie</h3></td>
                         <td><input type="number" class="sheet-trait" name="attr_trait_base-Life_Points" value="0"/></td>
+                        <td><input type="number" class="sheet-trait" disabled="true" name="attr_trait_base-Max_Life_Points" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+10"/></td>
                     </tr>
                     <tr>
                         <td><h3>Points de Fatigue</h3></td>
@@ -79,13 +118,24 @@
                 </table>
         </div>
     </div>
-    <br>
+    <br/>
     <!--TAB 1 -->
     <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" title="Compétences" checked="checked" /><span></span>
     <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" title="Combat" /><span></span>
     <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Magie" /><span></span>
     <div class="sheet-tab-content sheet-tab1">
             <div class='sheet-col'> 
+             <h3>Skills</h3>
+<fieldset class="repeating_skills">            
+     <select name="attr_dtype" class="dtype">                
+          <option value="d4">d4</option>
+          <option value="d6">d6</option>
+          <option value="d8">d8</option>
+          <option value="d10">d10</option>
+          <option value="d12">d12</option>
+      </select>
+      <input type="text" name="attr_skillname" />        
+</fieldset>
                 <h2>COMPETENCES</h2> 
                 <table>
                     <tr>

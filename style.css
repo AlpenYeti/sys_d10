@@ -1,33 +1,3 @@
-input[type="number"] {
-	width: 50%;
-	background-color: #aebaaf;
-}
-
-.sheet-content {
-	background-color: #aebaaf;
-	margin: auto;
-	border: 1px solid black;
-	width: 50%;
-	padding: 2%;
-	font-family: 'Roboto', sans-serif;
-}
-
-table {
-	border-collapse: collapse;
-}
-td {
-	/*border: 1px solid black;*/
-	
-}
-
-.sheet-dice {
-	font-size: 3em;
-}
-
-.sheet-dice>option {
-	font-size: 0.4em;
-}
-
 div.sheet-tab-content { display: none; }
 input.sheet-tab1:checked ~ div.sheet-tab1,
 input.sheet-tab2:checked ~ div.sheet-tab2,
@@ -107,7 +77,20 @@ input.sheet-small_tab:checked::before{
     border-radius:.5em;
 }
 
+input.sheet-skill_name{
+    width:400px;
+}
+
 div.sheet-tab-content{
     border-top-color: #000;
     margin: 2px 0 0 0;
+}
+
+select.sheet-skill_select{
+    width:55px;
+    margin-bottom:-1px;
+}
+select.sheet-dice_select{
+    width:85px;
+    margin-bottom:-1px;
 }

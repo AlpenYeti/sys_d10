@@ -1,10 +1,12 @@
+<head><link rel="stylesheet" type="text/css" href="style.css"><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"></head>
+<div class='content'>
     <div class="sheet-center">
         <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/><br>
         <input type="text" class="sheet-mediumname" name="att-character_race" placeholder="race"/>
     </div>
     <br>
     <table class="sheet-center sheet-black">
-        <tr> fsdfsdfsfd
+        <tr>
             <td>Points :</td>
         </tr>
         <tr>
@@ -14,7 +16,16 @@
             <td><input type="number" class="sheet-trait" name="attr_Character_points-unspent" value="0"/> restants</td>
         </tr>
     </table>
-    <br>
+    <select class="sheet-skill_select dice" name="attr_dice">
+                            <option value="4">d4</option>
+                            <option value="6">d6</option>
+                            <option value="8">d8</option>
+                            <option value="10" selected>d10</option>
+                            <option value="12">d12</option>
+                            <option value="20">d20</option>
+                            <option value="30">d30</option>
+                            <option value="100">d100</option>
+                        </select>
 
     <div class='sheet-3colrow'>
         <div class='sheet-col'>
@@ -31,16 +42,7 @@
                     <td><input type="number" class="sheet-trait" name="attr_mod-Force" value="0"/></td>
                     <td><button type='roll' class="sheet-trait_roll" value="/e rolls Force [[(@{base-Force}*2) + @{mod-Force} + @{dice}]]">Roll</button></td>
                     <td>
-                        <select class="sheet-skill_select" name="attr_dice">
-                            <option value="4">d4</option>
-                            <option value="6">d6</option>
-                            <option value="8">d8</option>
-                            <option value="10" selected>d10</option>
-                            <option value="12">d12</option>
-                            <option value="20">d20</option>
-                            <option value="30">d30</option>
-                            <option value="100">d100</option>
-                        </select>
+                        
                     </td>
                     <td><button type='roll' class="sheet-trait_roll" value="/e rolls Force [[(@{base-Force}*2) + @{mod-Force} + 1d10]]">Brut</button></td>
                 </tr>
@@ -387,4 +389,5 @@
             <th class="sheet-rb"><input type="number" class="sheet-numberbox" name="attr_armor_value_modifier-1" value="0"/></th>
         </tr>
     </table>
+</div>
 </div>

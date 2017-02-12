@@ -13,6 +13,7 @@
             <td><input type="number" class="sheet-trait" name="attr_Character_points-spent" value="0"/> Utilisés</td>
             <td rowspan="2">
                 <select class="sheet-dice_select sheet-dice" name="attr_dice">
+				<option value="2">d2</option>
                 <option value="4">d4</option>
                 <option value="6">d6</option>
                 <option value="8">d8</option>
@@ -21,6 +22,8 @@
                 <option value="20">d20</option>
                 <option value="30">d30</option>
                 <option value="100">d100</option>
+				<option value="1000">d1000</option>
+				<option value="10000">d10000</option>
             </td>
         </tr>
         <tr>
@@ -45,27 +48,27 @@
                         <td>Force</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Force" value="0" min="0" max="10" /></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Force" value="0" min="0" max="10" /></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force [[(@{base-Force}*2) + @{exal-Force} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force brute [[(@{base-Force}*2) + @{exal-Force} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force [[(@{base-Force}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force brute [[@{base-Force} - d@{dice}]]">Brut</button></td>
                     </tr>
                     <tr>
                         <td>Agilité</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Agilite" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Agilite" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Agilite [[(@{base-Agilite}*2) + @{exal-Agilite} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Agilite brute[[(@{base-Agilite}*2) + @{exal-Agilite} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite [[(@{base-Agilite}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite brute[[(@{base-Agilite}) - d@{dice}]]">Brut</button></td>
                     </tr><tr>
                         <td>Perception</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Perception" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Perception" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception [[(@{base-Perception}*2) + @{exal-Perception} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception brute[[(@{base-Perception}*2) + @{exal-Perception} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception [[(@{base-Perception}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception brute[[(@{base-Perception}) - d@{dice}]]">Brut</button></td>
                     </tr><tr>
                         <td>Charisme</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Charisme" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Charisme" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme [[(@{base-Charisme}*2) + @{exal-Charisme} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme brute[[(@{base-Charisme}*2) + @{exal-Charisme} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme [[(@{base-Charisme}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme brute[[(@{base-Charisme}) - d@{dice}]]">Brut</button></td>
                     </tr>
                 </table>
         </div>
@@ -82,27 +85,27 @@
                         <td>Intelligence</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Intelligence" value="0" min="0" max="10" /></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" value="0" min="0" max="10" /></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Intelligence [[(@{base-Intelligence}*2) + @{exal-Intelligence} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Intelligence brute [[(@{base-Intelligence}*2) + @{exal-Intelligence} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence [[(@{base-Intelligence}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence brute [[(@{base-Intelligence}) - d@{dice}]]">Brut</button></td>
                     </tr>
                     <tr>
                         <td>Volonte</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Volonte" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Volonte" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}*2) + @{exal-Volonte} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}*2) + @{exal-Volonte} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}) + d@{exal-Volonte} + 1d10]]">Brut</button></td>
                     </tr><tr>
                         <td>Psyché</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Psyche" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Psyche" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyche [[(@{base-Psyche}*2) + @{exal-Psyche} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyche brute[[(@{base-Psyche}*2) + @{exal-Psyche} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché) [[(@{base-Psyche}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché brute[[(@{base-Psyche}) - d@{dice}]]">Brut</button></td>
                     </tr><tr>
                         <td>Chance</td>
                         <td><input type="number" class="sheet-trait" name="attr_base-Chance" value="0" min="0" max="10"/></td>
                         <td><input type="number" class="sheet-trait" name="attr_exal-Chance" value="0" min="0" max="10"/></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}*2) + @{exal-Chance} + @{dice}]]"></button></td>
-                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}*2) + @{exal-Chance} + 1d10]]">Brut</button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}*2) - d@{dice}]]"></button></td>
+                        <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}) - d@{dice}]]">Brut</button></td>
                     </tr>
                 </table>
         </div>
@@ -111,19 +114,19 @@
                 <br/>
                 <table class="sheet-center sheet-black">
                     <tr>
-                        <td><h3>Points de Vie</h3></td>
+                        <td><h4>Points de Vie</h4></td>
                         <td><input type="number" class="sheet-trait" name="attr_trait_base-Life_Points" value="0"/></td>
                         <td><input type="number" class="sheet-trait" disabled="true" name="attr_trait_base-Max_Life_Points" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+10"/></td>
                     </tr>
                     <tr>
-                        <td><h3>Points de Fatigue</h3></td>
+                        <td><h4>Points de Fatigue</h4></td>
                         <td><input type="number" class="sheet-trait" name="attr_trait_base-Endurance_Points" value="0"/></td>
                         <td><input type="number" class="sheet-trait" disabled="true" name="attr_trait_base-Max_Life_Points" value="@{base-Force}*4"/></td>
                     </tr>
-                    <tr>
-                        <td><h3>Etat</h3></td>
+                    <!-- <tr>
+                        <td><4>Etat</h4></td>
                         <td colspan="2"><div class="sheet-status-wounded">Blessures aggravés</div></td>
-                    </tr>
+                    </tr>-->
                 </table>
         </div>
     </div>
@@ -135,22 +138,22 @@
     <div class="sheet-tab-content sheet-tab1">
             <div class='sheet-col'> 
             <h3>Compétences générales</h3>
-            <fieldset class="repeating_general_skills">
-                <input class="sheet-skill_name" type="text" name="attr_skillname" />
-                <input type="number" name="attr_skillcost" />
-                <input type="number" min="0" max="10" name="attr_skilllevel" />
-                <select class="sheet-skill_select" name="attr_Skill_attribute_select">
-                    <option value="@{base-Force} + @{mod-Force}">For</option>
-                    <option value="@{base-Agilite} + @{mod-Agilite}">Agi</option>
-                    <option value="@{base-Perception} + @{mod-Perception}">Per</option>
-                    <option value="@{base-Charisme} + @{mod-Charisme}">Cha</option>
-                    <option value="@{base-Intelligence} + @{mod-Intelligence}">Int</option>
-                    <option value="@{base-Perception} + @{mod-Perception}">Per</option>
-                    <option value="@{base-Volonte} + @{mod-Volonte}">Vol</option>
-                    <option value="@{base-Psyche} + @{mod-Psyche}">Psy</option>
-                    <option value="@{base-Chance} + @{mod-Chance}">Chn</option>
+            <fieldset class="repeating_skills">
+                <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
+                <input type="number" min="0" name="attr_skillcost" />
+                <input type="number" min="0" max="10" name="attr_general_skilllevel" />
+                <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
+                    <option value="@{base-Force} + @{exal-Force}">For</option>
+                    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+                    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+                    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+                    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+                    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+                    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
                 </select>
-                <button type='roll' class="sheet-skillbutton" value="/e rolls @{Skill-1} [[(@{Skill_rating-1}) + @{Skill_attribute_select-1} - 1d10]]"></button>
+                <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}  [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}]]"></button>
             </fieldset>
             </div>
     </div>
@@ -159,90 +162,96 @@
     <div class="sheet-tab-content sheet-tab2">
         <div class='sheet-col'> 
         <h3>Compétences magiques</h3>
-        <fieldset class="repeating_magic_skills">
-            <input class="sheet-skill_name" type="text" name="attr_skillname" />
-            <input type="number" name="attr_skillcost" />
-            <input type="number" min="0" max="10" name="attr_skilllevel" />
-            <select class="sheet-skill_select" name="attr_Skill_attribute_select">
-                <option value="@{base-Force} + @{mod-Force}">For</option>
-                <option value="@{base-Agilite} + @{mod-Agilite}">Agi</option>
-                <option value="@{base-Perception} + @{mod-Perception}">Per</option>
-                <option value="@{base-Charisme} + @{mod-Charisme}">Cha</option>
-                <option value="@{base-Intelligence} + @{mod-Intelligence}">Int</option>
-                <option value="@{base-Perception} + @{mod-Perception}">Per</option>
-                <option value="@{base-Volonte} + @{mod-Volonte}">Vol</option>
-                <option value="@{base-Psyche} + @{mod-Psyche}">Psy</option>
-                <option value="@{base-Chance} + @{mod-Chance}">Chn</option>
+        <fieldset class="repeating_skills">
+            <input class="sheet-skill_name" type="text" name="attr_magic_skillname" />
+            <input type="number" name="attr_magic_skillcost" />
+            <input type="number" min="0" max="10" name="attr_magic_skilllevel" />
+            <select class="sheet-skill_select" name="attr_Skill_magic_attribute_select">
+                <option value="@{base-Force} + @{exal-Force}">For</option>
+                <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+                <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+                <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+                <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+                <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+                <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
             </select>
-            <button type='roll' class="sheet-skillbutton" value="/e rolls @{Skill-1} [[(@{Skill_rating-1}) + @{Skill_attribute_select-1} - 1d10]]"></button>
+            <button type='roll' class="sheet-skillbutton" value="/e rolls @{magic_skillname}  [[@{magic_skilllevel}+(@{Skill_magic_attribute_select}) - d@{dice}]]"></button>
         </fieldset>
-    </div>
+        </div>
     </div>
 
     <!--TAB 3 -->
     <div class="sheet-tab-content sheet-tab3">
-        <h3>Combat</h3>
-        <h4><button type='roll' class="sheet-Initiative_roll" value="/e rolls Initiative [[@{base-Agilite} + @{mod-Agilite} + @{mod-Initiative} + 1d10 &{tracker}]]">Initiative</button>
-        <input type="number" class="sheet-numberbox" name="attr_mod-Initiative" value="0"/> Modifier</h4>
-        <h3>Weapons</h3>
-        <table>
-            <tr>
-                <th>Button</th>
-                <td><h5>Type</h5></td>
-                <th>Number of Attacks</th>
-                <th>Skill<br>Rating</th>
-                <th class="sheet-lb">Dice</th>
-                <th class="sheet-rb">Multiplier</th>
-            </tr>
-            <tr>
-                <th><button type='roll' class="sheet-skillbutton" value="/e attacks with @{weapon_name-1}, rolling [[@{base-Agilite} + @{mod-Agilite} + @{weapon_attack_rating-1} + d10]] to hit and [[(1d@{weapon_damage_dice-1})*(@{weapon_damage_Multiplier-1} + @{weapon_melee-1})]] damage."></button></th>
-                <td><input type="text" class="sheet-textbox" style="width:200px" name="attr_weapon_name-1"/></td>
-                <th><input type="number" class="sheet-numberbox" name="attr_weapon_RoF-1"/></th>
-                <th><input type="number" class="sheet-numberbox" name="attr_weapon_attack_rating-1"/></th>
-                <th class="sheet-lb"><select class="sheet-skill_select" name="attr_weapon_damage_dice-1">
-                            <option value="4">d4</option>
-                            <option value="6">d6</option>
-                            <option value="8">d8</option>
-                            <option value="10" selected>d10</option>
-                            <option value="12">d12</option>
-                            <option value="20">d20</option>
-                            <option value="30">d30</option>
-                            <option value="100">d100</option></select>
-                </th>
-                <th class="sheet-rb"><input type="number" class="sheet-numberbox" name="attr_weapon_damage_Multiplier-1" value="0"/></th>
-            </tr>
-        </table>
-        <br>
-        <h3>Armor</h3>
-        <table style="width:70%">
-            <tr>
-                <th></th>
-                <th></th>
-                <th class="sheet-lb sheet-rb" colspan="3">Armor Value</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>Roll</th>
-                <td><h5>Type</h5></td>
-                <th class="sheet-lb">Dice</th>
-                <th>Multiplier</th>
-                <th class="sheet-rb">Modifier</th>
-            </tr>
-            <tr>
-                <th><button type='roll' class="sheet-skillbutton" value="/e 's armor (@{armor_name-1}) protects against [[(@{armor_value_Multiplier-1}d@{armor_value_dice-1}) + @{armor_value_modifier-1}]] points of damage."></button></th>
-                <td><input type="text" class="sheet-textbox" style="width:200px" name="attr_armor_name-1"/></td>
-                <th class="sheet-lb"><select class="sheet-skill_select" name="attr_armor_value_dice-1">
-                            <option value="1">1</option>
-                            <option value="4">d4</option>
-                            <option value="6">d6</option>
-                            <option value="8">d8</option>
-                            <option value="10">d10</option>
-                            <option value="12">d12</option></select>
-                </th>
-                <th><input type="number" class="sheet-numberbox" name="attr_armor_value_Multiplier-1" value="1"/></th>
-                <th class="sheet-rb"><input type="number" class="sheet-numberbox" name="attr_armor_value_modifier-1" value="0"/></th>
-            </tr>
-        </table>
+        <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab1" checked="checked" value="1" title="Général" />
+        <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab2" value="2" title="Offensives" />
+        <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab3" value="3" title="Défensives" />
+		<div class="sheet-tab-content sheet-secondary_tab1">
+			<h4><button type='roll' class="sheet-Initiative_roll" value="/e rolls Initiative [[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]">Initiative</button>
+			<input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/> </h4>
+			<!--<h3></h3>
+			<table>
+				<tr>
+					<th>Button</th>
+					<td><h5>Type</h5></td>
+					<th>Number of Attacks</th>
+					<th>Skill<br>Rating</th>
+					<th class="sheet-lb">Dice</th>
+					<th class="sheet-rb">Multiplier</th>
+				</tr>
+				<tr>
+					<th><button type='roll' class="sheet-skillbutton" value="/e attacks with @{weapon_name-1}, rolling [[@{base-Agilite} + @{mod-Agilite} + @{weapon_attack_rating-1} + d10]] to hit and [[(1d@{weapon_damage_dice-1})*(@{weapon_damage_Multiplier-1} + @{weapon_melee-1})]] damage."></button></th>
+					<td><input type="text" class="sheet-textbox" style="width:200px" name="attr_weapon_name-1"/></td>
+					<th><input type="number" class="sheet-numberbox" name="attr_weapon_RoF-1"/></th>
+					<th><input type="number" class="sheet-numberbox" name="attr_weapon_attack_rating-1"/></th>
+					<th class="sheet-lb"><select class="sheet-skill_select" name="attr_weapon_damage_dice-1">
+								<option value="4">d4</option>
+								<option value="6">d6</option>
+								<option value="8">d8</option>
+								<option value="10" selected>d10</option>
+								<option value="12">d12</option>
+								<option value="20">d20</option>
+								<option value="30">d30</option>
+								<option value="100">d100</option></select>
+					</th>
+					<th class="sheet-rb"><input type="number" class="sheet-numberbox" name="attr_weapon_damage_Multiplier-1" value="0"/></th>
+				</tr>
+			</table> -->
+		</div>
+		<div class="sheet-tab-content sheet-secondary_tab2"><!--
+			<table style="width:70%">
+				<tr>
+					<th></th>
+					<th></th>
+					<th class="sheet-lb sheet-rb" colspan="3">Armor Value</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th>Roll</th>
+					<td><h5>Type</h5></td>
+					<th class="sheet-lb">Dice</th>
+					<th>Multiplier</th>
+					<th class="sheet-rb">Modifier</th>
+				</tr>
+				<tr>
+					<th><button type='roll' class="sheet-skillbutton" value="/e 's armor (@{armor_name-1}) protects against [[(@{armor_value_Multiplier-1}d@{armor_value_dice-1}) + @{armor_value_modifier-1}]] points of damage."></button></th>
+					<td><input type="text" class="sheet-textbox" style="width:200px" name="attr_armor_name-1"/></td>
+					<th class="sheet-lb"><select class="sheet-skill_select" name="attr_armor_value_dice-1">
+								<option value="1">1</option>
+								<option value="4">d4</option>
+								<option value="6">d6</option>
+								<option value="8">d8</option>
+								<option value="10">d10</option>
+								<option value="12">d12</option></select>
+					</th>
+					<th><input type="number" class="sheet-numberbox" name="attr_armor_value_Multiplier-1" value="1"/></th>
+					<th class="sheet-rb"><input type="number" class="sheet-numberbox" name="attr_armor_value_modifier-1" value="0"/></th>
+				</tr>
+			</table> -->
+		<div class="sheet-tab-content sheet-secondary_tab3">
+		</div>
+        </div>
     </div>
 </div>

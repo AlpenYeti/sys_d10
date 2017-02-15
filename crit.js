@@ -3,8 +3,40 @@ on("chat:message", function(msg) {
 
   if(msg.type == "api" && msg.content.indexOf("!crit ") !== -1) {
     var sndr=msg.who;
-    var numdice = msg.content.replace("!crit ", "");
+    var raw_msg = msg.content.replace("!crit ", "");
     var result='';
+
+    //Variables a initialiser par parse
+    var perfection=0; //P
+    var defense_i_0=0; // I_1
+    var defense_i_0=1; // I_2
+    var defense_i_0=2; // I_4
+
+    var rempart_p=0; //R
+
+    var technique_m_0=0; //M_1
+    var technique_m_1=0; //M_2
+    var coup_d=0;        //D
+
+    var fauchage=0; //F
+
+    var exploiter_p_0=0; //E_1
+    var exploiter_p_1=0; //E_2
+    var exploiter_p_2=0; //E_4
+
+    var tir_p_0=0;  //T_1
+    var tir_p_1=0; //T_2
+    var tir_i=0;  // O
+    var charge=0; //C
+    var charge_i=0; //N
+
+    // Parsing
+    // Parse a string formated in the following fashion
+    // 4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22
+    // And add everithing in the related Variables
+
+    
+
     log(msg);
     sendChat(msg.who,'/roll 4d10',function(ops) {
         // ops will be an ARRAY of command results.

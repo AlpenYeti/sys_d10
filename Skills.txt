@@ -1,0 +1,68 @@
+General
+Initiative						(Comp)
+Rapidite_surnaturelle		@Actions
+Frères_d'arme				@Reserve
+Perfection						P
+Prescience_					@Reserve
+Rage_primale				@Reserve
+A_corps_perdu				@Reserve
+
+Defence
+Encaissement				@Defence
+Encaissement				@Defence
+Resistances					@Defence
+Endurance_surnaturelle	@PV
+Riposte							@Reserve
+Riposte							@Reserve
+Parade							@Reserve
+Defense_impenetrable	I_1
+Defense_impenetrable	I_2
+Defense_impenetrable	I_4
+Rempart_parfait				R
+Infatigable						(Rappel)
+Dernier_Souffle_			(Rappel)
+Envers_et_contre_tout	(Rappel)
+Regeneration					(Rappel)
+Regeneration					(Rappel)
+Presence_ecrasante		(Rappel)
+Maîtrise_du_combat		(Rappel)
+
+Offense
+Technique_martiale			M_1
+Technique_martiale			M_2
+Coup_en_Puissance			@Reserve
+Coup_Double					@Reserve
+Coup_dechirant				D
+Fauchage						F
+Coup_mortel					(Rappel)@Reserve
+Combat_acrobatique		(Rappel)
+Assaut_implacable			(Rappel)
+Tir_en_mouvement			(Rappel)
+Exploiter_les_points_faibles	E_1
+Exploiter_les_points_faibles	E_2
+Exploiter_les_points_faibles	E_4
+Double_initiative				(Rappel)**
+Marcher_dans_les_ombres	(Rappel)
+Rage_Berserk				(Rappel)**
+Influx_meurtrier				(Rappel)**
+
+
+
+Special
+Tir_mortel					@Reserve
+Tir_precis					T_1
+Tir_precis					T_2
+Tir_implacable			i
+Charge						C
+Charge_Mortelle		(Rappel)
+Charge_indomptable	N
+
+
+
+
+
+
+
+
+
+

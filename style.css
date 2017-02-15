@@ -1,24 +1,27 @@
 div.sheet-tab-content { display: none; }
 input.sheet-tab1:checked ~ div.sheet-tab1,
 input.sheet-tab2:checked ~ div.sheet-tab2,
-input.sheet-tab3:checked ~ div.sheet-tab3,
-input.sheet-tab4:checked ~ div.sheet-tab4,
-input.sheet-tab5:checked ~ div.sheet-tab5,
-input.sheet-tab6:checked ~ div.sheet-tab6
+input.sheet-tab3:checked ~ div.sheet-tab3
 {
     display: block;
 }
 input.sheet-secondary_tab1:checked ~ div.sheet-secondary_tab1,
 input.sheet-secondary_tab2:checked ~ div.sheet-secondary_tab2,
 input.sheet-secondary_tab3:checked ~ div.sheet-secondary_tab3,
-input.sheet-secondary_tab4:checked ~ div.sheet-secondary_tab4,
-input.sheet-secondary_tab5:checked ~ div.sheet-secondary_tab5,
-input.sheet-secondary_tab6:checked ~ div.sheet-secondary_tab6,
-input.sheet-secondary_tab7:checked ~ div.sheet-secondary_tab7,
-input.sheet-secondary_tab8:checked ~ div.sheet-secondary_tab8
+input.sheet-secondary_tab4:checked ~ div.sheet-secondary_tab4
 {
     display:block;
 }
+input.sheet-secondary_magic_tab1:checked ~ div.sheet-secondary_magic_tab1,
+input.sheet-secondary_magic_tab2:checked ~ div.sheet-secondary_magic_tab2,
+input.sheet-secondary_magic_tab3:checked ~ div.sheet-secondary_magic_tab3,
+input.sheet-secondary_magic_tab4:checked ~ div.sheet-secondary_magic_tab4,
+input.sheet-secondary_magic_tab5:checked ~ div.sheet-secondary_magic_tab5
+{
+    display:block;
+}
+
+
 input.sheet-tab{
     width:150px;
     height: 20px;
@@ -50,7 +53,7 @@ input.sheet-tab:checked::before{
 }
 
 input.sheet-small_tab{
-    width:90px;
+    width:120px;
     height: 20px;
     cursor: pointer;
     z-index: 1;
@@ -65,7 +68,7 @@ input.sheet-small_tab::before{
     color:white;
     background:black;
     border:2px solid black;
-    width: 90px;
+    width: 120px;
     height:20px;
     font-size: 14px;
 
@@ -80,6 +83,8 @@ input.sheet-small_tab:checked::before{
 input.sheet-skill_name{
     width:400px;
 }
+
+
 
 div.sheet-tab-content{
     border-top-color: #000;

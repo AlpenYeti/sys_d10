@@ -1,6 +1,6 @@
 on("chat:message", function(msg) {
   //This allows players to enter !sr <number> to roll a number of d6 dice with a target of 4.
- 
+
   if(msg.type == "api" && msg.content.indexOf("!crit ") !== -1) {
     var sndr=msg.who;
     var numdice = msg.content.replace("!crit ", "");
@@ -17,8 +17,8 @@ on("chat:message", function(msg) {
         sendChat(sndr,result);
         //log(rollresult);
         //Now do something with rollresult, just like you would during a chat:message event...
-        
+
     });
-   
+
   }
 });

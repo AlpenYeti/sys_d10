@@ -38,7 +38,7 @@ input.sheet-tab::before{
     border:2px solid black;
     text-align: center;
     display: inline-block;
-    
+
     background: black;
     color:white;
     width: 150px;
@@ -61,7 +61,7 @@ input.sheet-small_tab{
 }
 input.sheet-small_tab::before{
     content: attr(title);
-    
+
     border-radius:.5em;
     text-align: center;
     display: inline-block;
@@ -98,4 +98,8 @@ select.sheet-skill_select{
 select.sheet-dice_select{
     width:85px;
     margin-bottom:-1px;
+}
+
+.sheet-numberbox {
+	width: 50px;
 }

@@ -2,7 +2,7 @@ General
 Perfection__					P
 
 
-Defence
+Defense
 Défense_impénétrable	I_1
 Défense_impénétrable	I_2
 Défense_impénétrable	I_4

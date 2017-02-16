@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <script type="text/javascript">
-    var raw_msg = "4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22";
+    var raw_msg = "4 P 2 I 4 2 E 4 1 T 1 4 + 11 - 22";
     var nb_dices=0;
     var perfection=0;     //P
     var defense_i_0=0;    // I_1
@@ -31,130 +31,112 @@
     var nb_2add=0;       //+
     var nb_2sub=0;      //-
 
+    // Internal Variables
     var tab=raw_msg.split(" ");
+    var len_args=tab.length;
+    var i;
     console.log(tab);
     console.log(tab.length);
-    var i;
+    console.log(Number("455"));
 
-    for (i = 0; i < tab.length;) {
-      while(i == 0) {
-          nb_dices=tab[i];
-          i++;
-      }
-
+    if (len_args>0){
+        nb_dices=tab[0];
+    }
+    for (i = 1; i < tab.length;) {
           switch(tab[i]) {
               case "+":
-                  nb_2add=tab[i+1];
+                  nb_2add=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "-":
-                  nb_2sub=tab[i+1];
+                  nb_2sub=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "P":
-                  perfection=tab[i+1];
+                  perfection=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "I":
                   switch (tab[i+1]) {
                       case "1":
-                          defense_i_0=tab[i+2];
+                          defense_i_0=to_number(tab[i+2]);
                           break;
-
                       case "2":
-                          defense_i_1=tab[i+2];
+                          defense_i_1=to_number(tab[i+2]);
                           break;
-
                       case "4":
-                          defense_i_2=tab[i+2];
+                          defense_i_2=to_number(tab[i+2]);
                           break;
                   }
                   i+=3;
                   break;
-
               case "E":
                   switch (tab[i+1]) {
                       case "1":
-                          exploiter_p_0=tab[i+2];
+                          exploiter_p_0=to_number(tab[i+2]);
                           break;
-
                       case "2":
-                          exploiter_p_1=tab[i+2];
+                          exploiter_p_1=to_number(tab[i+2]);
                           break;
-
                       case "4":
-                          exploiter_p_2=tab[i+2];
+                          exploiter_p_2=to_number(tab[i+2]);
                           break;
                  }
                  i+=3;
                  break;
-
               case "T":
                   switch (tab[i+1]) {
                       case "1":
-                          tir_p_0=tab[i+2];
+                          tir_p_0=to_number(tab[i+2]);
                           break;
-
                       case "2":
-                          tir_p_1=tab[i+2];
+                          tir_p_1=to_number(tab[i+2]);
                           break;
                   }
                   i+=3;
                   break;
-
               case "R":
-                  rempart_p=tab[i+1];
+                  rempart_p=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "C":
-                  charge=tab[i+1];
+                  charge=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "M":
                   switch (tab[i+1]) {
                       case "1":
-                          technique_m_0=tab[i+2];
+                          technique_m_0=to_number(tab[i+2]);
                           break;
 
                       case "2":
-                          technique_m_1=tab[i+2];
+                          technique_m_1=to_number(tab[i+2]);
                           break;
                   }
                   i+=3;
                   break;
-
               case "D":
-                  coup_d=tab[i+1];
+                  coup_d=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "F":
-                  fauchage=tab[i+1];
+                  fauchage=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "N":
-                  charge_i=tab[i+1];
+                  charge_i=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "O":
-                  tir_i=tab[i+1];
+                  tir_i=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               case "r":
-                  relance=tab[i+1];
+                  relance=to_number(tab[i+1]);
                   i+=2;
                   break;
-
               default:
-                  console.log("None of the above");
+                  console.log("Argument "+tab[i]+" unknown.");
                   i++;
       }
 
@@ -186,6 +168,11 @@
     console.log("charge_i : " + charge_i);       //N
     console.log("+ " + nb_2add);
     console.log("- " + nb_2sub);
+    function to_number(nb){
+      var tmp=Number(nb);
+      if (isNaN(tmp)) return 0;
+      return tmp;
+    }
     </script>
   </head>
   <body>

@@ -137,25 +137,73 @@
     <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Combat" /><span></span>
     <div class="sheet-tab-content sheet-tab1">
             <div class='sheet-col'>
-            <h3>Compétences générales</h3>
+            <input type="radio" name="attr_secondary_tab" class="small_tab secondary_general_tab1" checked="checked" value="1" title="Général" />
+            <input type="radio" name="attr_secondary_tab" class="small_tab secondary_general_tab2" value="2" title="Social" />
+            <input type="radio" name="attr_secondary_tab" class="small_tab secondary_general_tab3" value="3" title="Intellectuel" />
 
-            <fieldset class="repeating_skills">
-               <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
-                <input type="number" min="0" name="attr_general_skillcost" />
-                <input type="number" min="0" max="10" name="attr_general_skilllevel" />
-                <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
-                    <option value="@{base-Force} + @{exal-Force}">For</option>
-                    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-                    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
-                    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-                    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-                    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
-                    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-                    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-                    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-                </select>
-                <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}  [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}]]"></button>
-            </fieldset>
+            <div class="sheet-tab-content sheet-secondary_general_tab1">
+              <h3>Compétences générales</h3>
+              <fieldset class="repeating_skills">
+                 <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
+                  <input type="number" min="0" name="attr_general_skillcost" />
+                  <input type="number" min="0" max="10" name="attr_general_skilllevel" />
+                  <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
+                      <option value="@{base-Force} + @{exal-Force}">For</option>
+                      <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+                      <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+                      <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+                      <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+                  </select>
+                  <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}  [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}]]"></button>
+              </fieldset>
+            </div>
+
+            <div class="sheet-tab-content sheet-secondary_general_tab2">
+              <h3>Compétences sociales</h3>
+              <fieldset class="repeating_skills">
+                 <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
+                  <input type="number" min="0" name="attr_general_skillcost" />
+                  <input type="number" min="0" max="10" name="attr_general_skilllevel" />
+                  <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
+                      <option value="@{base-Force} + @{exal-Force}">For</option>
+                      <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+                      <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+                      <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+                      <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+                  </select>
+                  <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}  [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}]]"></button>
+              </fieldset>
+            </div>
+
+            <div class="sheet-tab-content sheet-secondary_general_tab3">
+              <h3>Compétences Intellectuelles</h3>
+              <fieldset class="repeating_skills">
+                 <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
+                  <input type="number" min="0" name="attr_general_skillcost" />
+                  <input type="number" min="0" max="10" name="attr_general_skilllevel" />
+                  <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
+                      <option value="@{base-Force} + @{exal-Force}">For</option>
+                      <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+                      <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+                      <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+                      <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+                      <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+                      <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+                  </select>
+                  <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}  [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}]]"></button>
+              </fieldset>
+            </div>
+
             </div>
     </div>
 

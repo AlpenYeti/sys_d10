@@ -39,8 +39,140 @@ on("chat:message", function(msg) {
     // 4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22
     // And add everithing in the related Variables
 
+    var tab=raw_msg.split(" ");
+    log(tab);
+    log(tab.length);
+    var i;
 
 
+
+    var msg_roll=nb_dices+"d10"+"+"+nb_2add+"-"+nb_2sub;
+
+    for (i = 0; i < tab.length;) {
+        while(i == 0) {
+            nb_dices=tab[i];
+            i++;
+        }
+
+        switch(tab[i]) {
+          case "+":
+              nb_2add=tab[i+1];
+              i+=2;
+              break;
+
+          case "-":
+              nb_2sub=tab[i+1];
+              i+=2;
+              break;
+
+          case "P":
+              perfection=tab[i+1];
+              i+=2;
+              break;
+
+          case "I":
+              switch (tab[i+1]) {
+                  case "1":
+                      defense_i_0=tab[i+2];
+                      break;
+
+                  case "2":
+                      defense_i_1=tab[i+2];
+                      break;
+
+                  case "4":
+                      defense_i_2=tab[i+2];
+                      break;
+              }
+              i+=3;
+              break;
+
+          case "E":
+              switch (tab[i+1]) {
+                  case "1":
+                      exploiter_p_0=tab[i+2];
+                      break;
+
+                  case "2":
+                      exploiter_p_1=tab[i+2];
+                      break;
+
+                  case "4":
+                      exploiter_p_2=tab[i+2];
+                      break;
+             }
+             i+=3;
+             break;
+
+          case "T":
+              switch (tab[i+1]) {
+                  case "1":
+                      tir_p_0=tab[i+2];
+                      break;
+
+                  case "2":
+                      tir_p_1=tab[i+2];
+                      break;
+              }
+              i+=3;
+              break;
+
+          case "R":
+              rempart_p=tab[i+1];
+              i+=2;
+              break;
+
+          case "C":
+              charge=tab[i+1];
+              i+=2;
+              break;
+
+          case "M":
+              switch (tab[i+1]) {
+                  case "1":
+                      technique_m_0=tab[i+2];
+                      break;
+
+                  case "2":
+                      technique_m_1=tab[i+2];
+                      break;
+              }
+              i+=3;
+              break;
+
+          case "D":
+              coup_d=tab[i+1];
+              i+=2;
+              break;
+
+          case "F":
+              fauchage=tab[i+1];
+              i+=2;
+              break;
+
+          case "N":
+              charge_i=tab[i+1];
+              i+=2;
+              break;
+
+          case "O":
+              tir_i=tab[i+1];
+              i+=2;
+              break;
+
+          case "r":
+              relance=tab[i+1];
+              i+=2;
+              break;
+
+          default:
+              console.log("None of the above");
+              i++;
+  }
+
+console.log(i);
+}
+    /*
     log(msg);
     sendChat(msg.who,'/roll 4d10',function(ops) {
         // ops will be an ARRAY of command results.
@@ -55,6 +187,6 @@ on("chat:message", function(msg) {
         //Now do something with rollresult, just like you would during a chat:message event...
 
     });
-
+    */
   }
 });

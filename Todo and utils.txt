@@ -12,8 +12,8 @@ Rempart_parfait				R
 Offense
 Technique_martiale			M_1
 Technique_martiale			M_2
-Coup_déchirant				D
-Fauchage						F
+Coup_déchirant					D
+Fauchage								F
 Exploiter_les_points_faibles	E_1
 Exploiter_les_points_faibles	E_2
 Exploiter_les_points_faibles	E_4
@@ -25,7 +25,7 @@ Spécial
 Tir_précis					T_1
 Tir_précis					T_2
 Tir_implacable			i
-Charge						C
+Charge							C
 Charge_indomptable	N
 
 			<!--SKILLNAME -->

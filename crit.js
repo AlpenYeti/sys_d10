@@ -7,13 +7,17 @@ on("chat:message", function(msg) {
     var result='';
 
     //Variables a initialiser par parse
+    var nb_dices=0;
+    var nb_2add=0; //+
+    var nb_2sub=0; //-
+
+    var relances=0; //r
     var perfection=0; //P
+
     var defense_i_0=0; // I_1
-    var defense_i_0=1; // I_2
-    var defense_i_0=2; // I_4
-
+    var defense_i_0=0; // I_2
+    var defense_i_0=0; // I_4
     var rempart_p=0; //R
-
     var technique_m_0=0; //M_1
     var technique_m_1=0; //M_2
     var coup_d=0;        //D
@@ -35,7 +39,7 @@ on("chat:message", function(msg) {
     // 4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22
     // And add everithing in the related Variables
 
-    
+
 
     log(msg);
     sendChat(msg.who,'/roll 4d10',function(ops) {

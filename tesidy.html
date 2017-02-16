@@ -5,7 +5,7 @@
     <title></title>
     <script type="text/javascript">
     var raw_msg = "4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22";
-    var num_die=0;
+    var nb_dices=0;
     var perfection=0;     //P
     var defense_i_0=0;    // I_1
     var defense_i_1=0;    // I_2
@@ -28,8 +28,8 @@
     var tir_i=0;          // O
     var charge=0;         //C
     var charge_i=0;       //N
-    var mod_plus=0;       //+
-    var mod_moins=0;      //-
+    var nb_2add=0;       //+
+    var nb_2sub=0;      //-
 
     var tab=raw_msg.split(" ");
     console.log(tab);
@@ -37,154 +37,155 @@
     var i;
 
     for (i = 0; i < tab.length;) {
-      var toTest = tab[i];
+      while(i == 0) {
+          nb_dices=tab[i];
+          i++;
+      }
 
-        switch(toTest) {
-            case "0<=toTest<=99":
-                num_die=tab[i];
-                i++;
-                break;
+          switch(tab[i]) {
+              case "+":
+                  nb_2add=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "+":
-                mod_plus=tab[i+1];
-                i+=2;
-                break;
+              case "-":
+                  nb_2sub=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "-":
-                mod_moins=tab[i+1];
-                i+=2;
-                break;
+              case "P":
+                  perfection=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "P":
-                perfection=tab[i+1];
-                i+=2;
-                break;
+              case "I":
+                  switch (tab[i+1]) {
+                      case "1":
+                          defense_i_0=tab[i+2];
+                          break;
 
-            case "I":
-                switch (tab[i+1]) {
-                    case "1":
-                        defense_i_0=tab[i+2];
-                        break;
+                      case "2":
+                          defense_i_1=tab[i+2];
+                          break;
 
-                    case "2":
-                        defense_i_1=tab[i+2];
-                        break;
+                      case "4":
+                          defense_i_2=tab[i+2];
+                          break;
+                  }
+                  i+=3;
+                  break;
 
-                    case "4":
-                        defense_i_2=tab[i+2];
-                        break;
-                }
-                i+=3;
-                break;
+              case "E":
+                  switch (tab[i+1]) {
+                      case "1":
+                          exploiter_p_0=tab[i+2];
+                          break;
 
-            case "E":
-                switch (tab[i+1]) {
-                    case "1":
-                        exploiter_p_0=tab[i+2];
-                        break;
+                      case "2":
+                          exploiter_p_1=tab[i+2];
+                          break;
 
-                    case "2":
-                        exploiter_p_1=tab[i+2];
-                        break;
+                      case "4":
+                          exploiter_p_2=tab[i+2];
+                          break;
+                 }
+                 i+=3;
+                 break;
 
-                    case "4":
-                        exploiter_p_2=tab[i+2];
-                        break;
-               }
-               i+=3;
-               break;
+              case "T":
+                  switch (tab[i+1]) {
+                      case "1":
+                          tir_p_0=tab[i+2];
+                          break;
 
-            case "T":
-                switch (tab[i+1]) {
-                    case "1":
-                        tir_p_0=tab[i+2];
-                        break;
+                      case "2":
+                          tir_p_1=tab[i+2];
+                          break;
+                  }
+                  i+=3;
+                  break;
 
-                    case "2":
-                        tir_p_1=tab[i+2];
-                        break;
-                }
-                i+=3;
-                break;
+              case "R":
+                  rempart_p=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "R":
-                rempart_p=tab[i+1];
-                i+=2;
-                break;
+              case "C":
+                  charge=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "C":
-                charge=tab[i+1];
-                i+=2;
-                break;
+              case "M":
+                  switch (tab[i+1]) {
+                      case "1":
+                          technique_m_0=tab[i+2];
+                          break;
 
-            case "M":
-                switch (tab[i+1]) {
-                    case "1":
-                        technique_m_0=tab[i+2];
-                        break;
+                      case "2":
+                          technique_m_1=tab[i+2];
+                          break;
+                  }
+                  i+=3;
+                  break;
 
-                    case "2":
-                        technique_m_1=tab[i+2];
-                        break;
-                }
-                i+=3;
-                break;
+              case "D":
+                  coup_d=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "D":
-                coup_d=tab[i+1];
-                i+=2;
-                break;
+              case "F":
+                  fauchage=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "F":
-                fauchage=tab[i+1];
-                i+=2;
-                break;
+              case "N":
+                  charge_i=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "N":
-                charge_i=tab[i+1];
-                i+=2;
-                break;
+              case "O":
+                  tir_i=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "O":
-                tir_i=tab[i+1];
-                i+=2;
-                break;
+              case "r":
+                  relance=tab[i+1];
+                  i+=2;
+                  break;
 
-            case "r":
-                relance=tab[i+1];
-                i+=2;
-                break;
+              default:
+                  console.log("None of the above");
+                  i++;
+      }
 
-            default:
-                console.log("bite");
-                i++;
-        }
     console.log(i);
     }
     console.log(raw_msg = "4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22");
-    console.log(num_die);
-    console.log(perfection);     //P
-    console.log(defense_i_0);    // I_1
-    console.log(defense_i_1);    // I_2
-    console.log(defense_i_2);    // I_4
+    console.log("nb_dices : " + nb_dices);
+    console.log("perfection : " + perfection);     //P
+    console.log("defense_i_0 : " + defense_i_0);    // I_1
+    console.log("defense_i_1 : " + defense_i_1);    // I_2
+    console.log("defense_i_2 : " + defense_i_2);    // I_4
 
-    console.log(rempart_p);      //R
+    console.log("rempart_p : " + rempart_p);      //R
 
-    console.log(technique_m_0);  //M_1
-    console.log(technique_m_1);  //M_2
-    console.log(coup_d);         //D
+    console.log("technique_m_0 : " + technique_m_0);  //M_1
+    console.log("technique_m_1 : " + technique_m_1);  //M_2
+    console.log("coup_d : " + coup_d);         //D
 
-    console.log(fauchage);       //F
+    console.log("fauchage : " + fauchage);       //F
 
-    console.log(exploiter_p_0);  //E_1
-    console.log(exploiter_p_1);  //E_2
-    console.log(exploiter_p_2);  //E_4
+    console.log("exploiter_p_0 : " + exploiter_p_0);  //E_1
+    console.log("exploiter_p_1 : " + exploiter_p_1);  //E_2
+    console.log("exploiter_p_2 : " + exploiter_p_2);  //E_4
 
-    console.log(tir_p_0);        //T_1
-    console.log(tir_p_1);        //T_2
-    console.log(tir_i);          // O
-    console.log(charge);         //C
-    console.log(charge_i);       //N
+    console.log("tir_p_0 : " + tir_p_0);        //T_1
+    console.log("tir_p_1 : " + tir_p_1);        //T_2
+    console.log("tir_i : " + tir_i);          // O
+    console.log("charge : " + charge);         //C
+    console.log("charge_i : " + charge_i);       //N
+    console.log("+ " + nb_2add);
+    console.log("- " + nb_2sub);
     </script>
   </head>
   <body>

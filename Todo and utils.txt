@@ -33,11 +33,11 @@ Charge_indomptable	N
 
 
 			<!--FIELD_TYPE -->
-			<fieldset class="repeating_FIELD_TYPE_skills">
-								<input class="sheet-FIELD_TYPE_name" type="text" name="attr_FIELD_TYPE_skillname" />
+			<fieldset class="repeating_FIELD_TYPE-skills">
+								<input class="sheet-skill_name" type="text" name="attr_FIELD_TYPE_skillname" />
 								<input type="number" name="attr_FIELD_TYPE_skillcost" />
-								<input type="number" min="0" max="10" name="attr_FIELD_TYPE_skilllevel" />
-								<select class="sheet-skill_select" name="attr_FIELD_TYPE_magic_attribute_select">
+								<input type="number" min="-10" max="10" name="attr_FIELD_TYPE_skilllevel" />
+								<select class="sheet-skill_select" name="attr_FIELD_TYPE_attribute_select">
 										<option value="@{base-Force} + @{exal-Force}">For</option>
 										<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
 										<option value="@{base-Perception} + @{exal-Perception}">Per</option>

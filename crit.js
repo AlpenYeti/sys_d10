@@ -14,9 +14,9 @@ if(msg.type == "api" && msg.content.indexOf("!crit ") !== -1) {
     //d_vars.results=new Array(Number(d_vars.nb_dices));
     d_vars.perfection=Math.min(10,d_vars.perfection);
     d_vars.rempart_p=Math.min(10,d_vars.rempart_p);
-    d_vars.nb_dices+=d_vars.tir_p_0+d_vars.tir_p_1;
+    d_vars.nb_dices+=d_vars.tir_i;
     d_vars.fauchage=Math.min(d_vars.fauchage,d_vars.nb_dices);
-    d_vars.seuil=Math.max(d_vars.seuil-d_vars.tir_i,0);
+    d_vars.seuil=Math.max(d_vars.seuil-d_vars.tir_p_0-d_vars.tir_p_1,0);
 
     // Let's be honests no one really cares if it's a defensive or offensive perfection
     d_vars.perfection=Math.max(d_vars.perfection,d_vars.rempart_p);
@@ -159,15 +159,15 @@ function show_rolls(who,d_vars){
     //Return a beautiful table showing the results and some information depending on the type of action "e":Dodge "a":Attack "d":Defense
 
     var msg_head="<div style='border-radius: 6px; border: 2px solid #898989;'> <table style='text-align: left;' width=100% border='0' cellpadding='3' cellspacing='0'> <tbody>"
-    var msg="<tr><td style='background-color: #999999;'>";
+    var msg="<tr><td style='border-radius: 6px; border: 2px solid #898989; background-color: #999999;'>";
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
-    var msg_relance="[Relancer ce jet](!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
+    var msg_relance="<a style='text-align:right; background-color: #999999;' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
         " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" D "+d_vars.coup_d+" F "+d_vars.fauchage+
         " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
         " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result)+" - "+d_vars.nb_2sub+" r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action;
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
-    msg_relance+=")";
+    msg_relance+="'>Relancer ce jet</a>";
     var sum=0;
     var m_esq=1,m_crit=1; //The multiplier from dodge or crit
 
@@ -190,7 +190,11 @@ function show_rolls(who,d_vars){
         default:
             msg+=who+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
-    if (dice_stats.is_crit) m_crit=2; // It's a crit
+    if (dice_stats.is_crit) {if (d_vars.nb_dices>1){
+        m_crit=2; // It's a crit
+    } else {
+        m_crit=1.5; // Only half a crit
+    }};
 
     //Add the rolls
 
@@ -199,6 +203,7 @@ function show_rolls(who,d_vars){
         msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
     if (d_vars.coup_d!=0) msg_adds+="<tr><td style='padding-left:10px'>Coup déchirant: "+d_vars.coup_d+"</tr></td>"; // Coup déchirant
     if (d_vars.technique_m!=0) msg_adds+="<tr><td style='padding-left:10px'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
+    if (d_vars.relances!=0) msg_adds+="<tr><td style='padding-left:10px'>Relances: "+d_vars.relances+"</tr></td>"; // Technique martiale
 
     if (dice_stats.is_crit==1) msg+="<tr><td style='background-color:#b0d6ad;'>L'action est une réussite critique</tr></td>";
     if (dice_stats.is_hit==1){
@@ -255,6 +260,8 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
         dices+="</span>"; //Stop greening everything
         is_acrit=2;
     }
+    if (d_vars.nb_2add!=0){dices+=" + "+d_vars.nb_2add;};
+    if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};
     // Add everything to the sum
     sum=((sum*m_esq)+d_vars.nb_2add)*m_crit-d_vars.nb_2sub;
     sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result;
@@ -286,7 +293,7 @@ function parse_command(message){
     for (i = 1; i < len_args;) {
         switch(tab[i]) {
             case "+":
-                d_vars.nb_2add=to_number(tab[i+1]);
+                d_vars.nb_2add+=to_number(tab[i+1]);
                 i+=2;
                 break;
             case "-":

@@ -59,7 +59,7 @@ if(msg.type == "api" && msg.content.indexOf("!crit ") !== -1) {
 
 function reroll(who,d_vars){
     //Upgrade the results with a reroll
-    if (d_vars.relances==0) return show_rolls(who,d_vars);
+    if (d_vars.relances==0) return cleaveit(who,d_vars);
     var msg_roll="/roll "+d_vars.relances+"d"+(10-d_vars.perfection);
     var rerolls=[];
     sendChat(who,msg_roll,function(ops) {
@@ -69,20 +69,29 @@ function reroll(who,d_vars){
         };
 
         //Merge the rerolls to the results, then drop the d_vars.rerolls lower ones (this method is equivalent to n consecutives rerolls)
-        for(var i=0;i<d_vars.relances ; i++){
+        for(i=0;i<d_vars.relances ; i++){
             // Find the smallest element and Place the reroll in it's place
             d_vars.results[indexOfSmallest(d_vars.results)]=rerolls[i];
-        }
+        };
+
         // Now we can split the cleave from the rolls
-        if (d_vars.fauchage!=0){
-            d_vars.cleave=d_vars.results.splice(d_vars.results.length-d_vars.fauchage).sort(function(a, b){return a-b});
-        }
-        d_vars.results.sort(function(a, b){return a-b});
-        //logit(d_vars.results);
-        show_rolls(who,d_vars);
+        cleaveit(who,d_vars);
     });
 }
 
+function cleaveit(who,d_vars){
+    //Now all we have to do is cleave and show the results
+    if (d_vars.fauchage!=0){
+        d_vars.cleave=d_vars.results.splice(d_vars.results.length-d_vars.fauchage);
+        d_vars.cleave.sort(function(a, b){return a-b});
+    }
+    d_vars.results.sort(function(a, b){return a-b});
+    //logit(d_vars.results);
+    //logit(d_vars.cleave);
+
+    //Finally we can show the results
+    show_rolls(who,d_vars);
+}
 function indexOfSmallest(a) {
     var lowest = 0;
     for (var i = 1; i < a.length; i++) {
@@ -211,6 +220,7 @@ function show_rolls(who,d_vars){
 }
 
 function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
+    logit(results);
     var dices="<tr><td> "+name;
     var is_below=0,is_acrit=0;
     var sum=0;

@@ -1,34 +1,34 @@
 //Variables a initialiser par parse
 	/*var nb_dices=0;
-	var all_dices               d*
-	var nb_2add=0;              //+
-	var nb_2sub=0;               //-
+	var all_dices               	d*
+	var nb_2add=0;              	//+
+	var nb_2sub=0;               	//-
 
-	var relances=0;             //r
-	Perfection					P
+	var relances=0;             	//r
+	Perfection										P
 
 	Defense
-	Défense_impénétrable	   I_1
-	Défense_impénétrable	   I_2
-	Défense_impénétrable	   I_4
-	Rempart_parfait				R
+	Défense_impénétrable	   			I_1
+	Défense_impénétrable	   			I_2  - Rappel
+	Défense_impénétrable	  		 	I_4
+	Rempart_parfait								R
 
 	Offense
-	Technique_martiale			M_1
-	Technique_martiale			M_2
-	Coup_déchirant					D
-	Fauchage						F
+	Technique_martiale						M_1
+	Technique_martiale						M_2
+	Coup_déchirant								D
+	Fauchage											F
 	Exploiter_les_points_faibles	E_1
-	Exploiter_les_points_faibles	E_2
+	Exploiter_les_points_faibles	E_2  - Rappel
 	Exploiter_les_points_faibles	E_4
 
 	Spécial
-	Tir_précis				      	T_1
-	Tir_précis				      	T_2
-	Tir_implacable			       i
-	Charge							C
-	Charge_indomptable	             N
-	Seuil                           s
+	Tir_précis				      			T_1
+	Tir_précis				      			T_2
+	Tir_implacable			       		i
+	Charge												C
+	Charge_indomptable	          N - (Sur la feuille de perso)
+	Seuil                         s
 	*/
 
 			<!--SKILLNAME -->

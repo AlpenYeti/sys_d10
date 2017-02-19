@@ -162,12 +162,18 @@ function show_rolls(who,d_vars){
     var msg="<tr><td style='background-color: #999999;'>";
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
-
+    var msg_relance="[Relancer ce jet](!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
+        " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" D "+d_vars.coup_d+" F "+d_vars.fauchage+
+        " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
+        " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result)+" - "+d_vars.nb_2sub+" r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action;
+    for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
+    msg_relance+=")";
     var sum=0;
     var m_esq=1,m_crit=1; //The multiplier from dodge or crit
 
     //Eval the rolls to determine if it's a crit
     var dice_stats=eval_crit(d_vars);
+
     logit(dice_stats);
 
     switch(d_vars.action){
@@ -215,7 +221,7 @@ function show_rolls(who,d_vars){
         }
     }
     msg+=msg_adds;
-    sendChat(who,msg_head+msg+msg_foot);
+    sendChat(who,msg_head+msg+msg_foot+msg_relance);
     //logit(msg_head+msg+msg_foot);
 }
 
@@ -251,7 +257,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     }
     // Add everything to the sum
     sum=((sum*m_esq)+d_vars.nb_2add)*m_crit-d_vars.nb_2sub;
-    sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge;
+    sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result;
 
     dices+="<tr><td style='text-align: right; padding-right:10px;' > Total: "+sum+"</tr></td>";
 

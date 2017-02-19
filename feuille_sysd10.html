@@ -460,12 +460,12 @@
 
 	<!--Defense -->
 	<div class="sheet-tab-content sheet-secondary_tab3">
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_defense_dices} + @{Skill_general_attribute_select_defense} - ?{Dégats a parrer|0} a d">Parade</button>
+		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_defense_dices} + @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d">Parade</button>
 		<input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" value="0"/>d10+
 		<input type="number" class="sheet-numberbox" name="attr_base_defense_dices" value="0"/>
 		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option></select>
 		<br/>
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} + @{SSkill_general_attribute_select_dodge} s ?{Seuil d'esquive}- ?{Dégats a esquiver|0} a d">Esquive</button>
+		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} + @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e">Esquive</button>
 		<input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" value="0"/>d10+
 		<input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" value="0"/>
 		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge"><option value="@{base-Chance} + @{exal-Chance}">Chn</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option></select>

@@ -124,7 +124,7 @@ function eval_crit(d_vars){
            return_data.nb_ncrit--;
            return_data.nb_crit++;
        }
-       if (d_vars.results[i]>d_vars.seuil){
+       if (d_vars.results[i]>=d_vars.seuil){
            return_data.nb_hit++;
        }
     }
@@ -190,7 +190,7 @@ function show_rolls(who,d_vars){
         default:
             msg+=who+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
-    if (dice_stats.is_crit) {if (d_vars.nb_dices>1){
+    if (dice_stats.is_crit) {if (d_vars.nb_dices+d_vars.nb_flat_dices>1){
         m_crit=2; // It's a crit
     } else {
         m_crit=1.5; // Only half a crit
@@ -209,7 +209,7 @@ function show_rolls(who,d_vars){
     if (dice_stats.is_hit==1){
         if (d_vars.seuil!=0){
             if (d_vars.action=="a"){
-                msg+="<tr><td style='background-color:#b0d6ad;'>L'attaque parvient a toucher sa cible</tr></td>";
+                msg+="<tr><td style='background-color:#b0d6ad;'>L'attaque parvient à toucher sa cible</tr></td>";
             } else if (d_vars.action=="d"||d_vars.action=="e"){
                 // Can't miss a block or a dodge, can be shitty tho
             } else {

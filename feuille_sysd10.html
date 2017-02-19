@@ -37,8 +37,8 @@
 
 	// Technique_martiale
 	on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale", function() {
-		getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale"], function(values) {
-			setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*values.general_skilllevel_Technique_martiale});
+		getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
+			setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite']))});
 		});
 	});
 	// Defense_impenetrable

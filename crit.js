@@ -82,7 +82,9 @@ function reroll(who,d_vars){
 function cleaveit(who,d_vars){
     //Now all we have to do is cleave and show the results
     if (d_vars.fauchage!=0){
-        d_vars.cleave=d_vars.results.splice(d_vars.results.length-d_vars.fauchage);
+        for (var i=d_vars.results.length-d_vars.fauchage,len=d_vars.results.length;i<len;i++){
+            d_vars.cleave.push(d_vars.results[i]);
+        }
         d_vars.cleave.sort(function(a, b){return a-b});
     }
     d_vars.results.sort(function(a, b){return a-b});
@@ -263,7 +265,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     if (d_vars.nb_2add!=0){dices+=" + "+d_vars.nb_2add;};
     if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};
     // Add everything to the sum
-    sum=((sum*m_esq)+d_vars.nb_2add)*m_crit-d_vars.nb_2sub;
+    sum=((sum*m_esq))*m_crit+d_vars.nb_2add-d_vars.nb_2sub;
     sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result;
 
     dices+="<tr><td style='text-align: right; padding-right:10px;' > Total: "+sum+"</tr></td>";

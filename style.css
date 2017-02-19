@@ -37,6 +37,7 @@ input.sheet-tab{
     cursor: pointer;
     z-index: 1;
 }
+
 input.sheet-tab::before{
     content: attr(title);
 
@@ -51,6 +52,7 @@ input.sheet-tab::before{
     height: 20px;
     font-size: 18px;
 }
+
 input.sheet-tab:checked::before{
     background:#CCCCCC;
     color:black;
@@ -92,7 +94,7 @@ input.sheet-skill_name{
 
 
 div.sheet-skill_hidden{
-
+    display: none;
 }
 div.sheet-tab-content{
     border-top-color: #000;

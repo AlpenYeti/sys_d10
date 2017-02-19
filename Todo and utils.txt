@@ -31,6 +31,12 @@
 	Seuil                         s
 	*/
 
+	on("change:skill_SKILLNAME_activation change:general_skilllevel_SKILLNAME", function() {
+		getAttrs(["skill_SKILLNAME_activation", "general_skilllevel_Perfection"], function(values) {
+			setAttrs({"general_effective_SKILLNAME":values.skill_SKILLNAME_activation*values.general_skilllevel_SKILLNAME});
+		});
+	});
+
 			<!--SKILLNAME -->
 		    <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_SKILLNAME" disabled="true" value="SKILLNAME" />
 		    <input type="number" min="0" name="attr_skillcost_SKILLNAME" />
@@ -38,7 +44,7 @@
             <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_SKILLNAME"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
             <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_SKILLNAME}  [[(@{general_skilllevel_SKILLNAME}+(@{Skill_general_attribute_select_SKILLNAME}) - d@{dice})]] "></button>
             <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_SKILLNAME_activation" />
-
+						<input class="sheet-hidden" type="number" disabled="true" name="attr_general_effective_SKILLNAME" value="@{general_skilllevel_SKILLNAME}"/>
 
 			<!--FIELD_TYPE -->
 			<fieldset class="repeating_FIELD_TYPE-skills">

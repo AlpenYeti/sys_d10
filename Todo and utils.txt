@@ -1,27 +1,35 @@
-General
-Perfection					P
+//Variables a initialiser par parse
+	/*var nb_dices=0;
+	var all_dices               	d*
+	var nb_2add=0;              	//+
+	var nb_2sub=0;               	//-
 
-Defense
-Défense_impénétrable	I_1
-Défense_impénétrable	I_2
-Défense_impénétrable	I_4
-Rempart_parfait				R
+	var relances=0;             	//r
+	Perfection										P
 
-Offense
-Technique_martiale			M_1
-Technique_martiale			M_2
-Coup_déchirant					D
-Fauchage								F
-Exploiter_les_points_faibles	E_1
-Exploiter_les_points_faibles	E_2
-Exploiter_les_points_faibles	E_4
+	Defense
+	Défense_impénétrable	   			I_1
+	Défense_impénétrable	   			I_2  - Rappel
+	Défense_impénétrable	  		 	I_4
+	Rempart_parfait								R
 
-Spécial
-Tir_précis					T_1
-Tir_précis					T_2
-Tir_implacable			i
-Charge							C
-Charge_indomptable	N
+	Offense
+	Technique_martiale						M_1
+	Technique_martiale						M_2
+	Coup_déchirant								D
+	Fauchage											F
+	Exploiter_les_points_faibles	E_1
+	Exploiter_les_points_faibles	E_2  - Rappel
+	Exploiter_les_points_faibles	E_4
+
+	Spécial
+	Tir_précis				      			T_1
+	Tir_précis				      			T_2
+	Tir_implacable			       		i
+	Charge												C
+	Charge_indomptable	          N - (Sur la feuille de perso)
+	Seuil                         s
+	*/
 
 			<!--SKILLNAME -->
 		    <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_SKILLNAME" disabled="true" value="SKILLNAME" />

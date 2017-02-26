@@ -1,7 +1,6 @@
 on("chat:message", function(msg) {
     //This allows players to enter !sr <number> to roll a number of d6 dice with a target of 4.
     if(msg.type == "api" && msg.content.indexOf("!crit ") !== -1) {
-
         var sndr=msg.who;
         var raw_msg = msg.content.replace("!crit ", "");
 
@@ -25,20 +24,39 @@ on("chat:message", function(msg) {
         //Initialisation
         var nb_sides=10-d_vars.perfection; //If the sides turns out to be 0 we could do a skip tho...
         var msg_roll="/roll "+d_vars.nb_dices+"d"+nb_sides;
-        if (d_vars.technique_m!=0) msg_roll+="+1d10"; // Let's have one more dice for the test, ugly but meh
+        if (d_vars.technique_m!=0) msg_roll+="+ 1d10"; // Let's have one more dice for the test
+		if (d_vars.coup_d!=0) msg_roll+="+"+d_vars.coup_d+"d10"; // Split a bunch of additional dices
+		if (d_vars.encaissement!=0) msg_roll+="+1"+d_vars.encaissement_dices; // And yet one more dice
         //var to_add=d_vars.nb_2add-d_vars.nb_2sub;
 
         // Original launch
         sendChat(msg.who,msg_roll,function(ops) {
-            // ops will be an ARRAY of command results.
+			// ops will be an ARRAY of command results.
 
             var rollresult = JSON.parse(ops[0]["content"])["rolls"][0]["results"];
-            if (d_vars.technique_m!=0) {
-                d_vars.technique_result = JSON.parse(ops[0]["content"])["rolls"][2]["results"][0]["v"];
+			var dec=2;
+			if (d_vars.technique_m!=0) { // Parsing special technique
+                d_vars.technique_result = JSON.parse(ops[0]["content"])["rolls"][dec]["results"][0]["v"]; dec+=2;
                 var t = Math.max(0,d_vars.technique_m-d_vars.technique_result);
                 if (d_vars.technique_result==1) d_vars.technique_result=t*2;
                 else d_vars.technique_result=t;
             }
+			if (d_vars.coup_d!=0) { // Parsing the mutilating strike
+                var table_r = JSON.parse(ops[0]["content"])["rolls"][dec]["results"]; dec+=2;
+				for (var t=0,i=0,len=table_r.length ; i<len ; i++){
+					d_vars.coup_d_results.push(table_r[i]["v"]);
+				}
+            }
+			if (d_vars.encaissement!=0) { // Parsing the tanking
+                d_vars.encaissement_result=JSON.parse(ops[0]["content"])["rolls"][dec]["results"][0]["v"]; dec+=2;
+                if ((d_vars.encaissement+d_vars.attribute-d_vars.encaissement_result)>0){
+					if (d_vars.encaissement_result==1) d_vars.encaissement_result=(d_vars.attribute+d_vars.encaissement)*2;
+	                else d_vars.encaissement_result=d_vars.attribute+d_vars.encaissement;
+				} else {
+					d_vars.encaissement_result=0;
+				}
+            }
+
             for(var i=0,len = rollresult.length ; i<len ; i++){
                 // results is now an Array of all rolls
                 d_vars.results[i]=Number(rollresult[i]["v"])+Number(d_vars.perfection);
@@ -143,20 +161,6 @@ on("chat:message", function(msg) {
     return return_data;
 }
 
-function to_p_number(nb){
-    // Convert to number or return 0
-    var tmp=Number(nb);
-    if (isNaN(tmp)) return 0;
-    return Math.abs(tmp);
-}
-
-function to_number(nb){
-    // Convert to number or return 0
-    var tmp=Number(nb);
-    if (isNaN(tmp)) return 0;
-    return tmp;
-}
-
 function show_rolls(who,d_vars){
     //Return a beautiful table showing the results and some information depending on the type of action "e":Dodge "a":Attack "d":Defense
 
@@ -165,10 +169,10 @@ function show_rolls(who,d_vars){
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
     var msg_relance="<a style='text-align:right; background-color: #999999;' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
-    " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" D "+d_vars.coup_d+" F "+d_vars.fauchage+
+    " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
     " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
-    " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c;
+    " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
+    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute;
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
     var sum=0;
@@ -202,11 +206,11 @@ function show_rolls(who,d_vars){
     //Add the rolls
 
     msg+=add_thoose_dices(d_vars,d_vars.results,"",m_esq,m_crit);
-    if (d_vars.fauchage!=0)
-    msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
-    if (d_vars.coup_d!=0) msg_adds+="<tr><td style='padding-left:10px'>Coup déchirant: "+d_vars.coup_d+"</tr></td>"; // Coup déchirant
+    if (d_vars.fauchage!=0) msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
+    if (d_vars.coup_d!=0) msg_adds+="<tr><td style='padding-left:10px'>Coup déchirant: "+d_vars.coup_d_results.join(" ")+"</tr></td>"; // Coup déchirant
     if (d_vars.technique_m!=0) msg_adds+="<tr><td style='padding-left:10px'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
     if (d_vars.relances!=0) msg_adds+="<tr><td style='padding-left:10px'>Relances: "+d_vars.relances+"</tr></td>"; // Technique martiale
+	if (d_vars.encaissement!=0) msg_adds+="<tr><td style='padding-left:10px'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Technique martiale
 
     if (dice_stats.is_crit==1) msg+="<tr><td style='background-color:#b0d6ad;'>L'action est une réussite critique</tr></td>";
     if (dice_stats.is_hit==1){
@@ -265,15 +269,15 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     }
 
     if (d_vars.nb_2add!=0){dices+=" + ("+d_vars.nb_2add;};
-    if (d_vars.on_hit_c!=0){
-        dices+=" + "+d_vars.on_hit_c;
+    if (d_vars.on_hit_c+d_vars.attribute!=0){
+        dices+=" + "+(d_vars.on_hit_c+d_vars.attribute);
         if (m_crit>1) dices+="x"+m_crit;
     };
     if (d_vars.nb_2add!=0){dices+=")";};
     if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};
     // Add everything to the sum
-    sum=Math.floor(((sum*m_esq+d_vars.on_hit_c))*m_crit)+d_vars.nb_2add-d_vars.nb_2sub;
-    sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result;
+    sum=Math.floor(((sum*m_esq+d_vars.on_hit_c+d_vars.attribute))*m_crit)+d_vars.nb_2add-d_vars.nb_2sub;
+    sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result+d_vars.encaissement_result;
 
     dices+="<tr><td style='text-align: right; padding-right:10px;' > Total: "+sum+"</tr></td>";
 
@@ -287,10 +291,10 @@ function parse_command(message){
     // 4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22 s 2 d 4 d 5 d 8 d 1
     // And add everithing in the related Variables
     var d_vars={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,"defense_i_2":0,"rempart_p":0,
-    "technique_m":0,"coup_d":0,"fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,
+    "technique_m":0,"coup_d":0,"coup_d_results":[],"fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,
     "exploiter_p_2":0,"tir_p_0":0,"tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,
     "relances":0,"seuil":0,"nb_flat_dices":0,"action":"","flat_dices":[],"results":[],"technique_result":0,
-    "cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0};
+    "cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":"","encaissement_result":0};
     var tab=message.split(" ");
     var len_args=tab.length;
     var i;
@@ -410,9 +414,11 @@ function parse_command(message){
                 d_vars.attribute+=to_number(tab[i+1]);
                 i+=2;
                 break;
-            case "E":
-                d_vars.encaissement+=to_number(tab[i+1]);
-                i+=2;
+            case "S":
+                d_vars.encaissement=to_number(tab[i+1]);
+				d_vars.encaissement_dices="d20";
+				if (tab[i+2]=="4") d_vars.encaissement_dices="d10";
+                i+=3;
                 break;
             default:
                 logit("Argument "+tab[i]+" unknown.");
@@ -422,8 +428,29 @@ function parse_command(message){
     }
     return d_vars;
 };
+
+function to_p_number(nb){
+    // Convert to absolute number or return 0
+    var tmp=Number(nb);
+    if (isNaN(tmp)) return 0;
+    return Math.abs(tmp);
+}
+function to_0_number(nb){
+	//Convert to positive or zero number
+	var tmp=Number(nb);
+    if (isNaN(tmp)) return 0;
+    if (tmp>0) return tmp;
+	return 0;
+}
+
+function to_number(nb){
+    // Convert to number or return 0
+    var tmp=Number(nb);
+    if (isNaN(tmp)) return 0;
+    return tmp;
+}
+
 function logit(txt){
-    //Due to the incomprehensible restriction of console. in roll20
-    //sendChat("console",txt);
+    //Due to the restriction of console.log()
     log(txt);
 };

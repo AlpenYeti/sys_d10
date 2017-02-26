@@ -10,30 +10,30 @@ var relances=0;						 	//r
 Perfection								P
 
 Defense
-Défense_impénétrable		 			I_1
-Défense_impénétrable		 			I_2	- Rappel
-Défense_impénétrable				 	I_4
+Défense_impénétrable		 			I 1
+Défense_impénétrable		 			I 2	- Rappel
+Défense_impénétrable				 	I 4
 Rempart_parfait							R
 
 Offense
-Technique_martiale						M_1
-Technique_martiale						M_2
+Technique_martiale						M 1
+Technique_martiale						M 2
 Coup_déchirant							D
 Fauchage								F
-Exploiter_les_points_faibles			E_1
-Exploiter_les_points_faibles			E_2	- Rappel
-Exploiter_les_points_faibles			E_4
+Exploiter_les_points_faibles			E 1
+Exploiter_les_points_faibles			E 2	- Rappel
+Exploiter_les_points_faibles			E 4
 
 Spécial
-Tir_précis								T_1
-Tir_précis								T_2
+Tir_précis								T 1
+Tir_précis								T 2
 Tir_implacable						 	i
 Charge									C
 Charge_indomptable						N - (Sur la feuille de perso)
 Seuil									s
 On Hit crit								H
 Attribute values						A
-Encaissement							E
+Encaissement							S
 */
 
 // SKILLNAME

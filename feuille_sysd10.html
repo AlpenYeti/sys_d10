@@ -185,7 +185,7 @@
 					<td><input type="number" class="sheet-trait" name="attr_base-Volonte" value="0" min="0" max="10"/></td>
 					<td><input type="number" class="sheet-trait" name="attr_exal-Volonte" value="0" min="0" max="10"/></td>
 					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}) + d@{exal-Volonte} + 1d10]]">Brut</button></td>
+					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}) + d@{exal-Volonte} - d@{dice}cs1cf@{dice}]]">Brut</button></td>
 				</tr><tr>
 					<td>Psyché</td>
 					<td><input type="number" class="sheet-trait" name="attr_base-Psyche" value="0" min="0" max="10"/></td>
@@ -466,7 +466,7 @@
 
 	<!--Defense -->
 	<div class="sheet-tab-content sheet-secondary_tab3">
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_effective_Encaissement} + @{base_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d">Parade</button>
+		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d">Parade</button>
 		<input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" value="0"/>d10+
 		<input type="number" class="sheet-numberbox" name="attr_base_defense_dices" value="0"/>
 		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option><option value="@{base-Volonte} A @{exal-Volonte}">Vol</option><option value="@{base-Psyche} A @{exal-Psyche}">Psy</option></select>

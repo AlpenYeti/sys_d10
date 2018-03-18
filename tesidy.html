@@ -29,7 +29,10 @@
     var charge=0;         //C
     var charge_i=0;       //N
     var nb_2add=0;       //+
-    var nb_2sub=0;      //-*/
+    var nb_2sub=0;      //-
+    var replace=-1;     //P
+    var add_to_all=0;    //A
+*/
     // Internal Variables
 
     logit("Parsing : "+raw_msg);
@@ -60,7 +63,9 @@
     logit("charge : " + d_vars.charge);         //C
     logit("charge_i : " + d_vars.charge_i);       //N
     logit("+ " + d_vars.nb_2add);
-    logit("- " + d_vars.nb_2sub);*/
+    logit("- " + d_vars.nb_2sub);
+    logit("+ " +  d_vars.replace);     //P
+    logit("+ " +  d_vars.var add_to_all);    //A*/
     function to_number(nb){
       var tmp=Number(nb);
       if (isNaN(tmp)) return 0;

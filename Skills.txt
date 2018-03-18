@@ -56,13 +56,3 @@ Tir_implacable			i
 Charge						C
 Charge_Mortelle		(Rappel)
 Charge_indomptable	N
-
-
-
-
-
-
-
-
-
-

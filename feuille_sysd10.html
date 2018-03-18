@@ -536,10 +536,15 @@
 
 	<!--TIR & CHARGE -->
 	<div class="sheet-tab-content sheet-secondary_tab4">.
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} + @{base_shoot_dices} + @{Skill_general_attribute_select_shoot} s ?{Seuil de tir|6} a a">Tir</button>
-		<input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" value="0"/>d10+
-		<input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" value="0"/>
-		<select class="sheet-skill_select" value="0" style="margin-right:4px" name="attr_Skill_general_attribute_select_shoot"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Perception} + @{exal-Perception}">Per</option></select>
+		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{attr_add_shoot_dices} + @{Skill_general_attribute_select_shoot} s ?{Seuil de tir|6} a a">Tir</button>
+		<input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" value="0"/>d10 &#8728;
+		<input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" value="0"/>+
+		<input type="number" class="sheet-numberbox" name="attr_add_shoot_dices" value="0"/>
+		<select class="sheet-skill_select" value="0" style="margin-right:4px" name="attr_Skill_general_attribute_select_shoot">
+			<option value="@{base-Force} + @{exal-Force}">For</option>
+			<option value="@{base-Perception} + @{exal-Perception}">Per</option>
+			<option value="@{base-Agilite} + @{exal-Agilite}">Per</option>
+		</select>
 		<br/>
 
 		<!--Tir_precis -->

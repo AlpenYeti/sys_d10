@@ -174,7 +174,7 @@ function show_rolls(who,d_vars){
     " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
     " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
     " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices;
+    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
     var sum=0;
@@ -184,6 +184,9 @@ function show_rolls(who,d_vars){
     var dice_stats=eval_crit(d_vars);
 
     logit(dice_stats);
+    if (d_vars.player_name!=""){
+      who=d_vars.player_name;
+    }
 
     switch(d_vars.action){
         case "a":
@@ -262,8 +265,11 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
         }
         // Only add to the sum if you pass the threshold
         if (results[i]>t_hit) {
-          if (d_vars.replace>=0) results[i]=d_vars.replace;
-          sum+=results[i]+d_vars.add_to_all;
+          if (d_vars.replace>=0) {
+            sum+=d_vars.replace+d_vars.add_to_all;
+          } else {
+            sum+=results[i]+d_vars.add_to_all;
+          }
         }
         dices+=results[i]+d_vars.add_to_all+" ";
     }
@@ -300,7 +306,7 @@ function parse_command(message){
     "exploiter_p_2":0,"tir_p_0":0,"tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,
     "relances":0,"seuil":0,"nb_flat_dices":0,"action":"","flat_dices":[],"results":[],"technique_result":0,
     "cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":"","encaissement_result":0,
-    "replace":-1,"add_to_all":0,"max_dices":-1};
+    "replace":-1,"add_to_all":0,"max_dices":-1,"player_name":""};
     var tab=message.split(" ");
     var len_args=tab.length;
     var i;
@@ -432,6 +438,10 @@ function parse_command(message){
                 break;
             case "m":
                 d_vars.max_dices=to_number(tab[i+1]);
+                i+=2;
+                break;
+            case ":":
+                d_vars.player_name=tab[i+1];
                 i+=2;
                 break;
             default:

@@ -205,7 +205,8 @@ function show_rolls(who,d_vars){
     if (dice_stats.is_crit) {if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
         m_crit=2; // It's a crit
     } else {
-        m_crit=1.5; // Only half a crit
+      if (d_vars.nb_dices==0){m_crit=1;} // That's not a crit
+      else {m_crit=1.5;} // Only half a crit
     }};
 
     //Add the rolls

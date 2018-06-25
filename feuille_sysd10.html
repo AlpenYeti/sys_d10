@@ -1,226 +1,228 @@
 <head><link rel="stylesheet" type="text/css" href="style.css"><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<script type="text/worker">
+ <script type="text/worker">
 
-	on("change:base_damage_dices", function() {
-		getAttrs(["base_damage_dices"], function(values) {
-			setAttrs({"effective_base_damage_dices":values.base_damage_dices});
-		});
-	});
+ on("change:base_damage_dices", function() {
+  getAttrs(["base_damage_dices"], function(values) {
+   setAttrs({"effective_base_damage_dices":values.base_damage_dices+values.exal_damage_dices});
+  });
+ });
 
-	// Perfection
-	on("change:skill_Perfection_activation change:general_skilllevel_Perfection", function() {
-		getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
-			setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
-		});
-	});
+ // Perfection
+ on("change:skill_Perfection_activation change:general_skilllevel_Perfection", function() {
+  getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
+   setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
+  });
+ });
 
-	// Fauchage
-	on("change:skill_Fauchage_activation change:general_skilllevel_Fauchage", function() {
-		getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
-			setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
-		});
-	});
+ // Fauchage
+ on("change:skill_Fauchage_activation change:general_skilllevel_Fauchage", function() {
+  getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
+   setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
+  });
+ });
 
-	// Coup_dechirant
-	on("change:skill_Coup_dechirant_activation change:general_skilllevel_Coup_dechirant", function() {
-		getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
-			setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
-		});
-	});
+ // Coup_dechirant
+ on("change:skill_Coup_dechirant_activation change:general_skilllevel_Coup_dechirant", function() {
+  getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
+   setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
+  });
+ });
 
-	// Exploiter_les_points_faibles
-	on("change:skill_Exploiter_les_points_faibles_activation change:general_skilllevel_Exploiter_les_points_faibles", function() {
-		getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
-			setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
-		});
-	});
+ // Exploiter_les_points_faibles
+ on("change:skill_Exploiter_les_points_faibles_activation change:general_skilllevel_Exploiter_les_points_faibles", function() {
+  getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
+   setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
+  });
+ });
 
-	// Technique_martiale
-	on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale change:base-Agilite", function() {
-		getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
-			setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite']))});
-		});
-	});
-	// Defense_impenetrable
-	on("change:skill_Defense_impenetrable_activation change:general_skilllevel_Defense_impenetrable", function() {
-		getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
-			setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
-		});
-	});
-	// Rempart_parfait
-	on("change:skill_Rempart_parfait_activation change:general_skilllevel_Rempart_parfait", function() {
-		getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
-			setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
-		});
-	});
-	// Endurance_surnaturelle
-	on("change:skill_Endurance_surnaturelle_activation change:general_skilllevel_Endurance_surnaturelle", function() {
-		getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
-			setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
-		});
-	});
-	// Encaissement
-	on("change:skill_Encaissement_activation change:general_skilllevel_Encaissement", function() {
-		getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
-			setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
-		});
-	});
-	// Tir_precis
-	on("change:skill_Tir_precis_activation change:general_skilllevel_Tir_precis", function() {
-		getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
-			setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
-		});
-	});
-	// Tir_implacable
-	on("change:skill_Tir_implacable_activation change:general_skilllevel_Tir_implacable", function() {
-		getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
-			setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
-		});
-	});
-	// Charge
-	on("change:skill_Charge_activation change:general_skilllevel_Charge", function() {
-		getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
-			setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
-		});
-	});
-	// Charge_indomptable
-	on("change:skill_Charge_indomptable_activation change:general_skilllevel_Charge_indomptable", function() {
-		getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
-			setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
-		});
-	});
-	</script>
+ // Technique_martiale
+ on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale change:base-Agilite", function() {
+  getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
+   setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite'])});
+  });
+ });
+ // Defense_impenetrable
+ on("change:skill_Defense_impenetrable_activation change:general_skilllevel_Defense_impenetrable", function() {
+  getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
+   setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
+  });
+ });
+ // Rempart_parfait
+ on("change:skill_Rempart_parfait_activation change:general_skilllevel_Rempart_parfait", function() {
+  getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
+   setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
+  });
+ });
+ // Endurance_surnaturelle
+ on("change:skill_Endurance_surnaturelle_activation change:general_skilllevel_Endurance_surnaturelle", function() {
+  getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
+   setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
+  });
+ });
+ // Encaissement
+ on("change:skill_Encaissement_activation change:general_skilllevel_Encaissement", function() {
+  getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
+   setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
+  });
+ });
+ // Tir_precis
+ on("change:skill_Tir_precis_activation change:general_skilllevel_Tir_precis", function() {
+  getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
+   setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
+  });
+ });
+ // Tir_implacable
+ on("change:skill_Tir_implacable_activation change:general_skilllevel_Tir_implacable", function() {
+  getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
+   setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
+  });
+ });
+ // Charge
+ on("change:skill_Charge_activation change:general_skilllevel_Charge", function() {
+  getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
+   setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
+  });
+ });
+ // Charge_indomptable
+ on("change:skill_Charge_indomptable_activation change:general_skilllevel_Charge_indomptable", function() {
+  getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
+   setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
+  });
+ });
+ </script>
 </head>
 <div class="sheet-content">
-	<div class="sheet-center">
-		<input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/><br>
-		<input type="text" class="sheet-mediumname" name="attr_character_race" placeholder="Race"/>
-	</div>
-	<br>
-	<table class="sheet-center sheet-black">
-		<tr>
-			<td><h3 class="sheet-center">Points de compétence :</h3></td>
-		</tr>
-		<tr>
-			<td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
-			<td rowspan="2">
-				<select class="sheet-dice_select sheet-dice" name="attr_dice">
-					<option value="2">d2</option>
-					<option value="4">d4</option>
-					<option value="6">d6</option>
-					<option value="8">d8</option>
-					<option value="10" selected>d10</option>
-					<option value="12">d12</option>
-					<option value="20">d20</option>
-					<option value="30">d30</option>
-					<option value="100">d100</option>
-					<option value="1000">d1000</option>
-					<option value="10000">d10000</option>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="number" class="sheet-trait" name="attr_Character_points_unspent" value="0"/> Restants</td>
-			</tr>
+ <div class="sheet-center">
+  <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/><br/>
+  <input type="text" class="sheet-mediumname" name="attr_character_race" placeholder="Race"/>
+ </div>
+ <br/>
+ <div class="sheet-2colrow">
+ <div class="sheet-col">
+ <table class="sheet-center sheet-black">
+  <tr>
+   <td><h3 class="sheet-center">Points de compétence :</h3></td>
+  </tr>
+  <tr>
+   <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
+   <td rowspan="2">
+    <select class="sheet-dice_select sheet-dice" name="attr_dice">
+     <option value="2">d2</option>
+     <option value="4">d4</option>
+     <option value="6">d6</option>
+     <option value="8">d8</option>
+     <option value="10" selected>d10</option>
+     <option value="12">d12</option>
+     <option value="20">d20</option>
+     <option value="30">d30</option>
+     <option value="100">d100</option>
+     <option value="1000">d1000</option>
+     <option value="10000">d10000</option>
+		 </select>
+    </td>
+   </tr>
+   <tr>
+    <td><input type="number" class="sheet-trait" name="attr_Character_points_unspent" value="0"/> Restants</td>
+   </tr>
+ 	</table>
+  </div>
+	<div class='sheet-col'>
+ <h3 class="sheet-center">Ressources</h3>
+ <br/>
+ <table class="sheet-center sheet-black">
+	<tr>
+	 <td><h4>Points de Vie</h4></td>
+	 <td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
+	 <td><input type="number" class="sheet-trait" disabled="true" name="attr_Life_Points_max" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+@{general_skilllevel_Endurance_surnaturelle}*2+10"/></td>
+	</tr>
+	<tr>
+	 <td><h4>Points de Fatigue</h4></td>
+	 <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
+	 <td><input type="number" class="sheet-trait" disabled="true" name="attr_Endurance_Points_max" value="@{base-Force}*4"/></td>
+	</tr>
+	<!-- <tr>
+	<td><4>Etat</h4></td>
+	<td colspan="2"><div class="sheet-status-wounded">Blessures aggravés</div></td>
+ </tr>-->
+</table>
+</div>
+</div>
 
-		</select>
-	</table>
-
-
-	<div class='sheet-3colrow'>
-		<div class='sheet-col'>
-			<h3 class="sheet-center">Caractéristiques</h3>
-			<table class="">
-				<tr>
-					<th>Carac</th>
-					<th>Valeur</th>
-					<th>Bonus</th>
-					<th colspan="2">Lancer</th>
-				</tr>
-				<tr>
-					<td>Force</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Force" value="0" min="0" max="10" /></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Force" value="0" min="0" max="10" /></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force [[(@{base-Force}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force brute [[@{base-Force} - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr>
-				<tr>
-					<td>Agilité</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Agilite" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Agilite" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite [[(@{base-Agilite}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite brute[[(@{base-Agilite}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr><tr>
-					<td>Perception</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Perception" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Perception" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception [[(@{base-Perception}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception brute[[(@{base-Perception}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr><tr>
-					<td>Charisme</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Charisme" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Charisme" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme [[(@{base-Charisme}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme brute[[(@{base-Charisme}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr>
-			</table>
-		</div>
-		<div class='sheet-col'>
-			<h3 class="sheet-center">&nbsp;</h3>
-			<table class="">
-				<tr>
-					<th>Carac</th>
-					<th>Valeur</th>
-					<th>Bonus</th>
-					<th colspan="2">Lancer</th>
-				</tr>
-				<tr>
-					<td>Intelligence</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Intelligence" value="0" min="0" max="10" /></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" value="0" min="0" max="10" /></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence [[(@{base-Intelligence}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence brute [[(@{base-Intelligence}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr>
-				<tr>
-					<td>Volonte</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Volonte" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Volonte" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr><tr>
-					<td>Psyché</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Psyche" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Psyche" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché) [[(@{base-Psyche}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché brute[[(@{base-Psyche}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr><tr>
-					<td>Chance</td>
-					<td><input type="number" class="sheet-trait" name="attr_base-Chance" value="0" min="0" max="10"/></td>
-					<td><input type="number" class="sheet-trait" name="attr_exal-Chance" value="0" min="0" max="10"/></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}*2) - d@{dice}cs1cf@{dice}]]"></button></td>
-					<td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
-				</tr>
-			</table>
-		</div>
-		<div class='sheet-col'>
-			<h3 class="sheet-center">Ressources</h3>
-			<br/>
-			<table class="sheet-center sheet-black">
-				<tr>
-					<td><h4>Points de Vie</h4></td>
-					<td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
-					<td><input type="number" class="sheet-trait" disabled="true" name="attr_Life_Points_max" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+@{general_skilllevel_Endurance_surnaturelle}*2+10"/></td>
-				</tr>
-				<tr>
-					<td><h4>Points de Fatigue</h4></td>
-					<td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
-					<td><input type="number" class="sheet-trait" disabled="true" name="attr_Endurance_Points_max" value="@{base-Force}*4"/></td>
-				</tr>
-				<!-- <tr>
-				<td><4>Etat</h4></td>
-				<td colspan="2"><div class="sheet-status-wounded">Blessures aggravés</div></td>
-			</tr>-->
-		</table>
-	</div>
+ <div class='sheet-2colrow'>
+  <div class='sheet-col'>
+   <h3 class="sheet-center">Caractéristiques</h3>
+   <table class="">
+    <tr>
+     <th>Carac</th>
+     <th>Valeur</th>
+     <th>Bonus</th>
+     <th colspan="2">Lancer</th>
+    </tr>
+    <tr>
+     <td>Force</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Force" title="Force de base" value="0" min="0" max="10" /></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Force" title="Modificateur" value="0" /></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force [[(@{base-Force}+@{exal-Force})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Force brute [[(@{base-Force}+@{exal-Force}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr>
+    <tr>
+     <td>Agilité</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Agilite" title="Agilité de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Agilite" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite [[(@{base-Agilite}+@{exal-Agilite})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Agilite brute[[(@{base-Agilite}+@{exal-Agilite}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr><tr>
+     <td>Perception</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Perception" title="Perception de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Perception" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception [[(@{base-Perception}+@{exal-Perception})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Perception brute[[(@{base-Perception}+@{exal-Perception}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr><tr>
+     <td>Charisme</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Charisme" title="Charisme de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Charisme" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme [[(@{base-Charisme}+@{exal-Charisme})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Charisme brute[[(@{base-Charisme}+@{exal-Charisme}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr>
+   </table>
+  </div>
+  <div class='sheet-col'>
+   <h3 class="sheet-center">&nbsp;</h3>
+   <table class="">
+    <tr>
+     <th>Carac</th>
+     <th>Valeur</th>
+     <th>Bonus</th>
+     <th colspan="2">Lancer</th>
+    </tr>
+    <tr>
+     <td>Intelligence</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Intelligence" title="Intelligence de base" value="0" min="0" max="10" /></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" title="Modificateur" value="0" /></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence [[(@{base-Intelligence}}+@{exal-Intelligence}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence brute [[(@{base-Intelligence}}+@{exal-Intelligence}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr>
+    <tr>
+     <td>Volonté</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Volonte" title="Volonté de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Volonte" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}}+@{exal-Volonte}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}}+@{exal-Volonte}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr><tr>
+     <td>Psyché</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Psyche" title="Psyché de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Psyche" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché [[(@{base-Psyche}}+@{exal-Psyche}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché brute[[(@{base-Psyche}}+@{exal-Psyche}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr><tr>
+     <td>Chance</td>
+     <td><input type="number" class="sheet-trait" name="attr_base-Chance" title="Chance de base" value="0" min="0" max="10"/></td>
+     <td><input type="number" class="sheet-trait" name="attr_exal-Chance" title="Modificateur" value="0"/></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}}+@{exal-Chance}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}}+@{exal-Chance}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+    </tr>
+   </table>
+  </div>
 </div>
 <br/>
 <!--TAB 1 -->
@@ -228,384 +230,393 @@
 <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" title="Magie" /><span></span>
 <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Combat" /><span></span>
 <div class="sheet-tab-content sheet-tab1">
-	<div class='sheet-col'>
-		<input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab1" checked="checked" value="1" title="Générales" />
-		<input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab2" value="2" title="Sociales" />
-		<input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab3" value="3" title="Intellectuelles" />
+ <div class='sheet-col'>
+  <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab1" checked="checked" value="1" title="Générales" />
+  <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab2" value="2" title="Sociales" />
+  <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab3" value="3" title="Intellectuelles" />
 
-		<div class="sheet-tab-content sheet-secondary_skills_tab1">
-			<!-- GENERALES -->
-			<h3>Compétences générales</h3>
-			<fieldset class="repeating_skills">
-				<input class="sheet-skill_name" type="text" name="attr_general_skillname" />
-				<input type="number" min="0" name="attr_general_skillcost" />
-				<input type="number" min="-10" max="10" name="attr_general_skilllevel" />
-				<select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
-					<option value="@{base-Force} + @{exal-Force}">For</option>
-					<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-					<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-					<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-					<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-				</select>
-				<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skillname}	[[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-			</fieldset>
-		</div>
+  <div class="sheet-tab-content sheet-secondary_skills_tab1">
+   <!-- GENERALES -->
+   <h3>Compétences générales</h3>
+   <fieldset class="repeating_skills">
+    <input class="sheet-skill_name" type="text" name="attr_general_skillname" />
+    <input type="number" min="0" name="attr_general_skillcost" title="Coût de la compétence" />
+    <input type="number" min="-10" max="10" name="attr_general_skilllevel" title="Niveau dans la compétence" />
+    <select class="sheet-skill_select" name="attr_Skill_general_attribute_select">
+     <option value="@{base-Force} + @{exal-Force}">For</option>
+     <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+     <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+     <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+     <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+    </select>
+    <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skillname} au d@{dice} : [[@{general_skilllevel}+(@{Skill_general_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+   </fieldset>
+  </div>
 
-		<div class="sheet-tab-content sheet-secondary_skills_tab2">
-			<!-- SOCIALES -->
-			<h3>Compétences sociales</h3>
-			<fieldset class="repeating_social-skills">
-				<input class="sheet-skill_name" type="text" name="attr_social_skillname" />
-				<input type="number" name="attr_social_skillcost" />
-				<input type="number" min="-10" max="10" name="attr_social_skilllevel" />
-				<select class="sheet-skill_select" name="attr_social_attribute_select">
-					<option value="@{base-Force} + @{exal-Force}">For</option>
-					<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-					<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-					<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-					<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-				</select>
-				<button type='roll' class="sheet-skillbutton" value="/e rolls @{social_skillname}	[[@{social_skilllevel}+(@{social_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-			</fieldset>
-		</div>
+  <div class="sheet-tab-content sheet-secondary_skills_tab2">
+   <!-- SOCIALES -->
+   <h3>Compétences sociales</h3>
+   <fieldset class="repeating_social-skills">
+    <input class="sheet-skill_name" type="text" name="attr_social_skillname" />
+    <input type="number" name="attr_social_skillcost" title="Coût de la compétence" />
+    <input type="number" min="-10" max="10" name="attr_social_skilllevel" title="Niveau dans la compétence" />
+    <select class="sheet-skill_select" name="attr_social_attribute_select">
+     <option value="@{base-Force} + @{exal-Force}">For</option>
+     <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+     <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+     <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+     <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+    </select>
+    <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{social_skillname} au d@{dice} : [[@{social_skilllevel}+(@{social_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+	 </fieldset>
+  </div>
 
-		<div class="sheet-tab-content sheet-secondary_skills_tab3">
-			<!--INTELECTUELLES -->
-			<h3>Compétences Intellectuelles</h3>
-			<fieldset class="repeating_intelect-skills">
-				<input class="sheet-skill_name" type="text" name="attr_intelect_skillname" />
-				<input type="number" name="attr_intelect_skillcost" />
-				<input type="number" min="-10" max="10" name="attr_intelect_skilllevel" />
-				<select class="sheet-skill_select" name="attr_intelect_attribute_select">
-					<option value="@{base-Force} + @{exal-Force}">For</option>
-					<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-					<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-					<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-					<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-				</select>
-				<button type='roll' class="sheet-skillbutton" value="/e rolls @{intelect_skillname}	[[@{intelect_skilllevel}+(@{intelect_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-			</fieldset>
-		</div>
+  <div class="sheet-tab-content sheet-secondary_skills_tab3">
+   <!--INTELECTUELLES -->
+   <h3>Compétences Intellectuelles</h3>
+   <fieldset class="repeating_intelect-skills">
+    <input class="sheet-skill_name" type="text" name="attr_intelect_skillname" />
+    <input type="number" name="attr_intelect_skillcost" title="Coût de la compétence" />
+    <input type="number" min="-10" max="10" name="attr_intelect_skilllevel" title="Niveau dans la compétence" />
+    <select class="sheet-skill_select" name="attr_intelect_attribute_select">
+     <option value="@{base-Force} + @{exal-Force}">For</option>
+     <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+     <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+     <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+     <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+    </select>
+    <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{intelect_skillname} au d@{dice} : [[@{intelect_skilllevel}+(@{intelect_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+   </fieldset>
+  </div>
 
-	</div>
+ </div>
 </div>
 
 <!--TAB 2 -->
 <div class="sheet-tab-content sheet-tab2">
-	<div class='sheet-col'>
-		<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab1" checked="checked" value="1" title="Général" />
-		<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab2" value="2" title="Magie Innée" />
-		<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab3" value="3" title="Haute Magie" />
-		<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab4" value="4" title="Vivemagie" />
-		<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab5" value="5" title="Magie des Mots" />
+ <div class='sheet-col'>
+  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab1" checked="checked" value="1" title="Général" />
+  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab2" value="2" title="Magie Innée" />
+  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab3" value="3" title="Haute Magie" />
+  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab4" value="4" title="Vivemagie" />
+  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab5" value="5" title="Magie des Mots" />
 
-		<div class="sheet-tab-content sheet-secondary_magic_tab1">
-			<h3>Compétences magiques</h3>
-			<fieldset class="repeating_magic-skills">
-				<input class="sheet-skill_name" type="text" name="attr_magic_skillname" />
-				<input type="number" name="attr_magic_skillcost" />
-				<input type="number" min="-10" max="10" name="attr_magic_skilllevel" />
-				<select class="sheet-skill_select" name="attr_Skill_magic_attribute_select">
-					<option value="@{base-Force} + @{exal-Force}">For</option>
-					<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-					<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-					<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-					<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-					<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-					<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-				</select>
-				<button type='roll' class="sheet-skillbutton" value="/e rolls @{magic_skillname}	[[@{magic_skilllevel}+(@{Skill_magic_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-			</fieldset>
-		</div>
-
-		<div class="sheet-tab-content sheet-secondary_magic_tab2">
-			<h3>Magie Innée</h3>
-
-		</div>
-
-		<div class="sheet-tab-content sheet-secondary_magic_tab3">
-			<h3>Haute Magie</h3>
-
-
-
-		</div>
-
-		<div class="sheet-tab-content sheet-secondary_magic_tab4">
-			<h3>Vivemagie</h3>
-
-		</div>
-
-		<div class="sheet-tab-content sheet-secondary_magic_tab5">
-			<h3>Magie des Mots</h3>
-
-		</div>
-
-	</div>
+  <div class="sheet-tab-content sheet-secondary_magic_tab1">
+   <h3>Compétences magiques</h3>
+   <fieldset class="repeating_magic-skills">
+    <input class="sheet-skill_name" type="text" name="attr_magic_skillname" />
+    <input type="number" name="attr_magic_skillcost" title="Coût de la compétence" />
+    <input type="number" min="-10" max="10" name="attr_magic_skilllevel" title="Niveau dans la compétence" />
+    <select class="sheet-skill_select" name="attr_Skill_magic_attribute_select">
+     <option value="@{base-Force} + @{exal-Force}">For</option>
+     <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+     <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+     <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+     <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+     <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+     <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+    </select>
+    <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{magic_skillname} au d@{dice} : [[@{magic_skilllevel}+(@{Skill_magic_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+   </fieldset>
+  </div>
+	<!--<div class="sheet-tab-content sheet-secondary_magic_tab2"><h3>Magie Innée</h3></div><div class="sheet-tab-content sheet-secondary_magic_tab3"><h3>Haute Magie</h3></div><div class="sheet-tab-content sheet-secondary_magic_tab4"><h3>Vivemagie</h3></div><div class="sheet-tab-content sheet-secondary_magic_tab5"><h3>Magie des Mots</h3></div>-->
+ </div>
 </div>
 
 <!--TAB 3 -->
 <div class="sheet-tab-content sheet-tab3">
-	<!--GENERAL -->
-	<input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab1" checked="checked" value="1" title="Général" />
-	<input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab2" value="2" title="Offensives" />
-	<input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab3" value="3" title="Défensives" />
-	<input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab4" value="4" title="Tir & Charge" />
-	<div class="sheet-tab-content sheet-secondary_tab1">
-		<button type='roll' class="sheet-Initiative_roll" value="/e tire son initiative [[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]">Initiative</button>
-		<input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{effective_base_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{character_name}">Attaque de base</button>
-		<input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" value="0"/>d10+
-		<input type="number" class="sheet-numberbox" name="attr_base_damage_dices" value="0"/>
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_attaque"><option value="@{base-Force} A @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
-		<input class="sheet-skill_hidden" type="number" name="attr_effective_base_damage_dices" value="0"/>
+ <!--GENERAL -->
+ <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab1" checked="checked" value="1" title="Général" />
+ <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab2" value="2" title="Offensives" />
+ <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab3" value="3" title="Défensives" />
+ <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab4" value="4" title="Tir & Charge" />
+ <div class="sheet-tab-content sheet-secondary_tab1">
+  <button type='roll' class="sheet-Initiative_roll" value="/e tire son initiative [[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]">Initiative</button>
+  <input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{effective_base_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{character_name}">Attaque de base</button>
+  <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+
+	<input type="number" class="sheet-numberbox" name="attr_base_damage_dices" title="Base de dégats" value="0"/>
+	<input type="number" class="sheet-numberbox" name="attr_exal_damage_dices" title="Modificateur temporaire" value="0"/>
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_attaque"><option value="@{base-Force} A @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
+  <input class="sheet-skill_hidden" type="number" name="attr_effective_base_damage_dices" value="0"/> <br/>
 
-		<!--Perfection -->
-		<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_skill_Perfection" disabled="true" value="Perfection" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Perfection" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" min="0" max="10" name="attr_general_skilllevel_Perfection" />
-		<select class="sheet-skill_select" style="margin-right:0px" name="attr_Skill_general_attribute_select_Perfection"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Perfection}	[[(@{general_skilllevel_Perfection}+(@{Skill_general_attribute_select_Perfection}) - d@{dice}cs1cf@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_skill_Perfection_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Perfection" />
+	<!--weapon1 -->
+	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon1_name" value="Arme 1" />
+	<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon1" title="Valeur de l'équipemet" />
+	<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon1_activation" />
+	<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon1" /> <br/>
 
-		<!--general_combat -->
-		<fieldset class="repeating_general-combat-skills">
-			<input class="sheet-skill_name" type="text" name="attr_general_combat_skillname" />
-			<input type="number" name="attr_general_combat_skillcost" />
-			<input type="number" min="0" max="10" name="attr_general_combat_skilllevel" />
-			<select class="sheet-skill_select" name="attr_general_combat_attribute_select">
-				<option value="@{base-Force} + @{exal-Force}">For</option>
-				<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-				<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-				<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-				<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-			</select>
-			<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_combat_skillname} [[@{general_combat_skilllevel}+(@{general_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-		</fieldset>
+  <!--weapon2 -->
+  <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon2_name" value="Arme 2" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon2" title="Valeur de l'équipemet" />
+  <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon2_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon2" /> <br/>
 
-	</div>
+	<!--weapon3 -->
+	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon3_name" value="Arme 3" />
+	<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon3" title="Valeur de l'équipemet" />
+	<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon3_activation" />
+	<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon3" />
 
-	<!--OFFENCE -->
-	<div class="sheet-tab-content sheet-secondary_tab2">
+  <!--general_combat -->
+  <fieldset class="repeating_general-combat-skills">
+   <input class="sheet-skill_name" type="text" name="attr_general_combat_skillname" />
+   <input type="number" name="attr_general_combat_skillcost" title="Coût de la compétence" />
+   <input type="number" min="0" max="10" name="attr_general_combat_skilllevel" title="Niveau dans la compétence" />
+   <select class="sheet-skill_select" name="attr_general_combat_attribute_select">
+    <option value="@{base-Force} + @{exal-Force}">For</option>
+    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+   </select>
+   <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_combat_skillname} au d@{dice} : [[@{general_combat_skilllevel}+(@{general_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+  </fieldset>
 
-		<!--Technique_martiale -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Technique_martiale" disabled="true" value="Technique_martiale" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Technique_martiale" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Technique_martiale" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Technique_martiale"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Technique_martiale} [[(@{general_skilllevel_Technique_martiale}+(@{Skill_general_attribute_select_Technique_martiale}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Technique_martiale_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Technique_martiale"/>
+ </div>
 
-		<!--Coup_dechirant -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Coup_dechirant" disabled="true" value="Coup_dechirant" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Coup_dechirant" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Coup_dechirant" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Coup_dechirant"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Coup_dechirant} [[(@{general_skilllevel_Coup_dechirant}+(@{Skill_general_attribute_select_Coup_dechirant}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Coup_dechirant_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Coup_dechirant"/>
+ <!--OFFENCE -->
+ <div class="sheet-tab-content sheet-secondary_tab2">
 
-		<!--Fauchage -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Fauchage" disabled="true" value="Fauchage" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Fauchage" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Fauchage" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Fauchage"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Fauchage} [[(@{general_skilllevel_Fauchage}+(@{Skill_general_attribute_select_Fauchage}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Fauchage_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Fauchage" />
+ <!--Perfection -->
+ <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_skill_Perfection" disabled="true" value="Perfection" />
+ <input type="number" min="0" value="0" name="attr_skillcost_Perfection" title="Coût de la compétence" />
+ <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" min="0" max="10" name="attr_general_skilllevel_Perfection" title="Niveau dans la compétence" />
+ <select class="sheet-skill_select" style="margin-right:0px" name="attr_Skill_general_attribute_select_Perfection"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+ <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Perfection} au d@{dice} : [[(@{general_skilllevel_Perfection}+(@{Skill_general_attribute_select_Perfection}) - d@{dice}cs1cf@{dice})]] "></button>
+ <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_skill_Perfection_activation" />
+ <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Perfection" />
+ <br/>
 
-		<!--Exploiter_les_points_faibles -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Exploiter_les_points_faibles" disabled="true" value="Exploiter_les_points_faibles" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Exploiter_les_points_faibles" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Exploiter_les_points_faibles" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Exploiter_les_points_faibles"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Exploiter_les_points_faibles} [[(@{general_skilllevel_Exploiter_les_points_faibles}+(@{Skill_general_attribute_select_Exploiter_les_points_faibles}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Exploiter_les_points_faibles_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Exploiter_les_points_faibles"/>
+  <!--Technique_martiale -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Technique_martiale" disabled="true" value="Technique_martiale" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Technique_martiale" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Technique_martiale" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Technique_martiale"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Technique_martiale} au d@{dice} : [[(@{general_skilllevel_Technique_martiale}+(@{Skill_general_attribute_select_Technique_martiale}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Technique_martiale_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Technique_martiale"/>
+	<br/>
 
+  <!--Coup_dechirant -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Coup_dechirant" disabled="true" value="Coup_dechirant" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Coup_dechirant" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Coup_dechirant" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Coup_dechirant"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Coup_dechirant} au d@{dice} : [[(@{general_skilllevel_Coup_dechirant}+(@{Skill_general_attribute_select_Coup_dechirant}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Coup_dechirant_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Coup_dechirant"/>
+	<br/>
 
-		<!--offensive_combat -->
-		<fieldset class="repeating_offensive-combat-skills">
-			<input class="sheet-skill_name" type="text" name="attr_offensive_combat_skillname" />
-			<input type="number" name="attr_offensive_combat_skillcost" />
-			<input type="number" min="0" max="10" name="attr_offensive_combat_skilllevel" />
-			<select class="sheet-skill_select" name="attr_offensive_combat_attribute_select">
-				<option value="@{base-Force} + @{exal-Force}">For</option>
-				<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-				<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-				<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-				<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-			</select>
-			<button type='roll' class="sheet-skillbutton" value="/e rolls @{offensive_combat_skillname}	[[@{offensive_combat_skilllevel}+(@{offensive_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-		</fieldset>
-	</div>
+  <!--Fauchage -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Fauchage" disabled="true" value="Fauchage" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Fauchage" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Fauchage" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Fauchage"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Fauchage} au d@{dice} : [[(@{general_skilllevel_Fauchage}+(@{Skill_general_attribute_select_Fauchage}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Fauchage_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Fauchage" />
+	<br/>
 
+  <!--Exploiter_les_points_faibles -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Exploiter_les_points_faibles" disabled="true" value="Exploiter_les_points_faibles" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Exploiter_les_points_faibles" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Exploiter_les_points_faibles" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Exploiter_les_points_faibles"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Exploiter_les_points_faibles} au d@{dice} : [[(@{general_skilllevel_Exploiter_les_points_faibles}+(@{Skill_general_attribute_select_Exploiter_les_points_faibles}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Exploiter_les_points_faibles_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Exploiter_les_points_faibles"/>
+	<br/>
 
-	<!--Defense -->
-	<div class="sheet-tab-content sheet-secondary_tab3">
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{character_name}">Parade</button>
-		<input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" value="0"/>d10+
-		<input type="number" class="sheet-numberbox" name="attr_base_defense_dices" value="0"/>
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option><option value="@{base-Volonte} A @{exal-Volonte}">Vol</option><option value="@{base-Psyche} A @{exal-Psyche}">Psy</option></select>
-		<br/>
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{character_name}">Esquive</button>
-		<input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" value="0"/>d10+
-		<input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" value="0"/>
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge"><option value="@{base-Chance} A @{exal-Chance}">Chn</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
-		<br/>
+  <!--offensive_combat -->
+  <fieldset class="repeating_offensive-combat-skills">
+   <input class="sheet-skill_name" type="text" name="attr_offensive_combat_skillname" />
+   <input type="number" name="attr_offensive_combat_skillcost" title="Coût de la compétence" />
+   <input type="number" min="0" max="10" name="attr_offensive_combat_skilllevel" title="Niveau dans la compétence" />
+   <select class="sheet-skill_select" name="attr_offensive_combat_attribute_select">
+    <option value="@{base-Force} + @{exal-Force}">For</option>
+    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+   </select>
+   <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{offensive_combat_skillname} au d@{dice} : [[@{offensive_combat_skilllevel}+(@{offensive_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+  </fieldset>
+ </div>
 
-		<!--Defense_impenetrable -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Defense_impenetrable" disabled="true" value="Defense_impenetrable" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Defense_impenetrable" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Defense_impenetrable" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Defense_impenetrable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Defense_impenetrable} [[(@{general_skilllevel_Defense_impenetrable}+(@{Skill_general_attribute_select_Defense_impenetrable}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Defense_impenetrable_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Defense_impenetrable"/>
+ <!--Defense -->
+ <div class="sheet-tab-content sheet-secondary_tab3">
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{character_name}">Parade</button>
+  <input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defence" value="0"/>d10+
+  <input type="number" class="sheet-numberbox" name="attr_base_defense_dices" title="Base de defence" value="0"/>+
+	<input type="number" class="sheet-numberbox" name="attr_exal_defense_dices" title="Modificateur temporaire" value="0"/>
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option><option value="@{base-Volonte} A @{exal-Volonte}">Vol</option><option value="@{base-Psyche} A @{exal-Psyche}">Psy</option></select>
+  <br/>
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{character_name}">Esquive</button>
+  <input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" title="Nombre de des d'esquive" value="0"/>d10+
+  <input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" title="Modificateur d'esquive" value="0"/>
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge"><option value="@{base-Chance} A @{exal-Chance}">Chn</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
+  <br/>
 
+  <!--Defense_impenetrable -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Defense_impenetrable" disabled="true" value="Defense_impenetrable" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Defense_impenetrable" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Defense_impenetrable" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Defense_impenetrable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Defense_impenetrable} au d@{dice} : [[(@{general_skilllevel_Defense_impenetrable}+(@{Skill_general_attribute_select_Defense_impenetrable}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Defense_impenetrable_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Defense_impenetrable"/>
+	<br/>
 
-		<!--Rempart_parfait -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Rempart_parfait" disabled="true" value="Rempart_parfait" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Rempart_parfait" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Rempart_parfait" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Rempart_parfait"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Rempart_parfait} [[(@{general_skilllevel_Rempart_parfait}+(@{Skill_general_attribute_select_Rempart_parfait}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Rempart_parfait_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Rempart_parfait"/>
+  <!--Rempart_parfait -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Rempart_parfait" disabled="true" value="Rempart_parfait" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Rempart_parfait" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Rempart_parfait" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Rempart_parfait"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Rempart_parfait} au d@{dice} : [[(@{general_skilllevel_Rempart_parfait}+(@{Skill_general_attribute_select_Rempart_parfait}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Rempart_parfait_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Rempart_parfait"/>
+	<br/>
 
-		<!--Endurance_surnaturelle -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Endurance_surnaturelle" disabled="true" value="Endurance_surnaturelle" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Endurance_surnaturelle" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Endurance_surnaturelle" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Endurance_surnaturelle"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Endurance_surnaturelle} [[(@{general_skilllevel_Endurance_surnaturelle}+(@{Skill_general_attribute_select_Endurance_surnaturelle}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Endurance_surnaturelle_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Endurance_surnaturelle"/>
+  <!--Endurance_surnaturelle -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Endurance_surnaturelle" disabled="true" value="Endurance_surnaturelle" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Endurance_surnaturelle" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Endurance_surnaturelle" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Endurance_surnaturelle"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Endurance_surnaturelle} au d@{dice} : [[(@{general_skilllevel_Endurance_surnaturelle}+(@{Skill_general_attribute_select_Endurance_surnaturelle}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Endurance_surnaturelle_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Endurance_surnaturelle"/>
+	<br/>
 
-		<!--Encaissement -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Encaissement" disabled="true" value="Encaissement" />
-		<input type="number" min="0" value= "0" name="attr_skillcost_Encaissement" />
-		<input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Encaissement" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Encaissement"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Encaissement} [[(@{general_skilllevel_Encaissement}+(@{Skill_general_attribute_select_Encaissement}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Encaissement_activation" />
-		<input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_effective_Encaissement"/>
+  <!--Encaissement -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Encaissement" disabled="true" value="Encaissement" />
+  <input type="number" min="0" value= "0" name="attr_skillcost_Encaissement" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Encaissement" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Encaissement"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Encaissement} au d@{dice} : [[(@{general_skilllevel_Encaissement}+(@{Skill_general_attribute_select_Encaissement}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Encaissement_activation" />
+  <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_effective_Encaissement"/>
+	<br/>
 
-		<!--defensive_combat -->
-		<fieldset class="repeating_defensive-combat-skills">
-			<input class="sheet-skill_name" type="text" name="attr_defensive_combat_skillname" />
-			<input type="number" value="0" name="attr_defensive_combat_skillcost" />
-			<input type="number" value="0" min="0" max="10" name="attr_defensive_combat_skilllevel" />
-			<select class="sheet-skill_select" name="attr_defensive_combat_attribute_select">
-				<option value="@{base-Force} + @{exal-Force}">For</option>
-				<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-				<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-				<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-				<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-			</select>
-			<button type='roll' class="sheet-skillbutton" value="/e rolls @{defensive_combat_skillname}	[[@{defensive_combat_skilllevel}+(@{defensive_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-		</fieldset>
-	</div>
+  <!--defensive_combat -->
+  <fieldset class="repeating_defensive-combat-skills">
+   <input class="sheet-skill_name" type="text" name="attr_defensive_combat_skillname" />
+   <input type="number" value="0" name="attr_defensive_combat_skillcost" title="Coût de la compétence" />
+   <input type="number" value="0" min="0" max="10" name="attr_defensive_combat_skilllevel" title="Niveau dans la compétence" />
+   <select class="sheet-skill_select" name="attr_defensive_combat_attribute_select">
+    <option value="@{base-Force} + @{exal-Force}">For</option>
+    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+   </select>
+   <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{defensive_combat_skillname} au d@{dice} : [[@{defensive_combat_skilllevel}+(@{defensive_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+  </fieldset>
+ </div>
 
-	<!--TIR & CHARGE -->
-	<div class="sheet-tab-content sheet-secondary_tab4">.
-		<button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{character_name}">Tir</button>
-		<input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" value="0"/>d10 &#8728;
-		<input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" value="0"/>+
-		<input type="number" class="sheet-numberbox" name="attr_add_shoot_dices" value="0"/>
-		<select class="sheet-skill_select" value="0" style="margin-right:4px" name="attr_Skill_general_attribute_select_shoot">
-			<option value="@{base-Force} + @{exal-Force}">For</option>
-			<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-			<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-		</select>
-		<br/>
+ <!--TIR & CHARGE -->
+ <div class="sheet-tab-content sheet-secondary_tab4">.
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{character_name}">Tir</button>
+  <input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" tile="Nombre de des de tir" value="0"/>d10 &#8728;
+  <input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" title="Valeur de dégat des des" value="0"/>+
+  <input type="number" class="sheet-numberbox" name="attr_add_shoot_dices" title="Modificateur" value="0"/>
+  <select class="sheet-skill_select" value="0" style="margin-right:4px" name="attr_Skill_general_attribute_select_shoot">
+   <option value="@{base-Force} + @{exal-Force}">For</option>
+	 <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+	 <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+   <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+  </select>
+  <br/>
 
-		<!--Tir_precis -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Tir_precis" disabled="true" value="Tir_precis" />
-		<input type="number" min="0" name="attr_skillcost_Tir_precis" value="0"/>
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Tir_precis" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Tir_precis"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Tir_precis} [[(@{general_skilllevel_Tir_precis}+(@{Skill_general_attribute_select_Tir_precis}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Tir_precis_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Tir_precis"/>
+  <!--Tir_precis -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Tir_precis" disabled="true" value="Tir_precis" />
+  <input type="number" min="0" name="attr_skillcost_Tir_precis" title="Coût de la compétence" value="0"/>
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Tir_precis" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Tir_precis"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Tir_precis} au d@{dice} : [[(@{general_skilllevel_Tir_precis}+(@{Skill_general_attribute_select_Tir_precis}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Tir_precis_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Tir_precis"/>
+	<br/>
 
-		<!--Tir_implacable -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Tir_implacable" disabled="true" value="Tir_implacable" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Tir_implacable" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Tir_implacable" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Tir_implacable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Tir_implacable} [[(@{general_skilllevel_Tir_implacable}+(@{Skill_general_attribute_select_Tir_implacable}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Tir_implacable_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Tir_implacable"/>
+  <!--Tir_implacable -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Tir_implacable" disabled="true" value="Tir_implacable" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Tir_implacable" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Tir_implacable" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Tir_implacable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Tir_implacable} au d@{dice} : [[(@{general_skilllevel_Tir_implacable}+(@{Skill_general_attribute_select_Tir_implacable}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Tir_implacable_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Tir_implacable"/>
+	<br/>
 
-		<!--Charge -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Charge" disabled="true" value="Charge" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Charge" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Charge" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Charge"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Charge} [[(@{general_skilllevel_Charge}+(@{Skill_general_attribute_select_Charge}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Charge_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Charge"/>
+  <!--Charge -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Charge" disabled="true" value="Charge" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Charge" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Charge" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Charge"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_Charge} au d@{dice} : [[(@{general_skilllevel_Charge}+(@{Skill_general_attribute_select_Charge}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Charge_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Charge"/>
+	<br/>
 
-		<!--Charge_indomptable -->
-		<input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Charge_indomptable" disabled="true" value="Charge_indomptable" />
-		<input type="number" min="0" value="0" name="attr_skillcost_Charge_indomptable" />
-		<input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Charge_indomptable" />
-		<select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Charge_indomptable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-		<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Charge_indomptable} [[(@{general_skilllevel_Charge_indomptable}+(@{Skill_general_attribute_select_Charge_indomptable}) - d@{dice})]] "></button>
-		<input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Charge_indomptable_activation" />
-		<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Charge_indomptable"/>
+  <!--Charge_indomptable -->
+  <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Charge_indomptable" disabled="true" value="Charge_indomptable" />
+  <input type="number" min="0" value="0" name="attr_skillcost_Charge_indomptable" title="Coût de la compétence" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Charge_indomptable" title="Niveau dans la compétence" />
+  <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Charge_indomptable"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
+  <button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_Charge_indomptable} [[(@{general_skilllevel_Charge_indomptable}+(@{Skill_general_attribute_select_Charge_indomptable}) - d@{dice})]] "></button>
+  <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Charge_indomptable_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Charge_indomptable"/>
+	<br/>
 
-		<!--tir_charge_combat -->
-		<fieldset class="repeating_tir-charge-combat-skills">
-			<input class="sheet-skill_name" type="text" name="attr_tir_charge_combat_skillname" />
-			<input type="number" value="0" name="attr_tir_charge_combat_skillcost" />
-			<input type="number" value="0" min="0" max="10" name="attr_tir_charge_combat_skilllevel" />
-			<select class="sheet-skill_select" name="attr_tir_charge_combat_attribute_select">
-				<option value="@{base-Force} + @{exal-Force}">For</option>
-				<option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-				<option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-				<option value="@{base-Perception} + @{exal-Perception}">Per</option>
-				<option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-				<option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-				<option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-			</select>
-			<button type='roll' class="sheet-skillbutton" value="/e rolls @{tir_charge_combat_skillname} [[@{tir_charge_combat_skilllevel}+(@{tir_charge_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
-		</fieldset>
-	</div>
+  <!--tir_charge_combat -->
+  <fieldset class="repeating_tir-charge-combat-skills">
+   <input class="sheet-skill_name" type="text" name="attr_tir_charge_combat_skillname" />
+   <input type="number" value="0" name="attr_tir_charge_combat_skillcost" />
+   <input type="number" value="0" min="0" max="10" name="attr_tir_charge_combat_skilllevel" title="Niveau dans la compétence" />
+   <select class="sheet-skill_select" name="attr_tir_charge_combat_attribute_select">
+    <option value="@{base-Force} + @{exal-Force}">For</option>
+    <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+    <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+    <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+    <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+    <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+    <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+   </select>
+   <button type='roll' class="sheet-skillbutton" value="/e fait un test de @{tir_charge_combat_skillname} au d@{dice} : [[@{tir_charge_combat_skilllevel}+(@{tir_charge_combat_attribute_select}) - d@{dice}cs1cf@{dice}]]"></button>
+  </fieldset>
+ </div>
 
-	<!--EQUIPEMENT
-	<div class="sheet-tab-content sheet-secondary_tab5">
+ <!--EQUIPEMENT
+ <div class="sheet-tab-content sheet-secondary_tab5">
 
-	</div>-->
-	</div>
+ </div>-->
+ </div>
 </div>

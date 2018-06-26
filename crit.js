@@ -283,7 +283,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     if (d_vars.nb_2add!=0){dices+=" + ("+d_vars.nb_2add;};
     if (d_vars.on_hit_c+d_vars.attribute!=0){
         dices+=" + "+(d_vars.on_hit_c+d_vars.attribute);
-        if (m_crit>1) dices+="x"+m_crit;
+        if (m_crit>1) dices+=" [x"+m_crit+"]";
     };
     if (d_vars.nb_2add!=0){dices+=")";};
     if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};

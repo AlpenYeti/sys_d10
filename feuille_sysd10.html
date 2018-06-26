@@ -1,92 +1,119 @@
 <head><link rel="stylesheet" type="text/css" href="style.css"><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
  <script type="text/worker">
 
- on("change:base_damage_dices", function() {
-  getAttrs(["base_damage_dices"], function(values) {
-   setAttrs({"effective_base_damage_dices":values.base_damage_dices+values.exal_damage_dices});
-  });
- });
-
  // Perfection
  on("change:skill_Perfection_activation change:general_skilllevel_Perfection", function() {
-  getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
-   setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
-  });
+   getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
+     setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
+   });
  });
-
  // Fauchage
  on("change:skill_Fauchage_activation change:general_skilllevel_Fauchage", function() {
-  getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
-   setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
-  });
+   getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
+     setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
+   });
  });
-
  // Coup_dechirant
  on("change:skill_Coup_dechirant_activation change:general_skilllevel_Coup_dechirant", function() {
-  getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
-   setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
-  });
+   getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
+     setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
+   });
  });
-
  // Exploiter_les_points_faibles
  on("change:skill_Exploiter_les_points_faibles_activation change:general_skilllevel_Exploiter_les_points_faibles", function() {
-  getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
-   setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
-  });
+   getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
+     setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
+   });
  });
-
  // Technique_martiale
  on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale change:base-Agilite", function() {
-  getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
-   setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite'])});
-  });
+   getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
+     setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite']))});
+   });
  });
  // Defense_impenetrable
  on("change:skill_Defense_impenetrable_activation change:general_skilllevel_Defense_impenetrable", function() {
-  getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
-   setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
-  });
+   getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
+     setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
+   });
  });
  // Rempart_parfait
  on("change:skill_Rempart_parfait_activation change:general_skilllevel_Rempart_parfait", function() {
-  getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
-   setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
-  });
+   getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
+     setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
+   });
  });
  // Endurance_surnaturelle
  on("change:skill_Endurance_surnaturelle_activation change:general_skilllevel_Endurance_surnaturelle", function() {
-  getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
-   setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
-  });
+   getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
+     setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
+   });
  });
  // Encaissement
  on("change:skill_Encaissement_activation change:general_skilllevel_Encaissement", function() {
-  getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
-   setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
-  });
+   getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
+     setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
+   });
  });
  // Tir_precis
  on("change:skill_Tir_precis_activation change:general_skilllevel_Tir_precis", function() {
-  getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
-   setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
-  });
+   getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
+     setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
+   });
  });
  // Tir_implacable
  on("change:skill_Tir_implacable_activation change:general_skilllevel_Tir_implacable", function() {
-  getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
-   setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
-  });
+   getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
+     setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
+   });
  });
  // Charge
  on("change:skill_Charge_activation change:general_skilllevel_Charge", function() {
-  getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
-   setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
-  });
+   getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
+     setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
+   });
  });
  // Charge_indomptable
  on("change:skill_Charge_indomptable_activation change:general_skilllevel_Charge_indomptable", function() {
-  getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
-   setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
+   getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
+     setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
+   });
+ });
+ // weapon1
+ on("change:item_weapon1_activation change:general_item_weapon1", function() {
+  getAttrs(["item_weapon1_activation", "general_item_weapon1"], function(values) {
+   setAttrs({"general_effective_weapon1":values.item_weapon1_activation*values.general_item_weapon1});
+  });
+ });
+ // weapon2
+ on("change:item_weapon2_activation change:general_item_weapon2", function() {
+  getAttrs(["item_weapon2_activation", "general_item_weapon2"], function(values) {
+   setAttrs({"general_effective_weapon2":values.item_weapon2_activation*values.general_item_weapon2});
+  });
+ });
+ // weapon3
+ on("change:item_weapon3_activation change:general_item_weapon3", function() {
+  getAttrs(["item_weapon3_activation", "general_item_weapon3"], function(values) {
+   setAttrs({"general_effective_weapon3":values.item_weapon3_activation*values.general_item_weapon3});
+  });
+ });
+
+ // shield1
+ on("change:item_shield1_activation change:general_item_shield1", function() {
+  getAttrs(["item_shield1_activation", "general_item_shield1"], function(values) {
+   setAttrs({"general_effective_shield1":values.item_shield1_activation*values.general_item_shield1});
+  });
+ });
+ // shield2
+ on("change:item_shield2_activation change:general_item_shield2", function() {
+  getAttrs(["item_shield2_activation", "general_item_shield2"], function(values) {
+   setAttrs({"general_effective_shield2":values.item_shield2_activation*values.general_item_shield2});
+  });
+ });
+ // shield3
+ on("change:item_shield3_activation change:general_item_shield3", function() {
+  getAttrs(["item_shield3_activation", "general_item_shield3"], function(values) {
+   setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
   });
  });
  </script>
@@ -308,11 +335,11 @@
 <div class="sheet-tab-content sheet-tab2">
  <div class='sheet-col'>
   <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab1" checked="checked" value="1" title="Général" />
-  <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab2" value="2" title="Magie Innée" />
+  <!--<input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab2" value="2" title="Magie Innée" />
   <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab3" value="3" title="Haute Magie" />
   <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab4" value="4" title="Vivemagie" />
   <input type="radio" name="attr_secondary_magic_tab" class="small_tab secondary_magic_tab5" value="5" title="Magie des Mots" />
-
+-->
   <div class="sheet-tab-content sheet-secondary_magic_tab1">
    <h3>Compétences magiques</h3>
    <fieldset class="repeating_magic-skills">
@@ -347,12 +374,12 @@
  <div class="sheet-tab-content sheet-secondary_tab1">
   <button type='roll' class="sheet-Initiative_roll" value="/e tire son initiative [[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]">Initiative</button>
   <input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
-  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{effective_base_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{character_name}">Attaque de base</button>
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{character_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque de base</button>
   <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+
-	<input type="number" class="sheet-numberbox" name="attr_base_damage_dices" title="Base de dégats" value="0"/>
-	<input type="number" class="sheet-numberbox" name="attr_exal_damage_dices" title="Modificateur temporaire" value="0"/>
+	<input type="number" class="sheet-numberbox" type="number" name="attr_base_damage_dices" title="Base de dégats" value="0"/>+
+	<input type="number" class="sheet-numberbox" type="number" name="attr_exal_damage_dices" title="Modificateur temporaire" value="0"/>
   <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_attaque"><option value="@{base-Force} A @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
-  <input class="sheet-skill_hidden" type="number" name="attr_effective_base_damage_dices" value="0"/> <br/>
+<br/>
 
 	<!--weapon1 -->
 	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon1_name" value="Arme 1" />
@@ -468,9 +495,9 @@
 
  <!--Defense -->
  <div class="sheet-tab-content sheet-secondary_tab3">
-  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{character_name}">Parade</button>
-  <input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defence" value="0"/>d10+
-  <input type="number" class="sheet-numberbox" name="attr_base_defense_dices" title="Base de defence" value="0"/>+
+  <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{character_name} + @{general_effective_shield1} + @{general_effective_shield2} + @{general_effective_shield3}">Parade</button>
+  <input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defense" value="0"/>d10+
+  <input type="number" class="sheet-numberbox" name="attr_base_defense_dices" title="Base de defense" value="0"/>+
 	<input type="number" class="sheet-numberbox" name="attr_exal_defense_dices" title="Modificateur temporaire" value="0"/>
   <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option><option value="@{base-Volonte} A @{exal-Volonte}">Vol</option><option value="@{base-Psyche} A @{exal-Psyche}">Psy</option></select>
   <br/>
@@ -479,6 +506,24 @@
   <input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" title="Modificateur d'esquive" value="0"/>
   <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge"><option value="@{base-Chance} A @{exal-Chance}">Chn</option><option value="@{base-Agilite} A @{exal-Agilite}">Agi</option></select>
   <br/>
+
+  <!--shield1 -->
+  <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield1_name" value="Equipement 1" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield1" title="Valeur de l'équipemet" />
+  <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield1_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield1" /> <br/>
+
+  <!--shield2 -->
+  <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield2_name" value="Equipement 2" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield2" title="Valeur de l'équipemet" />
+  <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield2_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield2" /> <br/>
+
+  <!--shield3 -->
+  <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield3_name" value="Equipement 3" />
+  <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
+  <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
+  <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
 
   <!--Defense_impenetrable -->
   <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Defense_impenetrable" disabled="true" value="Defense_impenetrable" />

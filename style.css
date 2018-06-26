@@ -97,11 +97,8 @@ input.sheet-skill_name{
     -moz-appearance: none;
     width:400px;
 }
-
-
-div.sheet-skill_hidden{
+input.sheet-skill_hidden{
   visibility: hidden;
-  display: none;
 }
 div.sheet-tab-content{
     border-top-color: #000;

@@ -77,21 +77,9 @@ on("change:skill_SKILLNAME_activation change:general_skilllevel_SKILLNAME", func
 <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
 <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
 
-
-	<!--shield1 -->
-	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield1_name" value="Armure 1" />
-	<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield1" title="Valeur de l'équipemet" />
-	<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield1_activation" />
-	<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield1" /> <br/>
-
-	<!--shield2 -->
-	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield2_name" value="Armure 2" />
-	<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield2" title="Valeur de l'équipemet" />
-	<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield2_activation" />
-	<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield2" /> <br/>
-
-	<!--shield3 -->
-	<input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield3_name" value="Armure 3" />
-	<input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
-	<input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
-	<input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
+// shield3
+on("change:item_shield3_activation change:general_item_shield3", function() {
+ getAttrs(["item_shield3_activation", "general_item_shield3"], function(values) {
+  setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
+ });
+});

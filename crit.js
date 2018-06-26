@@ -443,6 +443,10 @@ function parse_command(message){
                 break;
             case ":":
                 d_vars.player_name=tab[i+1];
+                /*if(tab[i+2].length>1){ // Fixaround, not really pretty, due to the way things are parsed
+                  d_vars.player_name+=" "+tab[i+2]; // Adding second part of name
+                  i+=1;
+                }*/
                 i+=2;
                 break;
             default:

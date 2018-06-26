@@ -20,13 +20,18 @@ on("chat:message", function(msg) {
         "attr_general_item_weapon2",
         "attr_general_item_weapon3",
         "attr_base_damage_dices",
-        "attr_exal_damage_dices"]
+        "attr_exal_damage_dices"];
+        logit(auth);
+        logit(cmd_name);
+        logit(cmd_val);/*
         for (var i = 0; i < auth.length; i++) {
           if (auth[i].indexOf(cmd_name)!==-1){
             var attribObj = findObjs({ type: 'attribute', characterid: character.id, name: auth[i] })[0];
-            if (attribObj){attribObj.set('current', cmd_val);};
+            logit(attribObj);
+            logit(cmd_val);
+            // if (attribObj){attribObj.set('current', cmd_val);};
           }
-        }
+        }*/
     };
 };
 

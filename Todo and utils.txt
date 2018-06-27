@@ -83,6 +83,3 @@ on("change:item_shield3_activation change:general_item_shield3", function() {
   setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
  });
 });
-
-
-max(values.Grievious_Wounds_max,values.Grievious_Wounds_current+min(0,floor(values.Life_Points_max/4-values.Life_Points)))

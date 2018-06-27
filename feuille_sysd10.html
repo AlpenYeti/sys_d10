@@ -116,13 +116,26 @@
    setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
   });
  });
-
+ // Life_Points
+ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
+  getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
+   setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+   setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+  });
+});
+// Endurance_Points
+on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
+ getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
+  setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
+  setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
+ });
+});
  // attr_Grievious_Wounds
  on("change:Life_Points change:Life_Points_max change:Grievious_Wounds", function() {
-  getAttrs(["Life_Points", "Life_Points_max","Grievious_Wounds_current","Grievious_Wounds_max"], function(values) {
-   setAttrs({"Grievious_Wounds_effective":7});
+  getAttrs(["Life_Points", "Life_Points_maximum","Grievious_Wounds"], function(values) {
+   setAttrs({"Grievious_Wounds_effective":Math.min(Math.floor(Number(values.Life_Points_maximum)/4),Number(values.Grievious_Wounds)+Math.max(0,Math.floor(Number(values.Life_Points_maximum)/4-Number(values.Life_Points))))});
   });
- });
+});
  </script>
 </head>
 <div class="sheet-content">
@@ -139,18 +152,18 @@
 	<tr>
 	 <td><h4>Points de Vie</h4></td>
 	 <td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
-	 <td><input class="sheet-trait" disabled="true" name="attr_Life_Points_max" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+@{general_skilllevel_Endurance_surnaturelle}*2+10"/></td>
+	 <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td>
 	</tr>
 	<tr>
 	 <td><h4>Points de Fatigue</h4></td>
 	 <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
-	 <td><input class="sheet-trait" disabled="true" name="attr_Endurance_Points_max" value="@{base-Force}*4"/></td>
+	 <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/></td>
 	</tr>
   <tr>
-  <td><h4>Blessures aggravés</h4></td>
+  <td><h4>Dégats aggravés</h4></td>
   <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" value="0"/></td>
   <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" value="@{Grievious_Wounds_effective}"/></td>
-  <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" value="floor((@{base-Force}+@{base-Volonte}+@{base-Agilite}+(@{general_skilllevel_Endurance_surnaturelle}*2)+10)/4)"/></td>
+  <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" value="floor(@{Life_Points_maximum}/4)"/></td>
  </tr>
 </table>
 </div>

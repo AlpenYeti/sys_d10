@@ -3,14 +3,14 @@ input.sheet-tab1:checked ~ div.sheet-tab1,
 input.sheet-tab2:checked ~ div.sheet-tab2,
 input.sheet-tab3:checked ~ div.sheet-tab3
 {
-    display: block;
+  display: block;
 }
 input.sheet-secondary_tab1:checked ~ div.sheet-secondary_tab1,
 input.sheet-secondary_tab2:checked ~ div.sheet-secondary_tab2,
 input.sheet-secondary_tab3:checked ~ div.sheet-secondary_tab3,
 input.sheet-secondary_tab4:checked ~ div.sheet-secondary_tab4
 {
-    display:block;
+  display:block;
 }
 input.sheet-secondary_magic_tab1:checked ~ div.sheet-secondary_magic_tab1,
 input.sheet-secondary_magic_tab2:checked ~ div.sheet-secondary_magic_tab2,
@@ -18,105 +18,167 @@ input.sheet-secondary_magic_tab3:checked ~ div.sheet-secondary_magic_tab3,
 input.sheet-secondary_magic_tab4:checked ~ div.sheet-secondary_magic_tab4,
 input.sheet-secondary_magic_tab5:checked ~ div.sheet-secondary_magic_tab5
 {
-    display:block;
+  display:block;
 }
 input.sheet-secondary_skills_tab1:checked ~ div.sheet-secondary_skills_tab1,
 input.sheet-secondary_skills_tab2:checked ~ div.sheet-secondary_skills_tab2,
 input.sheet-secondary_skills_tab3:checked ~ div.sheet-secondary_skills_tab3
 {
-    display:block;
+  display:block;
 }
 
 
 input.sheet-tab{
-    -moz-appearance: none;
-    width:150px;
-    height: 20px;
-    top: 5px;
-    left: 6px;
-    margin: 5px;
-    cursor: pointer;
-    z-index: 1;
-    content: attr(title);
+  -moz-appearance: none;
+  width:150px;
+  height: 20px;
+  top: 5px;
+  left: 6px;
+  margin: 5px;
+  cursor: pointer;
+  z-index: 1;
+  content: attr(title);
 }
 input.sheet-tab::before{
-    -moz-appearance: none;
-    content: attr(title);
+  -moz-appearance: none;
+  content: attr(title);
 
-    border-radius:.5em;
-    border:2px solid black;
-    text-align: center;
-    display: inline-block;
+  border-radius:.5em;
+  border:2px solid black;
+  text-align: center;
+  display: inline-block;
 
-    background: black;
-    color:white;
-    width: 150px;
-    height: 20px;
-    font-size: 18px;
+  background: black;
+  color:white;
+  width: 150px;
+  height: 20px;
+  font-size: 18px;
 }
 input.sheet-tab:checked::before{
-    -moz-appearance: none;
-    background:#CCCCCC;
-    color:black;
-    border-radius:.5em;
-    border:2px solid black;
+  -moz-appearance: none;
+  background:#CCCCCC;
+  color:black;
+  border-radius:.5em;
+  border:2px solid black;
 }
 
 input.sheet-small_tab{
-    -moz-appearance: none;
-    width:120px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 1;
-    margin:5px;
+  -moz-appearance: none;
+  width:120px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1;
+  margin:5px;
 }
 input.sheet-small_tab::before{
-    -moz-appearance: none;
-    content: attr(title);
+  -moz-appearance: none;
+  content: attr(title);
 
-    border-radius:.5em;
-    text-align: center;
-    display: inline-block;
-    color:white;
-    background:black;
-    border:2px solid black;
-    width: 120px;
-    height:20px;
-    font-size: 14px;
+  border-radius:.5em;
+  text-align: center;
+  display: inline-block;
+  color:white;
+  background:black;
+  border:2px solid black;
+  width: 120px;
+  height:20px;
+  font-size: 14px;
 
 }
 input.sheet-small_tab:checked::before{
-    -moz-appearance: none;
-    border:2px solid black;
-    background:#CCCCCC;
-    color:black;
-    border-radius:.5em;
+  -moz-appearance: none;
+  border:2px solid black;
+  background:#CCCCCC;
+  color:black;
+  border-radius:.5em;
 }
 
 input.sheet-skill_name{
-    -moz-appearance: none;
-    width:400px;
+  -moz-appearance: none;
+  width:400px;
 }
 input.sheet-skill_hidden{
   visibility: hidden;
 }
 div.sheet-tab-content{
-    border-top-color: #000;
-    margin: 2px 0 0 0;
+  border-top-color: #000;
+  margin: 2px 0 0 0;
 }
 
 select.sheet-skill_select{
-    width:55px;
-    margin-bottom:-1px;
+  width:55px;
+  margin-bottom:-1px;
 }
 select.sheet-dice_select{
-    width:85px;
-    margin-bottom:-1px;
+  width:85px;
+  margin-bottom:-1px;
 }
 
 .sheet-trait{
   width: 30px;
 }
 .sheet-numberbox {
-	width: 50px;
+  width: 50px;
+}
+
+
+.sheet-rolltemplate-d10skillcheck table {
+  border-radius: 6px;
+  width:100%;
+  border: 2px solid #898989;
+  background-color: #999999;
+  padding: 2px;
+  border: 1px solid;
+  background-color: #ffffff;
+}
+.sheet-rolltemplate-d10skillcheck th {
+  color: rgb(42, 42, 42);
+  padding-left: 5px;
+  font-size: 1.2em;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+.sheet-rolltemplate-d10skillcheck .sheet-roll-sucess ,
+.sheet-rolltemplate-d10skillcheck .sheet-roll-fail {
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+.sheet-rolltemplate-d10skillcheck .sheet-roll-crit {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  background-color:#b0d6ad;
+}
+.sheet-rolltemplate-d10skillcheck .sheet-roll-fumble {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  background-color:#d6adad;
+}
+
+.sheet-rolltemplate-d10skillcheck .sheet-roll-attr{
+    color: #555555;
+    font-size: 1em;
+    font-style: italic;
+    padding-left: 9px;
+    padding-top: 0px;
+    margin-top: -10px;
+}
+.sheet-rolltemplate-d10skillcheck .inlinerollresult  {
+    background-color: transparent;
+    border: none;
+}
+.sheet-rolltemplate-d10skillcheck .inlinerollresult.fullcrit {
+	color: #3FB315;
+    border: none;
+}
+
+.sheet-rolltemplate-d10skillcheck .inlinerollresult.fullfail {
+	color: #B31515;
+    border: none;
+}
+.sheet-rolltemplate-d10skillcheck .inlinerollresult.importantroll {
+	color: #4A57ED;
+    border: none;
 }

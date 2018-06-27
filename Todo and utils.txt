@@ -48,7 +48,7 @@ on("change:skill_SKILLNAME_activation change:general_skilllevel_SKILLNAME", func
 <input type="number" min="0" value= "0" name="attr_skillcost_SKILLNAME" title="Coût de la compétence"/>
 <input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_SKILLNAME" title="Niveau dans la compétence" />
 <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_SKILLNAME"><option value="@{base-Force} + @{exal-Force}">For</option><option value="@{base-Agilite} + @{exal-Agilite}">Agi</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Charisme} + @{exal-Charisme}">Cha</option><option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option><option value="@{base-Perception} + @{exal-Perception}">Per</option><option value="@{base-Volonte} + @{exal-Volonte}">Vol</option><option value="@{base-Psyche} + @{exal-Psyche}">Psy</option><option value="@{base-Chance} + @{exal-Chance}">Chn</option></select>
-<button type='roll' class="sheet-skillbutton" value="/e rolls @{general_skill_SKILLNAME} [[(@{general_skilllevel_SKILLNAME}+(@{Skill_general_attribute_select_SKILLNAME}) - d@{dice})]] "></button>
+<button type='roll' class="sheet-skillbutton" value="/e fait un jet de @{general_skill_SKILLNAME} [[(@{general_skilllevel_SKILLNAME}+(@{Skill_general_attribute_select_SKILLNAME}) - d@{dice})]] "></button>
 <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_SKILLNAME_activation" />
 <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_effective_SKILLNAME"/>
 
@@ -83,3 +83,5 @@ on("change:item_shield3_activation change:general_item_shield3", function() {
   setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
  });
 });
+
+name roll_name dice_name result threshold

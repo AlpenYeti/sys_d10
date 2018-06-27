@@ -1,7 +1,7 @@
 ## Introduction
 Vous trouverez ici la feuille de personnage type pour le système D10. Cette feuille a été crée pour fonctionner avec Roll20.
 
-##Macros roll20
+## Macros roll20
 Peuvent etre utile a modifier ou récuperer:
  - ```shieldLife_Points / shieldLife_Points_max``` : Points de Vie
  - ```shieldEndurance_Points / shieldEndurance_Points_max``` : Points de fatigue

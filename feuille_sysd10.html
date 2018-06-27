@@ -116,6 +116,13 @@
    setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
   });
  });
+
+ // attr_Grievious_Wounds
+ on("change:Life_Points change:Life_Points_max change:Grievious_Wounds", function() {
+  getAttrs(["Life_Points", "Life_Points_max","Grievious_Wounds_current","Grievious_Wounds_max"], function(values) {
+   setAttrs({"Grievious_Wounds_effective":7});
+  });
+ });
  </script>
 </head>
 <div class="sheet-content">
@@ -126,56 +133,57 @@
  </div>
  <br/>
  <div class="sheet-2colrow">
- <div class="sheet-col">
- <table class="sheet-center sheet-black">
-  <tr>
-   <td><h3 class="sheet-center">Points de compétence :</h3></td>
-  </tr>
-  <tr>
-   <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
-   <td rowspan="2">
-    <select class="sheet-dice_select sheet-dice" name="attr_dice">
-     <option value="2">d2</option>
-     <option value="4">d4</option>
-     <option value="6">d6</option>
-     <option value="8">d8</option>
-     <option value="10" selected>d10</option>
-     <option value="12">d12</option>
-     <option value="20">d20</option>
-     <option value="30">d30</option>
-     <option value="100">d100</option>
-     <option value="1000">d1000</option>
-     <option value="10000">d10000</option>
-		 </select>
-    </td>
-   </tr>
-   <tr>
-    <td><input type="number" class="sheet-trait" name="attr_Character_points_unspent" value="0"/> Restants</td>
-   </tr>
- 	</table>
-  </div>
 	<div class='sheet-col'>
  <h3 class="sheet-center">Ressources</h3>
- <br/>
  <table class="sheet-center sheet-black">
 	<tr>
 	 <td><h4>Points de Vie</h4></td>
 	 <td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
-	 <td><input type="number" class="sheet-trait" disabled="true" name="attr_Life_Points_max" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+@{general_skilllevel_Endurance_surnaturelle}*2+10"/></td>
+	 <td><input class="sheet-trait" disabled="true" name="attr_Life_Points_max" value="@{base-Force}+@{base-Volonte}+@{base-Agilite}+@{general_skilllevel_Endurance_surnaturelle}*2+10"/></td>
 	</tr>
 	<tr>
 	 <td><h4>Points de Fatigue</h4></td>
 	 <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
-	 <td><input type="number" class="sheet-trait" disabled="true" name="attr_Endurance_Points_max" value="@{base-Force}*4"/></td>
+	 <td><input class="sheet-trait" disabled="true" name="attr_Endurance_Points_max" value="@{base-Force}*4"/></td>
 	</tr>
-	<!-- <tr>
-	<td><4>Etat</h4></td>
-	<td colspan="2"><div class="sheet-status-wounded">Blessures aggravés</div></td>
- </tr>-->
+  <tr>
+  <td><h4>Blessures aggravés</h4></td>
+  <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" value="0"/></td>
+  <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" value="@{Grievious_Wounds_effective}"/></td>
+  <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" value="floor((@{base-Force}+@{base-Volonte}+@{base-Agilite}+(@{general_skilllevel_Endurance_surnaturelle}*2)+10)/4)"/></td>
+ </tr>
 </table>
 </div>
+<div class="sheet-col">
+<table class="sheet-center sheet-black">
+ <tr>
+  <td><h3 class="sheet-center">Points de compétence :</h3></td>
+  <br/>
+ </tr>
+ <tr>
+  <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
+  <td rowspan="2">
+   <select class="sheet-dice_select sheet-dice" name="attr_dice">
+    <option value="2">d2</option>
+    <option value="4">d4</option>
+    <option value="6">d6</option>
+    <option value="8">d8</option>
+    <option value="10" selected>d10</option>
+    <option value="12">d12</option>
+    <option value="20">d20</option>
+    <option value="30">d30</option>
+    <option value="100">d100</option>
+    <option value="1000">d1000</option>
+    <option value="10000">d10000</option>
+    </select>
+   </td>
+  </tr>
+  <tr>
+   <td><input type="number" class="sheet-trait" name="attr_Character_points_unspent" value="0"/> Restants</td>
+  </tr>
+ </table>
+ </div>
 </div>
-
  <div class='sheet-2colrow'>
   <div class='sheet-col'>
    <h3 class="sheet-center">Caractéristiques</h3>
@@ -227,27 +235,27 @@
      <td>Intelligence</td>
      <td><input type="number" class="sheet-trait" name="attr_base-Intelligence" title="Intelligence de base" value="0" min="0" max="10" /></td>
      <td><input type="number" class="sheet-trait" name="attr_exal-Intelligence" title="Modificateur" value="0" /></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence [[(@{base-Intelligence}}+@{exal-Intelligence}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence brute [[(@{base-Intelligence}}+@{exal-Intelligence}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence [[(@{base-Intelligence}+@{exal-Intelligence})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test d'Intelligence brute [[(@{base-Intelligence}+@{exal-Intelligence}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
     </tr>
     <tr>
      <td>Volonté</td>
      <td><input type="number" class="sheet-trait" name="attr_base-Volonte" title="Volonté de base" value="0" min="0" max="10"/></td>
      <td><input type="number" class="sheet-trait" name="attr_exal-Volonte" title="Modificateur" value="0"/></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}}+@{exal-Volonte}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}}+@{exal-Volonte}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte [[(@{base-Volonte}+@{exal-Volonte})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Volonte brute[[(@{base-Volonte}+@{exal-Volonte}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
     </tr><tr>
      <td>Psyché</td>
      <td><input type="number" class="sheet-trait" name="attr_base-Psyche" title="Psyché de base" value="0" min="0" max="10"/></td>
      <td><input type="number" class="sheet-trait" name="attr_exal-Psyche" title="Modificateur" value="0"/></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché [[(@{base-Psyche}}+@{exal-Psyche}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché brute[[(@{base-Psyche}}+@{exal-Psyche}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché [[(@{base-Psyche}+@{exal-Psyche})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Psyché brute[[(@{base-Psyche}+@{exal-Psyche}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
     </tr><tr>
      <td>Chance</td>
      <td><input type="number" class="sheet-trait" name="attr_base-Chance" title="Chance de base" value="0" min="0" max="10"/></td>
      <td><input type="number" class="sheet-trait" name="attr_exal-Chance" title="Modificateur" value="0"/></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}}+@{exal-Chance}})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
-     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}}+@{exal-Chance}}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance [[(@{base-Chance}+@{exal-Chance})*2 - d@{dice}cs1cf@{dice}]]"></button></td>
+     <td><button type='roll' class="sheet-trait_roll" value="/e - Test de Chance brute[[(@{base-Chance}+@{exal-Chance}) - d@{dice}cs1cf@{dice}]]">Brut</button></td>
     </tr>
    </table>
   </div>

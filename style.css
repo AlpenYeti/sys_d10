@@ -114,6 +114,9 @@ select.sheet-dice_select{
     margin-bottom:-1px;
 }
 
+.sheet-trait{
+  width: 30px;
+}
 .sheet-numberbox {
 	width: 50px;
 }

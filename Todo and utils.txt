@@ -85,3 +85,8 @@ on("change:item_shield3_activation change:general_item_shield3", function() {
 });
 
 name roll_name dice_name result threshold
+/e - Test d.+(\w*).*\[\[(.*)-.*\]\]
+&{template:d10skillcheck}{{name=@{character_name}} {{roll_name=$1}} {{dice_name=@{dice}}} {{result=$2}} {{threshold=[[]]}}
+
+/e .* @{(\w*)}.*\[(.*) -.*\)?\]\]
+&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{$1}}} {{dice_name=@{dice}}} {{result=[[$2-d@{dice}cs1cf@{dice}]]}} {{threshold=[[$2]]}}

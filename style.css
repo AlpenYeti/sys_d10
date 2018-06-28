@@ -174,13 +174,13 @@ select.sheet-dice_select{
     padding:0px;
     font-family: "Times New Roman", Times, serif;
 }
-.sheet-rolltemplate-d10skillcheck .sheet-inline.fullcrit,
+.sheet-rolltemplate-d10skillcheck .sheet-inline.sheet-fullcrit,
 .sheet-rolltemplate-d10skillcheck .inlinerollresult.fullcrit {
 	color: #3FB315;
     border: none;
 }
 
-.sheet-rolltemplate-d10skillcheck .sheet-inline.fullfail,
+.sheet-rolltemplate-d10skillcheck .sheet-inline.sheet-fullfail,
 .sheet-rolltemplate-d10skillcheck .inlinerollresult.fullfail {
 	color: #B31515;
     border: none;

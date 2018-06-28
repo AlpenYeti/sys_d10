@@ -138,12 +138,18 @@
         setAttrs({"Grievious_Wounds_effective":Math.min(Math.floor(Number(values.Life_Points_maximum)/4),Number(values.Grievious_Wounds)+Math.max(0,Math.floor(Number(values.Life_Points_maximum)/4-Number(values.Life_Points))))});
       });
     });
+    // undescored_name
+    on("change:character_name change:character_race", function() {
+      getAttrs(["character_name"], function(values) {
+        setAttrs({"undescored_name":values.character_name.replace(/ /g,"_")});
+      });
+    });
     </script>
   </head>
   <div class="sheet-content">
     <div class="sheet-center">
       <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
-      <input class="sheet-skill_hidden" value="" name="undescored_name" /><br/>
+      <span style="color:#ffffff;" name="attr_undescored_name" /></span><br/>
       <input type="text" class="sheet-mediumname" name="attr_character_race" placeholder="Race"/>
     </div>
     <br/>
@@ -163,9 +169,9 @@
           </tr>
           <tr>
             <td><h4>Dégats aggravés</h4></td>
-            <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" value="0"/></td>
-            <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" value="@{Grievious_Wounds_effective}"/></td>
-            <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" value="floor(@{Life_Points_maximum}/4)"/></td>
+            <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" title="Dégats aggravés supplémentaires" value="0"/></td>
+            <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" title="Dégats aggravés actuels" value="@{Grievious_Wounds_effective}"/></td>
+            <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" title="Dégats aggravés maximum" value="floor(@{Life_Points_maximum}/4)"/></td>
           </tr>
         </table>
       </div>
@@ -397,7 +403,7 @@
       <div class="sheet-tab-content sheet-secondary_tab1">
         <button type='roll' class="sheet-Initiative_roll" value="/e tire son initiative [[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]">Initiative</button>
         <input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
-        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{character_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque de base</button>
+        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{undescored_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque de base</button>
         <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+
         <input type="number" class="sheet-numberbox" type="number" name="attr_base_damage_dices" title="Base de dégats" value="0"/>+
         <input type="number" class="sheet-numberbox" type="number" name="attr_exal_damage_dices" title="Modificateur temporaire" value="0"/>
@@ -426,20 +432,20 @@
         <br/>
 
         <!--weapon1 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon1_name" value="Arme 1" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon1" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_weapon1_name" value="Arme 1" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_weapon1" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon1_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon1" /> <br/>
 
         <!--weapon2 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon2_name" value="Arme 2" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon2" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_weapon2_name" value="Arme 2" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_weapon2" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon2_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon2" /> <br/>
 
         <!--weapon3 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_weapon3_name" value="Arme 3" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_weapon3" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_weapon3_name" value="Arme 3" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_weapon3" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_weapon3_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_weapon3" />
 
@@ -468,9 +474,9 @@
       <div class="sheet-tab-content sheet-secondary_tab2">
 
         <!--Perfection -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_skill_Perfection" disabled="true" value="Perfection" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Perfection" disabled="true" value="Perfection" />
         <input type="number" min="0" value="0" name="attr_skillcost_Perfection" title="Coût de la compétence" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" min="0" max="10" name="attr_general_skilllevel_Perfection" title="Niveau dans la compétence" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Perfection" title="Niveau dans la compétence" />
         <select class="sheet-skill_select" style="margin-right:0px" name="attr_Skill_general_attribute_select_Perfection">
           <option value="@{base-Force} + @{exal-Force}">For</option>
           <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
@@ -589,7 +595,7 @@
 
       <!--Defense -->
       <div class="sheet-tab-content sheet-secondary_tab3">
-        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{character_name} + @{general_effective_shield1} + @{general_effective_shield2} + @{general_effective_shield3}">Parade</button>
+        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{undescored_name} + @{general_effective_shield1} + @{general_effective_shield2} + @{general_effective_shield3}">Parade</button>
         <input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defense" value="0"/>d10+
         <input type="number" class="sheet-numberbox" name="attr_base_defense_dices" title="Base de defense" value="0"/>+
         <input type="number" class="sheet-numberbox" name="attr_exal_defense_dices" title="Modificateur temporaire" value="0"/>
@@ -600,7 +606,7 @@
           <option value="@{base-Psyche} A @{exal-Psyche}">Psy</option>
         </select>
         <br/>
-        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{character_name}">Esquive</button>
+        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{undescored_name}">Esquive</button>
         <input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" title="Nombre de des d'esquive" value="0"/>d10+
         <input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" title="Modificateur d'esquive" value="0"/>
         <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge">
@@ -610,20 +616,20 @@
         <br/>
 
         <!--shield1 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield1_name" value="Equipement 1" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield1" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_shield1_name" value="Equipement 1" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_shield1" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield1_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield1" /> <br/>
 
         <!--shield2 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield2_name" value="Equipement 2" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield2" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_shield2_name" value="Equipement 2" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_shield2" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield2_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield2" /> <br/>
 
         <!--shield3 -->
-        <input class="sheet-skill_name" style="margin-right: 0px;" type="text" name="attr_general_item_shield3_name" value="Equipement 3" />
-        <input class="sheet-skill_name" value="0" style="margin-right: 0px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
+        <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_shield3_name" value="Equipement 3" />
+        <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
         <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
         <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
 
@@ -729,7 +735,7 @@
 
       <!--TIR & CHARGE -->
       <div class="sheet-tab-content sheet-secondary_tab4">.
-        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{character_name}">Tir</button>
+        <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{undescored_name}">Tir</button>
         <input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" tile="Nombre de des de tir" value="0"/>d10 &#8728;
         <input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" title="Valeur de dégat des des" value="0"/>+
         <input type="number" class="sheet-numberbox" name="attr_add_shoot_dices" title="Modificateur" value="0"/>

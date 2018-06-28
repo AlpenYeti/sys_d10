@@ -186,21 +186,22 @@ function show_rolls(who,d_vars){
     logit(dice_stats);
     if (d_vars.player_name!=""){
       who=d_vars.player_name;
+      who_pr=d_vars.player_name.replace(/_/g," ");
     }
 
     switch(d_vars.action){
         case "a":
-        msg+=who+" attaque</span></td>";
+        msg+=who_pr+" attaque</span></td>";
         break;
         case "e":
-        msg+=who+" esquive</span></td>";
+        msg+=who_pr+" esquive</span></td>";
         m_esq=2; // It's a hit
         break;
         case "d":
-        msg+=who+" se defend</span></td>";
+        msg+=who_pr+" se defend</span></td>";
         break;
         default:
-        msg+=who+" lance "+d_vars.nb_dices+" dés</span></td>";
+        msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
     if (dice_stats.is_crit) {if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
         m_crit=2; // It's a crit
@@ -324,7 +325,7 @@ function parse_command(message){
                 i+=2;
                 break;
             case "-":
-                d_vars.nb_2sub=to_number(tab[i+1]);
+                d_vars.nb_2sub+=to_number(tab[i+1]);
                 i+=2;
                 break;
             case "P":

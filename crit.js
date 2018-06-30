@@ -240,7 +240,7 @@ function show_rolls(who,d_vars){
         }
     }
     msg+=msg_adds;
-    sendChat(who,msg_head+msg+msg_foot+msg_relance+"</div>");
+    sendChat(who_pr,msg_head+msg+msg_foot+msg_relance+"</div>");
     //logit(msg_head+msg+msg_foot);
 }
 

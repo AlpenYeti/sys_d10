@@ -114,6 +114,7 @@ select.sheet-dice_select{
   width: 50px;
 }
 
+.sheet-rolltemplate-d10init table,
 .sheet-rolltemplate-d10skillcheck table {
   border-radius: 6px;
   width:100%;
@@ -127,6 +128,8 @@ select.sheet-dice_select{
   border-color: #000;
   border-image-source: none;
 }
+.sheet-rolltemplate-d10init .sheet-roll-title,
+.sheet-rolltemplate-d10init th,
 .sheet-rolltemplate-d10skillcheck .sheet-roll-title,
 .sheet-rolltemplate-d10skillcheck th {
   color: rgb(42, 42, 42);
@@ -140,7 +143,18 @@ select.sheet-dice_select{
   text-transform: capitalize;
   border-width: 0px;
 }
-
+.sheet-rolltemplate-d10init .sheet-roll-attr,
+.sheet-rolltemplate-d10skillcheck .sheet-roll-attr{
+    color: #555555;
+    font-size: 1em;
+    font-style: italic;
+    padding:0px;
+    margin:0px;
+    padding-left: 9px;
+    border-width: 0px;
+    margin-top: -10px;
+}
+.sheet-rolltemplate-d10init .sheet-roll-sucess,
 .sheet-rolltemplate-d10skillcheck .sheet-roll-sucess ,
 .sheet-rolltemplate-d10skillcheck .sheet-roll-fail {
   padding:0px;
@@ -160,19 +174,8 @@ select.sheet-dice_select{
   border-width: 0px;
   background-color:#d6adad;
 }
-
-.sheet-rolltemplate-d10skillcheck .sheet-roll-attr{
-    color: #555555;
-    font-size: 1em;
-    font-style: italic;
-    padding-left: 9px;
-    padding-top: 0px;
-    border-width: 0px;
-    margin-top: -10px;
-    padding:0px;
-    margin:0px;
-}
-
+.sheet-rolltemplate-d10init .sheet-inline,
+.sheet-rolltemplate-d10init .inlinerollresult,
 .sheet-rolltemplate-d10skillcheck .sheet-inline,
 .sheet-rolltemplate-d10skillcheck .inlinerollresult  {
     background-color: transparent;

@@ -166,11 +166,11 @@ on("chat:message", function(msg) {
 function show_rolls(who,d_vars){
     //Return a beautiful table showing the results and some information depending on the type of action "e":Dodge "a":Attack "d":Defense
 
-    var msg_head="<div style='border-radius: 6px; border: 2px solid #898989;'> <table style='text-align: left;' width=100% border='0' cellpadding='3' cellspacing='0'> <tbody>"
-    var msg="<tr><td style='border-radius: 6px; border: 2px solid #898989; background-color: #999999;'>";
+    var msg_head="<div id='sheet-rolltemplate-d10fight-all' class='sheet-rolltemplate-d10fight'> <div id='sheet-rolltemplate-d10fight-blob' class='sheet-rolltemplate-d10fight-blob'> <table class='sheet-rolltemplate-d10fight'> <tbody>"
+    var msg="<tr><td class='sheet-name'>";
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
-    var msg_relance="<a style='text-align:right; background-color: #999999;' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
+    var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
     " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
     " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
     " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
@@ -214,39 +214,39 @@ function show_rolls(who,d_vars){
 
     msg+=add_thoose_dices(d_vars,d_vars.results,"",m_esq,m_crit);
     if (d_vars.fauchage!=0) msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
-    if (d_vars.coup_d!=0) msg_adds+="<tr><td style='padding-left:10px'>Coup déchirant: "+d_vars.coup_d_results.join(" ")+"</tr></td>"; // Coup déchirant
-    if (d_vars.technique_m!=0) msg_adds+="<tr><td style='padding-left:10px'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
-    if (d_vars.relances!=0) msg_adds+="<tr><td style='padding-left:10px'>Relances: "+d_vars.relances+"</tr></td>"; // Technique martiale
-	  if (d_vars.encaissement!=0) msg_adds+="<tr><td style='padding-left:10px'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Technique martiale
+    if (d_vars.coup_d!=0) msg_adds+="<tr><td class='sheet-additional'>Coup déchirant: "+d_vars.coup_d_results.join(" ")+"</tr></td>"; // Coup déchirant
+    if (d_vars.technique_m!=0) msg_adds+="<tr><td class='sheet-additional'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
+    if (d_vars.relances!=0) msg_adds+="<tr><td class='sheet-additional'>Relances: "+d_vars.relances+"</tr></td>"; // Technique martiale
+	  if (d_vars.encaissement!=0) msg_adds+="<tr><td class='sheet-additional'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Technique martiale
 
-    if (dice_stats.is_crit==1) msg+="<tr><td style='background-color:#b0d6ad;'>L'action est une réussite critique</tr></td>";
+    if (dice_stats.is_crit==1) msg+="<tr><td class='sheet-critical'>L'action est une réussite critique</tr></td>";
     if (dice_stats.is_hit==1){
         if (d_vars.seuil!=0){
             if (d_vars.action=="a"){
-                msg+="<tr><td style='background-color:#b0d6ad;'>L'attaque parvient à toucher sa cible</tr></td>";
+                msg+="<tr><td class='sheet-hit'>L'attaque parvient à toucher sa cible</tr></td>";
             } else if (d_vars.action=="d"||d_vars.action=="e"){
                 // Can't miss a block or a dodge, can be a shitty roll tho
             } else {
-                msg+="<tr><td style='background-color:#b0d6ad;'>L'action est un succes</tr></td>";
+                msg+="<tr><td class='sheet-sucess'>L'action est un succes</tr></td>";
             }
         }
     } else {
         if (d_vars.action=="a"){
-            msg+="<tr><td style='background-color:#d6adad;'>L'attaque ne touche pas sa cible</tr></td>";
+            msg+="<tr><td class='sheet-miss'>L'attaque ne touche pas sa cible</tr></td>";
         } else if (d_vars.action=="d"||d_vars.action=="e"){
             // Can't miss a block or a dodge
         } else {
-            msg+="<tr><td style='background-color:#d6adad;'>L'action est un echec</tr></td>";
+            msg+="<tr><td class='sheet-fail'>L'action est un echec</tr></td>";
         }
     }
     msg+=msg_adds;
-    sendChat(who,msg_head+msg+msg_foot+msg_relance);
+    sendChat(who,msg_head+msg+msg_foot+msg_relance+"</div>");
     //logit(msg_head+msg+msg_foot);
 }
 
 function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     logit(results);
-    var dices="<tr><td> "+name;
+    var dices="<tr><td class='sheet-line'> "+name;
     var is_below=0,is_acrit=0;
     var sum=0;
     var t_hit=d_vars.seuil,t_crit=Math.max(7,d_vars.seuil); //The crit threshold can change if the hit threshold is higher
@@ -254,7 +254,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     for (var i=0,len=results.length;i<len;i++){
         //Is it under the threshold?
         if (results[i]<t_hit && is_below==0){
-            dices+="<span style='color: #999999;'>"; //Start greying everithing
+            dices+="<span class='sheet-rolltemplate-d10fight-grey'>"; //Start greying everything
             is_below=1;
         }
         if (results[i]>t_hit && is_below==1){
@@ -262,7 +262,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
             is_below=2;
         }
         if (results[i]>t_crit&&is_acrit==0){
-            dices+="<span style='color: #009900;'>"; //Start greening everithing
+            dices+="<span class='sheet-rolltemplate-d10fight-green'>"; //Start greening everything
             is_acrit=1;
         }
         // Only add to the sum if you pass the threshold
@@ -292,7 +292,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     sum=Math.floor(((sum*m_esq+d_vars.on_hit_c+d_vars.attribute))*m_crit)+d_vars.nb_2add-d_vars.nb_2sub;
     sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result+d_vars.encaissement_result;
 
-    dices+="<tr><td style='text-align: right; padding-right:10px;' > Total: "+sum+"</tr></td>";
+    dices+="<tr><td class='sheet-sum'> Total: "+sum+"</tr></td>";
 
     //logit(dices);
     return dices;

@@ -6,6 +6,7 @@ Perfection						P
 Prescience_					@Reserve
 Rage_primale				@Reserve
 A_corps_perdu				@Reserve
+undescored_name     :
 
 Defence
 Encaissement				@Defence
@@ -52,6 +53,8 @@ Special
 Tir_mortel					@Reserve
 Tir_precis					T_1
 Tir_precis					T_2
+replace             L
+add_to_add          l
 Tir_implacable			i
 Charge						C
 Charge_Mortelle		(Rappel)

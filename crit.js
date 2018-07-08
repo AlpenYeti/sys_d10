@@ -191,17 +191,17 @@ function show_rolls(who,d_vars){
 
     switch(d_vars.action){
         case "a":
-        msg+=who_pr+" attaque</span></td>";
-        break;
+          msg+=who_pr+" attaque</span></td>";
+          break;
         case "e":
-        msg+=who_pr+" esquive</span></td>";
-        m_esq=2; // It's a hit
-        break;
+          msg+=who_pr+" esquive</span></td>";
+          m_esq=2; // It's a hit
+          break;
         case "d":
-        msg+=who_pr+" se defend</span></td>";
-        break;
+          msg+=who_pr+" se defend</span></td>";
+          break;
         default:
-        msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
+          msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
     if (dice_stats.is_crit) {
       if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
@@ -283,6 +283,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
         is_acrit=2;
     }
 
+    if (m_esq==2) {dices+=" [x2]";};
     if (d_vars.nb_2add!=0){dices+=" + ("+d_vars.nb_2add;};
     if (d_vars.attribute+d_vars.attribute!=0){ //&&!=0
         dices+=" + "+(d_vars.on_hit_c+d_vars.attribute);

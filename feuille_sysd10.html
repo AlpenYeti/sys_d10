@@ -401,7 +401,7 @@
     <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab3" value="3" title="Défensives" />
     <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab4" value="4" title="Tir & Charge" />
     <div class="sheet-tab-content sheet-secondary_tab1">
-      <button type='roll' class="sheet-Initiative_roll" value="&{template:d10init}{{name=@{character_name}}} {{roll_name=Initiative}} {{result=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]}} {{value=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative}]]}}">Initiative</button>
+      <button type='roll' class="sheet-Initiative_roll" value="&{template:d10init}{{name=@{character_name}}} {{roll_name=Initiative}} {{result=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]}} {{value=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative}]]}} {{base=[[@{Initiative}]]}}">Initiative</button>
       <input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
       <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} s @{general_attack_threshold} l @{general_attack_addall} a a : @{undescored_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque</button>
       <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+
@@ -893,10 +893,10 @@
     <tr><th class="roll-title">{{name}} &mdash; {{roll_name}}</th></tr>
     <tr><td class="roll-sucess"> 1d10+{{value}} = {{result}}
       {{#rollWasCrit() result}}
-        <span class="inline fullcrit">+{{value}}</span>
+        <span class="inline fullcrit">+{{base}}</span>
       {{/rollWasCrit() result}}
       {{#rollWasFumble() result}}
-        {{result}}<span class="inline fullfail">-{{value}}</span>
+        {{result}}<span class="inline fullfail">-{{base}}</span>
       {{/rollWasFumble() result}}
       </td></tr>
     </tr>

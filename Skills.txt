@@ -35,7 +35,7 @@ Coup_en_Puissance			@Reserve
 Coup_Double					@Reserve
 Coup_dechirant				D
 Fauchage						F
-Coup_mortel					(Rappel)@Reserve
+Coup_mortel					  (Rappel)@Reserve
 Combat_acrobatique		(Rappel)
 Assaut_implacable			(Rappel)
 Tir_en_mouvement			(Rappel)

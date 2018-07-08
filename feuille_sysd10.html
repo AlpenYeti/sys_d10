@@ -141,7 +141,7 @@
   // undescored_name
   on("change:character_name change:character_race", function() {
     getAttrs(["character_name"], function(values) {
-      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_")});
+      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
     });
   });
   </script>
@@ -635,7 +635,7 @@
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_shield3_name" value="Equipement 3" />
       <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
       <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
-      <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
+      <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" /> <br/>
 
       <!--Defense_impenetrable -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Defense_impenetrable" disabled="true" value="Defense impenetrable" />

@@ -174,7 +174,7 @@ function show_rolls(who,d_vars){
     " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
     " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
     " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+    " r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
     var sum=0;
@@ -186,7 +186,7 @@ function show_rolls(who,d_vars){
     logit(dice_stats);
     if (d_vars.player_name!=""){
       who=d_vars.player_name;
-      who_pr=d_vars.player_name.replace(/_/g," ");
+      who_pr=d_vars.player_name.replace(/_/g," ").replace(/\//g,"'");
     }
 
     switch(d_vars.action){
@@ -203,11 +203,12 @@ function show_rolls(who,d_vars){
         default:
         msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
-    if (dice_stats.is_crit) {if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
-        m_crit=2; // It's a crit
-    } else {
-      if (d_vars.nb_dices==0){m_crit=1;} // That's not a crit
-      else {m_crit=1.5;} // Only half a crit
+    if (dice_stats.is_crit) {
+      if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
+        m_crit=2; // It's a full crit
+      } else {
+        if (d_vars.nb_dices+d_vars.nb_flat_dices==0){m_crit=1;} // That's not a crit
+        else {m_crit=1.5;} // Only half a crit
     }};
 
     //Add the rolls
@@ -220,7 +221,7 @@ function show_rolls(who,d_vars){
 	  if (d_vars.encaissement!=0) msg_adds+="<tr><td class='sheet-additional'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Encaissement
     if (d_vars.add_to_all!=0){msg_adds+=" <tr><td class='sheet-additional'>Modificateur de des: "+d_vars.add_to_all;}; //Dice modifier
 
-    if (dice_stats.is_crit==1) msg+="<tr><td class='sheet-critical'>L'action est une réussite critique</tr></td>";
+    if (dice_stats.is_crit==1&&m_crit>1) msg+="<tr><td class='sheet-critical'>L'action est une réussite critique</tr></td>";
     if (dice_stats.is_hit==1){
         if (d_vars.seuil!=0){
             if (d_vars.action=="a"){
@@ -258,7 +259,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
             dices+="<span class='sheet-rolltemplate-d10fight-grey'>"; //Start greying everything
             is_below=1;
         }
-        if (results[i]>t_hit && is_below==1){
+        if (results[i]>=t_hit && is_below==1){
             dices+="</span>"; //Stop greying everithing
             is_below=2;
         }
@@ -267,7 +268,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
             is_acrit=1;
         }
         // Only add to the sum if you pass the threshold
-        if (results[i]>t_hit) {
+        if (results[i]>=t_hit) {
           if (d_vars.replace>0) {
             sum+=d_vars.replace+d_vars.add_to_all;
           } else {
@@ -283,7 +284,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     }
 
     if (d_vars.nb_2add!=0){dices+=" + ("+d_vars.nb_2add;};
-    if (d_vars.on_hit_c+d_vars.attribute!=0){
+    if (d_vars.attribute+d_vars.attribute!=0){ //&&!=0
         dices+=" + "+(d_vars.on_hit_c+d_vars.attribute);
         if (m_crit>1) dices+=" [x"+m_crit+"]";
     };

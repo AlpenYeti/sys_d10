@@ -174,7 +174,7 @@ function show_rolls(who,d_vars){
     " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
     " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
     " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+    " r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
     var sum=0;
@@ -186,28 +186,29 @@ function show_rolls(who,d_vars){
     logit(dice_stats);
     if (d_vars.player_name!=""){
       who=d_vars.player_name;
-      who_pr=d_vars.player_name.replace(/_/g," ");
+      who_pr=d_vars.player_name.replace(/_/g," ").replace(/\//g,"'");
     }
 
     switch(d_vars.action){
         case "a":
-        msg+=who_pr+" attaque</span></td>";
-        break;
+          msg+=who_pr+" attaque</span></td>";
+          break;
         case "e":
-        msg+=who_pr+" esquive</span></td>";
-        m_esq=2; // It's a hit
-        break;
+          msg+=who_pr+" esquive</span></td>";
+          m_esq=2; // It's a hit
+          break;
         case "d":
-        msg+=who_pr+" se defend</span></td>";
-        break;
+          msg+=who_pr+" se defend</span></td>";
+          break;
         default:
-        msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
+          msg+=who_pr+" lance "+d_vars.nb_dices+" dés</span></td>";
     }
-    if (dice_stats.is_crit) {if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
-        m_crit=2; // It's a crit
-    } else {
-      if (d_vars.nb_dices==0){m_crit=1;} // That's not a crit
-      else {m_crit=1.5;} // Only half a crit
+    if (dice_stats.is_crit) {
+      if ((d_vars.nb_dices+d_vars.nb_flat_dices)>(d_vars.attribute/2)){
+        m_crit=2; // It's a full crit
+      } else {
+        if (d_vars.nb_dices+d_vars.nb_flat_dices==0){m_crit=1;} // That's not a crit
+        else {m_crit=1.5;} // Only half a crit
     }};
 
     //Add the rolls
@@ -216,27 +217,28 @@ function show_rolls(who,d_vars){
     if (d_vars.fauchage!=0) msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
     if (d_vars.coup_d!=0) msg_adds+="<tr><td class='sheet-additional'>Coup déchirant: "+d_vars.coup_d_results.join(" ")+"</tr></td>"; // Coup déchirant
     if (d_vars.technique_m!=0) msg_adds+="<tr><td class='sheet-additional'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
-    if (d_vars.relances!=0) msg_adds+="<tr><td class='sheet-additional'>Relances: "+d_vars.relances+"</tr></td>"; // Technique martiale
-	  if (d_vars.encaissement!=0) msg_adds+="<tr><td class='sheet-additional'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Technique martiale
+    if (d_vars.relances!=0) msg_adds+="<tr><td class='sheet-additional'>Relances: "+d_vars.relances+"</tr></td>"; // Relances
+	  if (d_vars.encaissement!=0) msg_adds+="<tr><td class='sheet-additional'>Encaissement: "+d_vars.encaissement_result+"</tr></td>"; // Encaissement
+    if (d_vars.add_to_all!=0){msg_adds+=" <tr><td class='sheet-additional'>Modificateur de des: "+d_vars.add_to_all;}; //Dice modifier
 
-    if (dice_stats.is_crit==1) msg+="<tr><td class='sheet-critical'>L'action est une réussite critique</tr></td>";
+    if (dice_stats.is_crit==1&&m_crit>1) msg+="<tr><td class='sheet-critical'>L'action est une réussite critique</tr></td>";
     if (dice_stats.is_hit==1){
         if (d_vars.seuil!=0){
             if (d_vars.action=="a"){
-                msg+="<tr><td class='sheet-hit'>L'attaque parvient à toucher sa cible</tr></td>";
+                msg+="<tr><td class='sheet-hit'>L'attaque parvient à toucher sa cible (seuil "+d_vars.seuil+")</tr></td>";
             } else if (d_vars.action=="d"||d_vars.action=="e"){
                 // Can't miss a block or a dodge, can be a shitty roll tho
             } else {
-                msg+="<tr><td class='sheet-sucess'>L'action est un succes</tr></td>";
+                msg+="<tr><td class='sheet-sucess'>L'action est un succes (seuil "+d_vars.seuil+")</tr></td>";
             }
         }
     } else {
         if (d_vars.action=="a"){
-            msg+="<tr><td class='sheet-miss'>L'attaque ne touche pas sa cible</tr></td>";
+            msg+="<tr><td class='sheet-miss'>L'attaque ne touche pas sa cible (seuil "+d_vars.seuil+")</tr></td>";
         } else if (d_vars.action=="d"||d_vars.action=="e"){
             // Can't miss a block or a dodge
         } else {
-            msg+="<tr><td class='sheet-fail'>L'action est un echec</tr></td>";
+            msg+="<tr><td class='sheet-fail'>L'action est un echec (seuil "+d_vars.seuil+")</tr></td>";
         }
     }
     msg+=msg_adds;
@@ -257,7 +259,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
             dices+="<span class='sheet-rolltemplate-d10fight-grey'>"; //Start greying everything
             is_below=1;
         }
-        if (results[i]>t_hit && is_below==1){
+        if (results[i]>=t_hit && is_below==1){
             dices+="</span>"; //Stop greying everithing
             is_below=2;
         }
@@ -266,8 +268,8 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
             is_acrit=1;
         }
         // Only add to the sum if you pass the threshold
-        if (results[i]>t_hit) {
-          if (d_vars.replace>=0) {
+        if (results[i]>=t_hit) {
+          if (d_vars.replace>0) {
             sum+=d_vars.replace+d_vars.add_to_all;
           } else {
             sum+=results[i]+d_vars.add_to_all;
@@ -281,8 +283,9 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
         is_acrit=2;
     }
 
+    if (m_esq==2) {dices+=" [x2]";};
     if (d_vars.nb_2add!=0){dices+=" + ("+d_vars.nb_2add;};
-    if (d_vars.on_hit_c+d_vars.attribute!=0){
+    if (d_vars.attribute+d_vars.attribute!=0){ //&&!=0
         dices+=" + "+(d_vars.on_hit_c+d_vars.attribute);
         if (m_crit>1) dices+=" [x"+m_crit+"]";
     };
@@ -308,7 +311,7 @@ function parse_command(message){
     "exploiter_p_2":0,"tir_p_0":0,"tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,
     "relances":0,"seuil":0,"nb_flat_dices":0,"action":"","flat_dices":[],"results":[],"technique_result":0,
     "cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":"","encaissement_result":0,
-    "replace":-1,"add_to_all":0,"max_dices":-1,"player_name":""};
+    "replace":0,"add_to_all":0,"max_dices":-1,"player_name":""};
     var tab=message.split(" ");
     var len_args=tab.length;
     var i;

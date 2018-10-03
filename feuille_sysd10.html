@@ -141,7 +141,7 @@
   // undescored_name
   on("change:character_name change:character_race", function() {
     getAttrs(["character_name"], function(values) {
-      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_")});
+      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
     });
   });
   </script>
@@ -401,16 +401,18 @@
     <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab3" value="3" title="Défensives" />
     <input type="radio" name="attr_secondary_tab" class="small_tab secondary_tab4" value="4" title="Tir & Charge" />
     <div class="sheet-tab-content sheet-secondary_tab1">
-      <button type='roll' class="sheet-Initiative_roll" value="&{template:d10init}{{name=@{character_name}}} {{roll_name=Initiative}} {{result=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]}} {{value=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative}]]}}">Initiative</button>
+      <button type='roll' class="sheet-Initiative_roll" value="&{template:d10init}{{name=@{character_name}}} {{roll_name=Initiative}} {{result=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative} + 1d10 &{tracker}]]}} {{value=[[@{base-Agilite} + @{exal-Agilite} + @{Initiative}]]}} {{base=[[@{Initiative}]]}}">Initiative</button>
       <input type="number" class="sheet-numberbox" name="attr_Initiative" value="0"/>
-      <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_attack_dices} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} a a : @{undescored_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque de base</button>
-      <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+
+      <button type='roll' class="sheet-Attack_roll" value="!crit ?{Nombre de des d'attaque} P @{general_effective_Perfection} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} F @{general_effective_Fauchage} D @{general_effective_Coup_dechirant} + @{base_damage_dices} + @{exal_damage_dices} A @{Skill_general_attribute_select_attaque} s @{general_attack_threshold} l @{general_attack_addall} a a : @{undescored_name} + @{general_effective_weapon1} + @{general_effective_weapon2} + @{general_effective_weapon3}">Attaque</button>
+      <!-- <input type="number" class="sheet-numberbox" name="attr_nb_attack_dices" title="Nombre de des d'attaque" value="0"/>d10+ -->
       <input type="number" class="sheet-numberbox" type="number" name="attr_base_damage_dices" title="Base de dégats" value="0"/>+
       <input type="number" class="sheet-numberbox" type="number" name="attr_exal_damage_dices" title="Modificateur temporaire" value="0"/>
       <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_attaque">
         <option value="@{base-Force} A @{exal-Force}">For</option>
         <option value="@{base-Agilite} A @{exal-Agilite}">Agi</option>
       </select>
+      ><input type="number" class="sheet-numberbox" name="attr_general_attack_threshold" title="Seuil pour toucher l'attaque" value="0"/>
+      &forall;<input type="number" class="sheet-numberbox" name="attr_general_attack_addall" title="Modificateur sur chaque des" value="0"/>
       <br/>
 
       <!--supernatural_reflexes -->
@@ -595,8 +597,8 @@
 
     <!--Defense -->
     <div class="sheet-tab-content sheet-secondary_tab3">
-      <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_defense_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{undescored_name} + @{general_effective_shield1} + @{general_effective_shield2} + @{general_effective_shield3}">Parade</button>
-      <input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defense" value="0"/>d10+
+      <button type='roll' class="sheet-Attack_roll" value="!crit ?{Nombre de des de defense} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} S @{general_skilllevel_Encaissement} @{general_effective_Encaissement} + @{base_defense_dices} + @{exal_defense_dices} s @{general_defense_threshold} l @{general_defense_addall} A @{Skill_general_attribute_select_defense} - ?{Dégats a parer|0} a d : @{undescored_name} + @{general_effective_shield1} + @{general_effective_shield2} + @{general_effective_shield3}">Parade</button>
+      <!--<input type="number" class="sheet-numberbox" name="attr_nb_defense_dices" title="Nombre de des de defense" value="0"/>d10+-->
       <input type="number" class="sheet-numberbox" name="attr_base_defense_dices" title="Base de defense" value="0"/>+
       <input type="number" class="sheet-numberbox" name="attr_exal_defense_dices" title="Modificateur temporaire" value="0"/>
       <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_defense">
@@ -605,9 +607,11 @@
         <option value="@{base-Volonte} A @{exal-Volonte}">Vol</option>
         <option value="@{base-Psyche} A @{exal-Psyche}">Psy</option>
       </select>
+      ><input type="number" class="sheet-numberbox" name="attr_general_defense_threshold" title="Seuil pour toucher l'attaque" value="0"/>
+      &forall;<input type="number" class="sheet-numberbox" name="attr_general_defense_addall" title="Modificateur sur chaque des" value="0"/>
       <br/>
-      <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_dodge_dices} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{undescored_name}">Esquive</button>
-      <input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" title="Nombre de des d'esquive" value="0"/>d10+
+      <button type='roll' class="sheet-Attack_roll" value="!crit ?{Nombre de des d'esquive} I @{skillcost_Defense_impenetrable} @{general_effective_Defense_impenetrable} R @{general_effective_Rempart_parfait} + @{base_dodge_dices} A @{Skill_general_attribute_select_dodge} s ?{Seuil d'esquive} - ?{Dégats a esquiver|0} a e : @{undescored_name}">Esquive</button>
+      <!--<input type="number" class="sheet-numberbox" name="attr_nb_dodge_dices" title="Nombre de des d'esquive" value="0"/>d10+-->
       <input type="number" class="sheet-numberbox" name="attr_base_dodge_dices" title="Modificateur d'esquive" value="0"/>
       <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_dodge">
         <option value="@{base-Chance} A @{exal-Chance}">Chn</option>
@@ -631,7 +635,7 @@
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_item_shield3_name" value="Equipement 3" />
       <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_item_shield3" title="Valeur de l'équipemet" />
       <input type="checkbox" class="sheet-skill_activation" value="1" name="attr_item_shield3_activation" />
-      <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" />
+      <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_shield3" /> <br/>
 
       <!--Defense_impenetrable -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Defense_impenetrable" disabled="true" value="Defense impenetrable" />
@@ -735,9 +739,9 @@
 
     <!--TIR & CHARGE -->
     <div class="sheet-tab-content sheet-secondary_tab4">.
-      <button type='roll' class="sheet-Attack_roll" value="!crit @{nb_shoot_dices} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{undescored_name}">Tir</button>
-      <input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" tile="Nombre de des de tir" value="0"/>d10 &#8728;
-      <input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" title="Valeur de dégat des des" value="0"/>+
+      <button type='roll' class="sheet-Attack_roll" value="!crit ?{Nombre de des de tir} T @{skillcost_Tir_precis} @{general_effective_Tir_precis} i @{general_effective_Tir_implacable} M @{skillcost_Technique_martiale} @{general_effective_Technique_martiale} E @{skillcost_Exploiter_les_points_faibles} @{general_effective_Exploiter_les_points_faibles} L @{base_shoot_dices} l @{add_shoot_dices} s ?{Seuil de tir|6} a a : @{undescored_name}">Tir</button>
+      <!--<input type="number" class="sheet-numberbox" name="attr_nb_shoot_dices" tile="Nombre de des de tir" value="0"/>d10 -->&#8728;
+      <input type="number" class="sheet-numberbox" name="attr_base_shoot_dices" title="Valeur de dégat des des" value="0"/>&forall;
       <input type="number" class="sheet-numberbox" name="attr_add_shoot_dices" title="Modificateur" value="0"/>
       <select class="sheet-skill_select" value="0" style="margin-right:4px" name="attr_Skill_general_attribute_select_shoot">
         <option value="@{base-Force} + @{exal-Force}">For</option>
@@ -889,10 +893,10 @@
     <tr><th class="roll-title">{{name}} &mdash; {{roll_name}}</th></tr>
     <tr><td class="roll-sucess"> 1d10+{{value}} = {{result}}
       {{#rollWasCrit() result}}
-        <span class="inline fullcrit">+{{value}}</span>
+        <span class="inline fullcrit">+{{base}}</span>
       {{/rollWasCrit() result}}
       {{#rollWasFumble() result}}
-        {{result}}<span class="inline fullfail">-{{value}}</span>
+        {{result}}<span class="inline fullfail">-{{base}}</span>
       {{/rollWasFumble() result}}
       </td></tr>
     </tr>

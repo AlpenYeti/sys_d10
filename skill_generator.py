@@ -188,10 +188,20 @@ def check_init(args):
     return fails
 
 def reroll(args):
-    reroll="var msg_relance=\"<a class='sheet-rolltemplate-d10fight' href='!crit 0 "
+    reroll="var msg_relance=\"<a class='sheet-rolltemplate-d10fight' href='!crit 0"
     def addSimple(wline):
-        if wline.nb_args==1:
-            print(wline.varname,wline.id)"""
+        if wline.code!="":
+            if wline.nb_args==1:
+                return ' {} "+d_vars.{}+"'.format(wline.code,wline.varname)
+            elif wline.nb_args==2:
+                return ' {} {} "+d_vars.{}+"'.format(wline.code,wline.id,wline.varname)
+        else:
+            print("{} must be handled differently".format(wline.varname))
+            return ""
+    for l in wrapper:
+        reroll+=addSimple(l)
+    print(reroll)
+    """
         reroll+=['varname','Pretty name','nb_args','type','code','id','default','switch','return'])
         reroll+=(['perfection','Perfection',1,'int','P',0,0,None,None])
     P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
@@ -236,7 +246,7 @@ def test_all(args):
     check_reroll(args)
     check_wrapper(args)
 
-commands={"init":initialise,"print":pprint,
+commands={"init":initialise,"print":pprint,"reroll":reroll,
 "test_init":check_init,"test_wrapper":check_wrapper,
 "test":test_all}
 
@@ -244,9 +254,11 @@ if __name__ == '__main__':
     wrapper=megaListWrapper()
     try:
         commands[command](args)
-    except Exception as err:
+    except KeyError:
+        print("Command {} doesn't exist, choose from {}".format(command,str(commands.keys())))
+    except Exception:
         print("Couldn't execute command "+command)
-        print("  >",err)
+        print("  > {} ({})".format(sys.exc_info()[1],sys.exc_info()[0]))
         traceback.print_tb(sys.exc_info()[2])
 
 """

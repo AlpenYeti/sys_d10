@@ -4,6 +4,7 @@
 # Not actually part of the project; just easier to maintain everything here
 
 import sys,os,traceback
+import re
 try:
     import Blessings
 except:
@@ -14,8 +15,8 @@ try:
     args=sys.argv[1:]
     command=sys.argv[1]
 except:
-    print("No command specified, just outputing the list")
-    command="print"
+    print("No command specified, just outputing the help")
+    command="help"
 
 
 """var d_vars={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,"defense_i_2":0,"rempart_p":0,
@@ -127,18 +128,20 @@ class listWrapper():
 
 ## Commands
 def initialise(args):
+    "Initialise the variables for the switch"
     text="var d_vars={"
     for line in list:
         text+='"{}":{},'.format(line[0],line[6])
     text=text[:-1]+'};'
-    print(text)
     return text
 
 def pprint(args):
+    "Print the whole list of values"
     for i in list:
         print(i)
 
 def check_init(args):
+    "Check the initialisation message"
     try:
         test_values=args[1]
     except:
@@ -188,34 +191,50 @@ def check_init(args):
     return fails
 
 def reroll(args):
+    "Generate the reroll inline message"
+
     reroll="var msg_relance=\"<a class='sheet-rolltemplate-d10fight' href='!crit 0"
+
+    def addZero(name):
+        return '"+d_vars.{}+"'.format(name)
+
+    def addOne(code,name):
+        return ' {} {}'.format(code,addZero(name))
+
+    def addTwo(code,id,name):
+        return ' {} {} {}'.format(code,id,addZero(name))
+
     def addSimple(wline):
         if wline.code!="":
             if wline.nb_args==1:
-                return ' {} "+d_vars.{}+"'.format(wline.code,wline.varname)
+                return addOne(wline.code,wline.varname)
             elif wline.nb_args==2:
-                return ' {} {} "+d_vars.{}+"'.format(wline.code,wline.id,wline.varname)
+                return addTwo(wline.code,wline.id,wline.varname)
         else:
-            print("{} must be handled differently".format(wline.varname))
+            #print("{} must be handled differently".format(wline.varname))
             return ""
     for l in wrapper:
         reroll+=addSimple(l)
-    print(reroll)
-    """
-        reroll+=['varname','Pretty name','nb_args','type','code','id','default','switch','return'])
-        reroll+=(['perfection','Perfection',1,'int','P',0,0,None,None])
-    P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
-    " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
-    " E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
-    " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?} "+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
-    for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
-    msg_relance+="'>Relancer ce jet</a>";"""
+    reroll+=" ("+addOne("+",wrapper["encaissement_result"].varname) + addOne("+",wrapper["technique_result"].varname)+") "
+    reroll+='r ?{Relances ?};"\n'
+    reroll+='for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];\n'
+    reroll+='msg_relance+="\'>Relancer ce jet</a>";\''
+    return reroll
 
 def check_reroll(args):
-    pass
+    "Check the reroll inline message"
+    model=""""<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
+" E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
+" r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
+msg_relance+="'>Relancer ce jet</a>";"""
+    var=re.compile('" .* ".*\+"')
+    print(var.search(model))
 
 def check_wrapper(args):
+    "Test the wrapper, only useful internally"
     fails=0
     s=len(hashedCategories)
 
@@ -240,22 +259,31 @@ def check_wrapper(args):
         print("Wrapper: All test sucessful")
     return fails
 
+def help(args):
+    "Help, print the following message"
+    print("List of availables commands")
+    for key in commands.keys():
+        print("   {}: {}".format(key,commands[key].__doc__))
 
 def test_all(args):
+    "Execute all tests"
     check_init(args)
     check_reroll(args)
     check_wrapper(args)
 
 commands={"init":initialise,"print":pprint,"reroll":reroll,
 "test_init":check_init,"test_wrapper":check_wrapper,
-"test":test_all}
+"test":test_all,"help":help}
 
 if __name__ == '__main__':
     wrapper=megaListWrapper()
     try:
-        commands[command](args)
+        ret=commands[command](args)
+        if ret:
+            print(ret)
     except KeyError:
-        print("Command {} doesn't exist, choose from {}".format(command,str(commands.keys())))
+        print("Command {} doesn't exist".format(command))
+        commands['help'](args)
     except Exception:
         print("Couldn't execute command "+command)
         print("  > {} ({})".format(sys.exc_info()[1],sys.exc_info()[0]))

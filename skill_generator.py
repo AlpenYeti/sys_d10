@@ -140,6 +140,14 @@ def pprint(args):
     for i in list:
         print(i)
 
+def pErrors(name,errors):
+    "Print sucess or error of given test"
+    if errors:
+        print("{:<15}: {} errors occured".format(name,errors))
+    else:
+        print("{:<15}: All test sucessful".format(name))
+    return errors
+
 def check_init(args):
     "Check the initialisation message"
     try:
@@ -161,34 +169,30 @@ def check_init(args):
     except Exception as ex:
         print(ex)
 
-    fails=0
+    errors=0
     if a<b:
         print("Too many values in the list")
         for l in dict_list.keys():
             if l not in test_values:
-                fails+=1
+                errors+=1
                 print("{} is in the list but not in the test template".format(l))
     elif b<a:
         print("Too few values in the list")
         for t,v in test_values.items():
             if t not in dict_list.keys():
-                fails+=1
+                errors+=1
                 print("{} is missing from the list (supposed value: {})".format(t,v))
     else:
         for l,vl in dict_list.items():
             if l in test_values.keys():
                 if test_values[l]!=vl:
-                    fails+=1
+                    errors+=1
                     print("Element invalid, expected {} for {} in the list, got {}".format(test_values[l],l,vl))
             else:
-                fails+=1
+                errors+=1
                 print("Element invalid, {} is not in the test values".format(l))
 
-    if fails:
-        print("{} errors occured".format(fails))
-    else:
-        print("Init: All test sucessful")
-    return fails
+    return pErrors(sys._getframe().f_code.co_name,errors)
 
 def reroll(args):
     "Generate the reroll inline message"
@@ -205,7 +209,7 @@ def reroll(args):
         return ' {} {} {}'.format(code,id,addZero(name))
 
     def addSimple(wline):
-        if wline.code!="":
+        if wline.code!="" and wline.code not in ("r","+",'M','D',"d","S"):
             if wline.nb_args==1:
                 return addOne(wline.code,wline.varname)
             elif wline.nb_args==2:
@@ -213,34 +217,54 @@ def reroll(args):
         else:
             #print("{} must be handled differently".format(wline.varname))
             return ""
+
+    # Actual adding of all the lines
     for l in wrapper:
         reroll+=addSimple(l)
-    reroll+=" ("+addOne("+",wrapper["encaissement_result"].varname) + addOne("+",wrapper["technique_result"].varname)+") "
-    reroll+='r ?{Relances ?};"\n'
+
+    # Some lines needs to be added afterwards
+    reroll+=' + "+(d_vars.{}+d_vars.{}+d_vars.{})'.format(wrapper["nb_2add"].varname, wrapper["technique_result"].varname, wrapper["encaissement_result"].varname)
+
+    # Last part of the command
+    reroll+=' r ?{Relances ?}"\n'
     reroll+='for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];\n'
     reroll+='msg_relance+="\'>Relancer ce jet</a>";\''
+
     return reroll
 
 def check_reroll(args):
     "Check the reroll inline message"
-    model=""""<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 0 "+d_vars.defense_i_0+" I 1 "+d_vars.defense_i_1+
-" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
-" E 0 "+d_vars.exploiter_p_0+" E 1 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 0 "+d_vars.tir_p_0+" T 2 "+d_vars.tir_p_1+
-" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-" r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
-for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
-msg_relance+="'>Relancer ce jet</a>";"""
-    var=re.compile('" .* ".*\+"')
-    print(var.search(model))
+    errors=0
+    model=""""var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+" E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+" r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+    for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
+    msg_relance+="'>Relancer ce jet</a>";"""
+    var=re.compile(' ([a-zA-Z:+_] .*?".*?)(?:\+"|;)')
+    roll=reroll(args)
+
+    # All theese MUST be in the final version, this test will be a pain
+    # to maintain since every addentum will be added to it manually
+    #print (roll)
+    for e in (var.findall(model)):
+        if roll.find(e)<0:
+            errors+=1
+            print("Can't find [{}] in the generated roll".format(e))
+
+    for e in var.findall(roll):
+        if model.find(e)<0:
+            errors+=1
+            print("The expression [{}] is in the generated values but not the test".format(e))
+
+    return pErrors(sys._getframe().f_code.co_name,errors)
+
 
 def check_wrapper(args):
     "Test the wrapper, only useful internally"
-    fails=0
+    errors=0
     s=len(hashedCategories)
 
     try:
         wrapper[-1]
-        fails+=1
+        errors+=1
         print("Error: Element -1 shouldn't exist")
     except:
         pass
@@ -252,12 +276,9 @@ def check_wrapper(args):
         for i in range(s):
             if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
                 print("Element {} is not identical in all representation {}!={}".format(i,wrapper[ele[0]][i],ele.asList()[i]))
-                fails+=1
-    if fails:
-        print("{} errors occured".format(fails))
-    else:
-        print("Wrapper: All test sucessful")
-    return fails
+                errors+=1
+
+    return pErrors(sys._getframe().f_code.co_name,errors)
 
 def help(args):
     "Help, print the following message"

@@ -5,10 +5,14 @@
 
 import sys,os,traceback
 import re
+
 try:
-    import Blessings
+    import blessings
+    from minitest import minitest
+    term=blessings.Terminal()
+
 except:
-    #print("Blessings not found, no pretty printing")
+    print("Blessings not found, no pretty printing")
     pass
 
 try:
@@ -148,52 +152,6 @@ def pErrors(name,errors):
         print("{:<15}: All test sucessful".format(name))
     return errors
 
-def check_init(args):
-    "Check the initialisation message"
-    try:
-        test_values=args[1]
-    except:
-        test_values={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,
-        "defense_i_2":0,"rempart_p":0,"technique_m":0,"coup_d":0,"coup_d_results":"[]",
-        "fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,"exploiter_p_2":0,"tir_p_0":0,
-        "tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,"relances":0,
-        "seuil":0,"nb_flat_dices":0,"action":'""',"flat_dices":"[]","results":"[]","technique_result":0,
-         "cleave":"[]","on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":'""',
-         "encaissement_result":0,"replace":-1,"add_to_all":0,"max_dices":-1,"player_name":'""'}
-    a=len(test_values)
-    b=len(list)
-    try:
-        dict_list={}
-        for l in list:
-            dict_list[l[0]]=l[6]
-    except Exception as ex:
-        print(ex)
-
-    errors=0
-    if a<b:
-        print("Too many values in the list")
-        for l in dict_list.keys():
-            if l not in test_values:
-                errors+=1
-                print("{} is in the list but not in the test template".format(l))
-    elif b<a:
-        print("Too few values in the list")
-        for t,v in test_values.items():
-            if t not in dict_list.keys():
-                errors+=1
-                print("{} is missing from the list (supposed value: {})".format(t,v))
-    else:
-        for l,vl in dict_list.items():
-            if l in test_values.keys():
-                if test_values[l]!=vl:
-                    errors+=1
-                    print("Element invalid, expected {} for {} in the list, got {}".format(test_values[l],l,vl))
-            else:
-                errors+=1
-                print("Element invalid, {} is not in the test values".format(l))
-
-    return pErrors(sys._getframe().f_code.co_name,errors)
-
 def reroll(args):
     "Generate the reroll inline message"
 
@@ -232,6 +190,68 @@ def reroll(args):
 
     return reroll
 
+
+class testInit(minitest.simpleTestUnit):
+    """Check the initialisation message"""
+    def __init__(self):
+        super(testInit, self).__init__("initialisation variables")
+
+    def _testInit(self):
+        errors=0
+        self.currentTest("generating test values")
+
+        try:
+            test_values=args[1]
+        except:
+            self.addWarning("No arguments given, using defaults",nonDestructive=True)
+            test_values={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,
+            "defense_i_2":0,"rempart_p":0,"technique_m":0,"coup_d":0,"coup_d_results":"[]",
+            "fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,"exploiter_p_2":0,"tir_p_0":0,
+            "tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,"relances":0,
+            "seuil":0,"nb_flat_dices":0,"action":'""',"flat_dices":"[]","results":"[]","technique_result":0,
+             "cleave":"[]","on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":'""',
+             "encaissement_result":0,"replace":-1,"add_to_all":0,"max_dices":-1,"player_name":'""'}
+        a=len(test_values)
+        b=len(list)
+        try:
+            dict_list={}
+            for l in list:
+                dict_list[l[0]]=l[6]
+            self.addSuccess()
+        except Exception as ex:
+            self.addFailure(str(ex))
+
+        self.currentTest("testing list")
+        if a<b:
+            self.addFailure("Too many values in the list")
+            for l in dict_list.keys():
+                if l not in test_values:
+                    self.currentTest(l)
+                    self.addFailure("{} missing from the test template".format(l))
+        elif b<a:
+            self.addFailure("Too few values in the list")
+            for t,v in test_values.items():
+                if t not in dict_list.keys():
+                    self.currentTest(t)
+                    self.addFailure("Missing element {}".format(v))
+        else:
+            for l,vl in dict_list.items():
+                if l in test_values.keys():
+                    if test_values[l]!=vl:
+                        self.currentTest(test_values[l])
+                        self.addFailure("Expected {}, got {}".format(l,vl))
+                else:
+                    self.currentTest(l)
+                    self.addFailure("The element is not in the test values")
+            self.addSuccess()
+
+def check_init(args):
+    "Check the initialisation message"
+    subclass=minitest.testGroup("Initialisation",term,verbose=True)
+    subclass.addTest(testInit()).test()
+    status=subclass.get_status()
+    return status['failure']
+
 def check_reroll(args):
     "Check the reroll inline message"
     errors=0
@@ -256,7 +276,6 @@ def check_reroll(args):
 
     return pErrors(sys._getframe().f_code.co_name,errors)
 
-
 def check_wrapper(args):
     "Test the wrapper, only useful internally"
     errors=0
@@ -280,17 +299,18 @@ def check_wrapper(args):
 
     return pErrors(sys._getframe().f_code.co_name,errors)
 
+def test_all(args):
+    "Execute all tests"
+    mainClasses=minitest.testGroup("Main Classes",term,verbose=True,align=40)
+    check_init(args)
+    check_reroll(args)
+    check_wrapper(args)
+
 def help(args):
     "Help, print the following message"
     print("List of availables commands")
     for key in commands.keys():
         print("   {}: {}".format(key,commands[key].__doc__))
-
-def test_all(args):
-    "Execute all tests"
-    check_init(args)
-    check_reroll(args)
-    check_wrapper(args)
 
 commands={"init":initialise,"print":pprint,"reroll":reroll,
 "test_init":check_init,"test_wrapper":check_wrapper,

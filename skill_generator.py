@@ -7,12 +7,9 @@ import sys,os,traceback
 import re
 
 try:
-    import blessings
     from minitest import minitest
-    term=blessings.Terminal()
-
+    term=minitest.Terminal()
 except:
-    print("Blessings not found, no pretty printing")
     pass
 
 try:
@@ -21,7 +18,6 @@ try:
 except:
     print("No command specified, just outputing the help")
     command="help"
-
 
 """var d_vars={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,"defense_i_2":0,"rempart_p":0,
 "technique_m":0,"coup_d":0,"coup_d_results":[],"fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,
@@ -156,7 +152,6 @@ def reroll(args):
     "Generate the reroll inline message"
 
     reroll="var msg_relance=\"<a class='sheet-rolltemplate-d10fight' href='!crit 0"
-
     def addZero(name):
         return '"+d_vars.{}+"'.format(name)
 
@@ -296,11 +291,13 @@ class testWrapper(minitest.simpleTestUnit):
         for ele in wrapper:
             for c in hashedCategories.keys():
                 if ele.__getattr__(c)!=ele[hashedCategories[c]]:
-                    print("Missmatch in {}, {} found, should be {}".format(ele[0],ele[hashedCategories[c]],ele.__getattr__(c)))
+                    self.currentTest(ele[0])
+                    self.addFailure("{} found, should be {}".format(ele[hashedCategories[c]],ele.__getattr__(c)))
 
             for i in range(s):
                 if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
-                    print("Element {} is not identical in all representation {}!={}".format(i,wrapper[ele[0]][i],ele.asList()[i]))
+                    self.currentTest(i)
+                    self.addFailure("Element differs {}!={}".format(wrapper[ele[0]][i],ele.asList()[i]))
         self.addSuccess()
 
 def check_wrapper(args):

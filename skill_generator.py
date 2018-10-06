@@ -197,7 +197,6 @@ class testInit(minitest.simpleTestUnit):
         super(testInit, self).__init__("initialisation variables")
 
     def _testInit(self):
-        errors=0
         self.currentTest("generating test values")
 
         try:
@@ -245,6 +244,72 @@ class testInit(minitest.simpleTestUnit):
                     self.addFailure("The element is not in the test values")
             self.addSuccess()
 
+class testReroll(minitest.simpleTestUnit):
+    """Check the reroll inline message"""
+    def __init__(self):
+        super(testReroll, self).__init__("inline message")
+
+    def _testReroll(self):
+        self.currentTest("regex generation")
+        model=""""var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+" E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+" r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+        for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
+        msg_relance+="'>Relancer ce jet</a>";"""
+        var=re.compile(' ([a-zA-Z:+_] .*?".*?)(?:\+"|;)')
+        self.addSuccess()
+
+        self.currentTest('generating inline message')
+        roll=reroll(args)
+        self.addSuccess()
+
+        # All theese MUST be in the final version, this test will be a pain
+        # to maintain since every addentum will be added to it manually
+        self.currentTest("checking generated roll")
+        for e in (var.findall(model)):
+            if roll.find(e)<0:
+                self.currentTest("[{}]".format(e))
+                self.addFailure("missing value")
+        self.addSuccess()
+
+        self.currentTest("checking model")
+        for e in var.findall(roll):
+            if model.find(e)<0:
+                self.currentTest("[{}]".format(e))
+                self.addFailure("missing value")
+        self.addSuccess()
+
+class testWrapper(minitest.simpleTestUnit):
+    """Check the reroll inline message"""
+    def __init__(self):
+        super(testWrapper, self).__init__("inline message")
+
+    def _testWrapper(self):
+        self.currentTest("generating wrapper")
+        s=len(hashedCategories)
+        try:
+            wrapper[-1]
+            errors+=1
+            self.addFailure("Error: Element -1 shouldn't exist")
+        except:
+            self.addSuccess()
+
+        self.currentTest("hashing categories")
+        for ele in wrapper:
+            for c in hashedCategories.keys():
+                if ele.__getattr__(c)!=ele[hashedCategories[c]]:
+                    print("Missmatch in {}, {} found, should be {}".format(ele[0],ele[hashedCategories[c]],ele.__getattr__(c)))
+
+            for i in range(s):
+                if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
+                    print("Element {} is not identical in all representation {}!={}".format(i,wrapper[ele[0]][i],ele.asList()[i]))
+        self.addSuccess()
+
+def check_wrapper(args):
+    "Test the wrapper, only useful internally"
+    subclass=minitest.testGroup("Wrapper",term,verbose=True)
+    subclass.addTest(testWrapper()).test()
+    status=subclass.get_status()
+    return status['failure']
+
 def check_init(args):
     "Check the initialisation message"
     subclass=minitest.testGroup("Initialisation",term,verbose=True)
@@ -253,58 +318,23 @@ def check_init(args):
     return status['failure']
 
 def check_reroll(args):
-    "Check the reroll inline message"
-    errors=0
-    model=""""var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+" E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+" r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
-    for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
-    msg_relance+="'>Relancer ce jet</a>";"""
-    var=re.compile(' ([a-zA-Z:+_] .*?".*?)(?:\+"|;)')
-    roll=reroll(args)
-
-    # All theese MUST be in the final version, this test will be a pain
-    # to maintain since every addentum will be added to it manually
-    #print (roll)
-    for e in (var.findall(model)):
-        if roll.find(e)<0:
-            errors+=1
-            print("Can't find [{}] in the generated roll".format(e))
-
-    for e in var.findall(roll):
-        if model.find(e)<0:
-            errors+=1
-            print("The expression [{}] is in the generated values but not the test".format(e))
-
-    return pErrors(sys._getframe().f_code.co_name,errors)
-
-def check_wrapper(args):
-    "Test the wrapper, only useful internally"
-    errors=0
-    s=len(hashedCategories)
-
-    try:
-        wrapper[-1]
-        errors+=1
-        print("Error: Element -1 shouldn't exist")
-    except:
-        pass
-    for ele in wrapper:
-        for c in hashedCategories.keys():
-            if ele.__getattr__(c)!=ele[hashedCategories[c]]:
-                print("Missmatch in {}, {} found, should be {}".format(ele[0],ele[hashedCategories[c]],ele.__getattr__(c)))
-
-        for i in range(s):
-            if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
-                print("Element {} is not identical in all representation {}!={}".format(i,wrapper[ele[0]][i],ele.asList()[i]))
-                errors+=1
-
-    return pErrors(sys._getframe().f_code.co_name,errors)
+    "Check the reroll inline generation"
+    subclass=minitest.testGroup("Reroll",term,verbose=True)
+    subclass.addTest(testReroll()).test()
+    status=subclass.get_status()
+    return status['failure']
 
 def test_all(args):
     "Execute all tests"
-    mainClasses=minitest.testGroup("Main Classes",term,verbose=True,align=40)
-    check_init(args)
-    check_reroll(args)
-    check_wrapper(args)
+    #mainClasses=minitest.testGroup("Main Classes",term,verbose=True)
+    subclass=minitest.testGroup("Main Classes",term,verbose=True)
+    subclass.addTest(testReroll())
+    subclass.addTest(testInit())
+    subclass.addTest(testWrapper())
+
+    subclass.test()
+    status=subclass.get_status()
+    return status['failure']
 
 def help(args):
     "Help, print the following message"

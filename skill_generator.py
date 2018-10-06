@@ -83,7 +83,21 @@ class megaListWrapper():
         self.len=len(table)
         self.indexes={}
         for i in range(len(table)):
-            self.indexes[table[i][0]]=i
+            self.indexes[table[i][0]]=i #Should use hashedCategories
+        # Theese are array because you can't acess them directly
+        self.singles=[]
+        self.code=[]
+        self.doubles={}
+        for i in table:
+            if i[hashedCategories['nb_args']]==1:
+                self.singles.append(i)
+            elif i[hashedCategories['nb_args']]==2:
+                n=i[hashedCategories['code']]
+                if n not in self.doubles:
+                    self.doubles[n]=[]
+                self.doubles[n].append(i)
+            if i[hashedCategories['code']]!='':
+                self.code.append(i)
 
     def __getitem__(self,argument): #Actually return the full line as a list wrapper
         return listWrapper(self.table[self.indexes[argument]])
@@ -91,6 +105,23 @@ class megaListWrapper():
     def __iter__(self):
         for index,key in self.indexes.items():
             yield self[index]
+
+    def itersingles(self):
+        "Only iterate over the simple argument ones"
+        for index in self.singles:
+            yield self[index[hashedCategories['varname']]]
+
+    def iterdoubles(self):
+        "Only iterate over the double arguments ones return a table with all"
+        for table in self.doubles.values():
+            yield [self[l[hashedCategories['varname']]] for l in table]
+
+    def iterdefined(self):
+        "Only iterate over the ones with defined code"
+        pass
+
+    def __contains__(self,val):
+        return val in self.indexes
 
     def __len__(self):
         return self.len
@@ -185,6 +216,46 @@ def reroll(args):
 
     return reroll
 
+def parser(args):
+    "Generate the argument parser"
+    tab="   "
+    EOL="\n"
+    res=tab+"if (len_args>0){"+EOL
+    res+=tab*2+"d_vars.nb_dices=to_p_number(tab[0]);"+EOL
+    res+=tab+"}"+EOL
+    res+=tab+"for (i = 1; i < len_args;) {"+EOL
+    res+=tab*2+"switch(tab[i]) {"+EOL
+    def typewise(type):
+        if type=="int":
+            return "to_number(tab[i+1]);"
+        return "tab[i+1];"
+
+    doubles={} #Should probably be handled by the wrapper with a custom loop
+    for elt in wrapper.itersingles():
+        if elt.code!="":
+            res+=tab*3+'case "{}":'.format(elt.code)+EOL
+            res+=tab*4+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
+            res+=tab*4+'i+=2;'+EOL
+            res+=tab*4+'break;'+EOL
+    for grp in wrapper.iterdoubles():
+        res+=tab*3+'case "{}":'.format(elt.code)+EOL
+        res+=tab*4+'switch (tab[i+1]) {'+EOL
+        for elt in grp:
+            if elt.code!="":
+                res+=tab*5+'case "{}":'.format(elt.id)+EOL
+                res+=tab*6+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
+                res+=tab*6+'break;'+EOL
+        res+=tab*4+"}"+EOL
+        res+=tab*4+'i+=3;'+EOL
+        res+=tab*4+'break;'+EOL
+
+    res+=tab*3+"default:"+EOL
+    res+=tab*4+'logit("Argument "+tab[i]+" unknown.");'+EOL
+    res+=tab*4+"i++;"+EOL
+    res+=tab*4+"break;"+EOL
+    res+=tab*2+"}"+EOL
+    res+=tab*1+"}"+EOL
+    print(res)
 
 class testInit(minitest.simpleTestUnit):
     """Check the initialisation message"""
@@ -193,7 +264,6 @@ class testInit(minitest.simpleTestUnit):
 
     def _testInit(self):
         self.currentTest("generating test values")
-
         try:
             test_values=args[1]
         except:
@@ -287,18 +357,48 @@ class testWrapper(minitest.simpleTestUnit):
         except:
             self.addSuccess()
 
+        f=0
         self.currentTest("hashing categories")
         for ele in wrapper:
             for c in hashedCategories.keys():
                 if ele.__getattr__(c)!=ele[hashedCategories[c]]:
+                    f+=1
                     self.currentTest(ele[0])
                     self.addFailure("{} found, should be {}".format(ele[hashedCategories[c]],ele.__getattr__(c)))
 
             for i in range(s):
                 if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
+                    f+=1
                     self.currentTest(i)
                     self.addFailure("Element differs {}!={}".format(wrapper[ele[0]][i],ele.asList()[i]))
-        self.addSuccess()
+        if f==0:
+            self.addSuccess()
+        else:
+            self.addFailure("{} elements failed".format(f))
+
+        f=0
+        self.currentTest("single variable")
+        for i in wrapper.itersingles():
+            if i[0] not in wrapper:
+                f+=1
+                self.addFailure("{} element missing".format(i[0]),nonDestructive=True)
+        if f==0:
+            self.addSuccess()
+        else:
+            self.addFailure("{} elements failed".format(f))
+
+        f=0
+        self.currentTest("double variables")
+        for l in wrapper.iterdoubles():
+            for i in l:
+                if i[0] not in wrapper:
+                    f+=1
+                    self.addFailure("{} element missing".format(i[0]),nonDestructive=True)
+        if f==0:
+            self.addSuccess()
+        else:
+            self.addFailure("{} elements failed".format(f))
+
 
 def check_wrapper(args):
     "Test the wrapper, only useful internally"
@@ -328,7 +428,6 @@ def test_all(args):
     subclass.addTest(testReroll())
     subclass.addTest(testInit())
     subclass.addTest(testWrapper())
-
     subclass.test()
     status=subclass.get_status()
     return status['failure']
@@ -341,7 +440,7 @@ def help(args):
 
 commands={"init":initialise,"print":pprint,"reroll":reroll,
 "test_init":check_init,"test_wrapper":check_wrapper,
-"test":test_all,"help":help}
+"test":test_all,"parser":parser,"help":help}
 
 if __name__ == '__main__':
     wrapper=megaListWrapper()
@@ -407,7 +506,6 @@ switch (tab[i+1]) {
         d_vars.tir_p_1=to_p_number(tab[i+2]);
         break;
 }
-i.append(3;
 
 default:
 logit("Argument "+tab[i]+" unknown.");

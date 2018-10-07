@@ -19,25 +19,31 @@ except:
     print("No command specified, just outputing the help")
     command="help"
 
-"""var d_vars={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,"defense_i_2":0,"rempart_p":0,
-"technique_m":0,"coup_d":0,"coup_d_results":[],"fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,
-"exploiter_p_2":0,"tir_p_0":0,"tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,
-"relances":0,"seuil":0,"nb_flat_dices":0,"action":"","flat_dices":[],"results":[],"technique_result":0,
-"cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":"","encaissement_result":0,
-"replace":-1,"add_to_all":0,"max_dices":-1,"player_name":""};"""
+#Custom parsing
+ENCAISSEMENT_PARSE="""d_vars.encaissement=to_number(tab[i+1]);
+d_vars.encaissement_dices="d20";
+if (tab[i+2]=="4") d_vars.encaissement_dices="d10";
+i+=3;
+break;"""
 
+FLAT_DICES_PARSE="""d_vars.flat_dices[d_vars.nb_flat_dices]=to_p_number(tab[i+1]);
+d_vars.nb_flat_dices++;
+break;"""
 ## Custom adders:
 lambda_flat_dices=lambda a: "@flat_dices[@flat_dices]=type({tab+1});\n@nb_flat_dices++;"
 
 ## Custom rerolls:
 
-categories=['varname','Pretty name','nb_args','type','code','id','default','switch','return']
+categories=['varname','Pretty name','nb_args','type','code','id','default','switch','parser']
 hashedCategories={}
 for c in range(len(categories)):
     hashedCategories[categories[c]]=c
 
+def findCat(element,category):
+    return element[hashedCategories[category]]
+
 list=[]
-#list.append(['varname','Pretty name','nb_args','type','code','id','default','switch','return'])
+#list.append(['varname','Pretty name','nb_args','type','code','id','default','switch','parser'])
 list.append(['perfection','Perfection',1,'int','P',0,0,None,None])
 list.append(['defense_i_0','Defence impénétrable simple',2,'int','I',1,0,None,None])
 list.append(['defense_i_1','Defence impénétrable expert',2,'int','I',2,0,None,None])
@@ -59,10 +65,10 @@ list.append(['nb_2sub','Nombre a soustraire',1,'int','-',0,0,None,None])
 list.append(['relances','Relances',1,'int','r',0,0,None,None])
 list.append(['seuil','Seuil',1,'int','s',0,0,None,None])
 list.append(['action','Type d\'Action',1,'str','a',0,'""',None,None])
-list.append(['flat_dices','Des fixes',1,'int','d',0,"[]",lambda_flat_dices,None])
+list.append(['flat_dices','Des fixes',1,'int','d',0,"[]",None,FLAT_DICES_PARSE])
 list.append(['on_hit_c','Dégats a l\'impact critique',1,'int','H',0,0,None,None])
 list.append(['attribute','Caractéristique',1,'int','A',0,0,None,None])
-list.append(['encaissement','Encaissement',2,'int','S',0,0,None,None])
+list.append(['encaissement','Encaissement',1,'int','S',0,0,None,ENCAISSEMENT_PARSE]) # It's actually 2 args but no switch
 list.append(['replace','Des de substitution',1,'int','L',0,-1,None,None])
 list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,None,None])
 list.append(['max_dices','Nombre de des max',1,'int','m',0,-1,None,None])
@@ -83,20 +89,20 @@ class megaListWrapper():
         self.len=len(table)
         self.indexes={}
         for i in range(len(table)):
-            self.indexes[table[i][0]]=i #Should use hashedCategories
+            self.indexes[findCat(table[i],"varname")]=i
         # Theese are array because you can't acess them directly
         self.singles=[]
         self.code=[]
         self.doubles={}
         for i in table:
-            if i[hashedCategories['nb_args']]==1:
+            if findCat(i,'nb_args')==1:
                 self.singles.append(i)
-            elif i[hashedCategories['nb_args']]==2:
-                n=i[hashedCategories['code']]
+            elif findCat(i,'nb_args')==2:
+                n=findCat(i,'code')
                 if n not in self.doubles:
                     self.doubles[n]=[]
                 self.doubles[n].append(i)
-            if i[hashedCategories['code']]!='':
+            if findCat(i,'code')!='':
                 self.code.append(i)
 
     def __getitem__(self,argument): #Actually return the full line as a list wrapper
@@ -109,12 +115,12 @@ class megaListWrapper():
     def itersingles(self):
         "Only iterate over the simple argument ones"
         for index in self.singles:
-            yield self[index[hashedCategories['varname']]]
+            yield self[findCat(index,'varname')]
 
     def iterdoubles(self):
         "Only iterate over the double arguments ones return a table with all"
         for table in self.doubles.values():
-            yield [self[l[hashedCategories['varname']]] for l in table]
+            yield [self[findCat(l,'varname')] for l in table]
 
     def iterdefined(self):
         "Only iterate over the ones with defined code"
@@ -232,22 +238,30 @@ def parser(args):
 
     doubles={} #Should probably be handled by the wrapper with a custom loop
     for elt in wrapper.itersingles():
-        if elt.code!="":
+        if elt.parser:
+            res+=tab*3+'case "{}":'.format(elt.code)+EOL
+            for l in elt.parser.splitlines():
+                res+=tab*4+l+EOL
+        elif elt.code!="":
             res+=tab*3+'case "{}":'.format(elt.code)+EOL
             res+=tab*4+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
             res+=tab*4+'i+=2;'+EOL
             res+=tab*4+'break;'+EOL
     for grp in wrapper.iterdoubles():
-        res+=tab*3+'case "{}":'.format(elt.code)+EOL
+        res+=tab*3+'case "{}":'.format(grp[0].code)+EOL
         res+=tab*4+'switch (tab[i+1]) {'+EOL
         for elt in grp:
-            if elt.code!="":
+            if elt.parser:
+                for l in elt.parser.splitlines():
+                    res+=tab*5+l+EOL
+            elif elt.code!="":
                 res+=tab*5+'case "{}":'.format(elt.id)+EOL
                 res+=tab*6+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
                 res+=tab*6+'break;'+EOL
-        res+=tab*4+"}"+EOL
-        res+=tab*4+'i+=3;'+EOL
-        res+=tab*4+'break;'+EOL
+        if not elt.parser:
+            res+=tab*4+"}"+EOL
+            res+=tab*4+'i+=3;'+EOL
+            res+=tab*4+'break;'+EOL
 
     res+=tab*3+"default:"+EOL
     res+=tab*4+'logit("Argument "+tab[i]+" unknown.");'+EOL
@@ -361,10 +375,10 @@ class testWrapper(minitest.simpleTestUnit):
         self.currentTest("hashing categories")
         for ele in wrapper:
             for c in hashedCategories.keys():
-                if ele.__getattr__(c)!=ele[hashedCategories[c]]:
+                if ele.__getattr__(c)!=findCat(ele,c):
                     f+=1
                     self.currentTest(ele[0])
-                    self.addFailure("{} found, should be {}".format(ele[hashedCategories[c]],ele.__getattr__(c)))
+                    self.addFailure("{} found, should be {}".format(findCat(ele,c),ele.__getattr__(c)))
 
             for i in range(s):
                 if wrapper[ele[0]][i]!=ele.asList()[i] or wrapper[ele[0]][i]!=ele[i]:
@@ -455,58 +469,3 @@ if __name__ == '__main__':
         print("Couldn't execute command "+command)
         print("  > {} ({})".format(sys.exc_info()[1],sys.exc_info()[0]))
         traceback.print_tb(sys.exc_info()[2])
-
-"""
-case "d":
-d_vars.flat_dices[d_vars.nb_flat_dices]=to_p_number(tab[i+1]);
-d_vars.nb_flat_dices++;
-i.append(2;
-break;
-
-case "S":
-d_vars.encaissement=to_number(tab[i+1]);
-        d_vars.encaissement_dices="d20";
-        if (tab[i+2]=="4") d_vars.encaissement_dices="d10";
-i.append(3;
-
-case "I":
-switch (tab[i+1]) {
-    case "1":
-        d_vars.defense_i_0=to_p_number(tab[i+2]);
-        break;
-    case "2":
-        d_vars.defense_i_1=to_p_number(tab[i+2]);
-        break;
-    case "4":
-        d_vars.defense_i_2=to_p_number(tab[i+2]);
-        break;
-}
-i.append(3;
-break;
-case "E":
-switch (tab[i+1]) {
-    case "1":
-        d_vars.exploiter_p_0=to_p_number(tab[i+2]);
-        break;
-    case "2":
-        d_vars.exploiter_p_1=to_p_number(tab[i+2]);
-        break;
-    case "4":
-        d_vars.exploiter_p_2=to_p_number(tab[i+2]);
-        break;
-}
-i.append(3;
-break;
-case "T":
-switch (tab[i+1]) {
-    case "2":
-        d_vars.tir_p_0=to_p_number(tab[i+2]);
-        break;
-    case "4":
-        d_vars.tir_p_1=to_p_number(tab[i+2]);
-        break;
-}
-
-default:
-logit("Argument "+tab[i]+" unknown.");
-"""

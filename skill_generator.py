@@ -28,13 +28,18 @@ break;"""
 
 FLAT_DICES_PARSE="""d_vars.flat_dices[d_vars.nb_flat_dices]=to_p_number(tab[i+1]);
 d_vars.nb_flat_dices++;
+i+=2;
+break;"""
+
+TECHNIQUE_PARSE="""d_vars.technique_m=to_p_number(tab[i+2]);
+i+=3;
 break;"""
 ## Custom adders:
 lambda_flat_dices=lambda a: "@flat_dices[@flat_dices]=type({tab+1});\n@nb_flat_dices++;"
 
 ## Custom rerolls:
 
-categories=['varname','Pretty name','nb_args','type','code','id','default','switch','parser']
+categories=['varname','Pretty name','nb_args','type','code','id','default','action','parser']
 hashedCategories={}
 for c in range(len(categories)):
     hashedCategories[categories[c]]=c
@@ -43,45 +48,45 @@ def findCat(element,category):
     return element[hashedCategories[category]]
 
 list=[]
-#list.append(['varname','Pretty name','nb_args','type','code','id','default','switch','parser'])
-list.append(['perfection','Perfection',1,'int','P',0,0,None,None])
-list.append(['defense_i_0','Defence impénétrable simple',2,'int','I',1,0,None,None])
-list.append(['defense_i_1','Defence impénétrable expert',2,'int','I',2,0,None,None])
-list.append(['defense_i_2','Defence impénétrable meta',2,'int','I',4,0,None,None])
-list.append(['rempart_p','Rempart parfait',1,'int','R',0,0,None,None])
-list.append(['technique_m','Perfection',1,'int','M',0,0,None,None])
-list.append(['coup_d','Coup_déchirant',1,'int','D',0,0,None,None])
-list.append(['fauchage','Fauchage',1,'int','F',0,0,None,None])
-list.append(['exploiter_p_0','Exploiter_les_points_faibles simple',2,'int','E',1,0,None,None])
-list.append(['exploiter_p_1','Exploiter_les_points_faibles expert',2,'int','E',2,0,None,None])
-list.append(['exploiter_p_2','Exploiter_les_points_faibles meta',2,'int','E',4,0,None,None])
-list.append(['tir_p_0','Tir_précis expert',2,'int','T',2,0,None,None])
-list.append(['tir_p_1','Tir_précis meta',2,'int','T',4,0,None,None])
-list.append(['tir_i','Tir_implacable',1,'int','i',0,0,None,None])
-list.append(['charge','Charge',1,'int','C',0,0,None,None])
-list.append(['charge_i','Charge_indomptable',1,'int','N',0,0,None,None])
-list.append(['nb_2add','Nombre à ajouter',1,'int','+',0,0,None,None])
-list.append(['nb_2sub','Nombre a soustraire',1,'int','-',0,0,None,None])
-list.append(['relances','Relances',1,'int','r',0,0,None,None])
-list.append(['seuil','Seuil',1,'int','s',0,0,None,None])
-list.append(['action','Type d\'Action',1,'str','a',0,'""',None,None])
-list.append(['flat_dices','Des fixes',1,'int','d',0,"[]",None,FLAT_DICES_PARSE])
-list.append(['on_hit_c','Dégats a l\'impact critique',1,'int','H',0,0,None,None])
-list.append(['attribute','Caractéristique',1,'int','A',0,0,None,None])
-list.append(['encaissement','Encaissement',1,'int','S',0,0,None,ENCAISSEMENT_PARSE]) # It's actually 2 args but no switch
-list.append(['replace','Des de substitution',1,'int','L',0,-1,None,None])
-list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,None,None])
-list.append(['max_dices','Nombre de des max',1,'int','m',0,-1,None,None])
-list.append(['player_name','Nom du joueur',1,'int',':',0,'""',None,None])
+#list.append(['varname','Pretty name','nb_args','type','code','id','default','action','parser'])
+list.append(['perfection','Perfection',1,'pint','P',0,0,"",None])
+list.append(['defense_i_0','Defence impénétrable simple',2,'pint','I',1,0,"",None])
+list.append(['defense_i_1','Defence impénétrable expert',2,'pint','I',2,0,"",None])
+list.append(['defense_i_2','Defence impénétrable meta',2,'pint','I',4,0,"",None])
+list.append(['rempart_p','Rempart parfait',1,'pint','R',0,0,"",None])
+list.append(['technique_m','Perfection',1,'pint','M',0,0,"",TECHNIQUE_PARSE]) #+=3
+list.append(['coup_d','Coup_déchirant',1,'pint','D',0,0,"",None])
+list.append(['fauchage','Fauchage',1,'pint','F',0,0,"",None])
+list.append(['exploiter_p_0','Exploiter_les_points_faibles simple',2,'pint','E',1,0,"",None])
+list.append(['exploiter_p_1','Exploiter_les_points_faibles expert',2,'pint','E',2,0,"",None])
+list.append(['exploiter_p_2','Exploiter_les_points_faibles meta',2,'pint','E',4,0,"",None])
+list.append(['tir_p_0','Tir_précis expert',2,'pint','T',2,0,"",None])
+list.append(['tir_p_1','Tir_précis meta',2,'pint','T',4,0,"",None])
+list.append(['tir_i','Tir_implacable',1,'pint','i',0,0,"",None])
+list.append(['charge','Charge',1,'pint','C',0,0,"",None])
+list.append(['charge_i','Charge_indomptable',1,'pint','N',0,0,"",None])
+list.append(['nb_2add','Nombre à ajouter',1,'int','+',0,0,"+",None])
+list.append(['nb_2sub','Nombre a soustraire',1,'int','-',0,0,"+",None])
+list.append(['relances','Relances',1,'pint','r',0,0,"",None])
+list.append(['seuil','Seuil',1,'pint','s',0,0,"",None])
+list.append(['action','Type d\'Action',1,'str','a',0,'""',"",None])
+list.append(['flat_dices','Des fixes',1,'pint','d',0,"[]","+",FLAT_DICES_PARSE])
+list.append(['on_hit_c','Dégats a l\'impact critique',1,'int','H',0,0,"+",None])
+list.append(['attribute','Caractéristique',1,'int','A',0,0,"",None])
+list.append(['encaissement','Encaissement',1,'pint','S',0,0,"",ENCAISSEMENT_PARSE]) # It's actually 2 args but no switch
+list.append(['replace','Des de substitution',1,'int','L',0,-1,"",None])
+list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,"",None])
+list.append(['max_dices','Nombre de des max',1,'pint','m',0,-1,"",None])
+list.append(['player_name','Nom du joueur',1,'str',':',0,'""',"",None])
 
-list.append(['nb_dices','Nombre de des',1,'int','',0,0,None,None])
-list.append(['nb_flat_dices','Nombre de des fixes',1,'int','',0,0,None,None])
-list.append(['encaissement_dices','Perfection',1,'int','',0,'""',None,None])
-list.append(['results','Resultats',1,'int','',0,"[]",None,None])
-list.append(['cleave','Fauchage',1,'int','',0,"[]",None,None])
-list.append(['encaissement_result','Resultat d\'encaissement',1,'int','',0,0,None,None])
-list.append(['technique_result','Dégats technique martiale',1,'int','',0,0,None,None])
-list.append(['coup_d_results','Coup déchirant results',1,'int','',0,"[]",None,None])
+list.append(['nb_dices','Nombre de des',1,'pint','',0,0,"",None])
+list.append(['nb_flat_dices','Nombre de des fixes',1,'pint','',0,0,"",None])
+list.append(['encaissement_dices','Perfection',1,'pint','',0,'""',"",None])
+list.append(['results','Resultats',1,'pint','',0,"[]","",None])
+list.append(['cleave','Fauchage',1,'pint','',0,"[]","",None])
+list.append(['encaissement_result','Resultat d\'encaissement',1,'pint','',0,0,"",None])
+list.append(['technique_result','Dégats technique martiale',1,'int','',0,0,"",None])
+list.append(['coup_d_results','Coup déchirant results',1,'pint','',0,"[]","",None])
 
 class megaListWrapper():
     def __init__(self,table=list):
@@ -232,11 +237,13 @@ def parser(args):
     res+=tab+"for (i = 1; i < len_args;) {"+EOL
     res+=tab*2+"switch(tab[i]) {"+EOL
     def typewise(type):
-        if type=="int":
-            return "to_number(tab[i+1]);"
-        return "tab[i+1];"
+        if type=="pint":
+            return "to_p_number({});"
+        elif type=='int':
+            return "to_number({});"
+        return "{};"
 
-    doubles={} #Should probably be handled by the wrapper with a custom loop
+    doubles={}
     for elt in wrapper.itersingles():
         if elt.parser:
             res+=tab*3+'case "{}":'.format(elt.code)+EOL
@@ -244,7 +251,7 @@ def parser(args):
                 res+=tab*4+l+EOL
         elif elt.code!="":
             res+=tab*3+'case "{}":'.format(elt.code)+EOL
-            res+=tab*4+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
+            res+=tab*4+'d_vars.{}{}={}'.format(elt.varname,elt.action,typewise(elt.type).format("tab[i+1]"))+EOL
             res+=tab*4+'i+=2;'+EOL
             res+=tab*4+'break;'+EOL
     for grp in wrapper.iterdoubles():
@@ -256,7 +263,7 @@ def parser(args):
                     res+=tab*5+l+EOL
             elif elt.code!="":
                 res+=tab*5+'case "{}":'.format(elt.id)+EOL
-                res+=tab*6+'d_vars.{}+={}'.format(elt.varname,typewise(elt.type))+EOL
+                res+=tab*6+'d_vars.{}{}={}'.format(elt.varname,elt.action,typewise(elt.type).format("tab[i+2]"))+EOL
                 res+=tab*6+'break;'+EOL
         if not elt.parser:
             res+=tab*4+"}"+EOL
@@ -269,7 +276,7 @@ def parser(args):
     res+=tab*4+"break;"+EOL
     res+=tab*2+"}"+EOL
     res+=tab*1+"}"+EOL
-    print(res)
+    return res
 
 class testInit(minitest.simpleTestUnit):
     """Check the initialisation message"""
@@ -414,6 +421,65 @@ class testWrapper(minitest.simpleTestUnit):
             self.addFailure("{} elements failed".format(f))
 
 
+class testParser(minitest.simpleTestUnit):
+    """Check the reroll inline message"""
+    def __init__(self):
+        super(testParser, self).__init__("inline message")
+
+    def _testParser(self):
+        self.currentTest("loading parser")
+        par=parser(args)
+        self.addSuccess()
+        f=0
+        nb_code=0
+        self.currentTest("testing all variables")
+        for line in list:
+            cat=findCat(line,"code")
+            if cat!="":
+                nb_code+=1
+                if 'case "{}"'.format(cat) not in par:
+                    f+=1
+                    self.addFailure("code {} not found".format(cat),nonDestructive=True)
+                if 'd_vars.{}'.format(findCat(line,"varname")) not in par:
+                    f+=1
+                    self.addFailure("variable {} not found".format(findCat(line,"varname")),nonDestructive=True)
+        if f==0:
+            self.addSuccess()
+        else:
+            self.addFailure("{} failures".format(f))
+
+        self.currentTest("testing i++ count")
+        count=par.count("i+=")
+        nb_code=nb_code+len([l for l in wrapper.iterdoubles()])-sum([len(l) for l in wrapper.iterdoubles()])
+        if count!=nb_code:
+            self.addFailure("{} occurences found (expected {})".format(par.count("i+="),nb_code))
+        else:
+            self.addSuccess()
+
+        self.currentTest("counting {}")
+        counto=par.count("{")
+        countc=par.count("}")
+        tot=len([l for l in wrapper.iterdoubles()])+3
+        if counto!=countc or counto!=tot:
+            self.addFailure("found {} '{{' and {} '}}   ' instead of {}".format(counto,countc,tot))
+        else:
+            self.addSuccess()
+
+        f=0
+        self.currentTest("checking special text")
+        for line in list:
+            cat=findCat(line,"parser")
+            if cat:
+                for l in cat.splitlines():
+                    if l not in par:
+                        self.addFailure("{} isn't in the end result".format(l),nonDestructive=True)
+        if f==0:
+            self.addSuccess()
+        else:
+            self.addFailure("{} failures".format(f))
+        """for varname with symbol, find symbol
+        for Special text, find special
+        """
 def check_wrapper(args):
     "Test the wrapper, only useful internally"
     subclass=minitest.testGroup("Wrapper",term,verbose=True)
@@ -435,6 +501,13 @@ def check_reroll(args):
     status=subclass.get_status()
     return status['failure']
 
+def check_parser(args):
+    "Check the reroll inline generation"
+    subclass=minitest.testGroup("Parser",term,verbose=True)
+    subclass.addTest(testParser()).test()
+    status=subclass.get_status()
+    return status['failure']
+
 def test_all(args):
     "Execute all tests"
     #mainClasses=minitest.testGroup("Main Classes",term,verbose=True)
@@ -442,6 +515,7 @@ def test_all(args):
     subclass.addTest(testReroll())
     subclass.addTest(testInit())
     subclass.addTest(testWrapper())
+    subclass.addTest(testParser())
     subclass.test()
     status=subclass.get_status()
     return status['failure']

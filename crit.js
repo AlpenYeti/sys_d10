@@ -319,145 +319,145 @@ function parse_command(message){
     //logit(tab.length);
 
     if (len_args>0){
-        d_vars.nb_dices=to_p_number(tab[0]);
+       d_vars.nb_dices=to_p_number(tab[0]);
     }
     for (i = 1; i < len_args;) {
-        switch(tab[i]) {
-            case "+":
-                d_vars.nb_2add+=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "-":
-                d_vars.nb_2sub+=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "P":
-                d_vars.perfection=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "r":
-                d_vars.relances=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "s":
-                d_vars.seuil=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "d":
-                d_vars.flat_dices[d_vars.nb_flat_dices]=to_p_number(tab[i+1]);
-                d_vars.nb_flat_dices++;
-                i+=2;
-                break;
-            case "I":
-                switch (tab[i+1]) {
-                    case "1":
-                        d_vars.defense_i_0=to_p_number(tab[i+2]);
-                        break;
-                    case "2":
-                        d_vars.defense_i_1=to_p_number(tab[i+2]);
-                        break;
-                    case "4":
-                        d_vars.defense_i_2=to_p_number(tab[i+2]);
-                        break;
-                }
-                i+=3;
-            	break;
-            case "E":
-                switch (tab[i+1]) {
-                    case "1":
-                        d_vars.exploiter_p_0=to_p_number(tab[i+2]);
-                        break;
-                    case "2":
-                        d_vars.exploiter_p_1=to_p_number(tab[i+2]);
-                        break;
-                    case "4":
-                        d_vars.exploiter_p_2=to_p_number(tab[i+2]);
-                        break;
-                }
-                i+=3;
-                break;
-            case "T":
-                switch (tab[i+1]) {
-                    case "2":
-                        d_vars.tir_p_0=to_p_number(tab[i+2]);
-                        break;
-                    case "4":
-                        d_vars.tir_p_1=to_p_number(tab[i+2]);
-                        break;
-                }
-                i+=3;
-                break;
-            case "R":
-                d_vars.rempart_p=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "C":
-                d_vars.charge=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "M": // Both act likewise, we don't care the level in the script
-                d_vars.technique_m=to_p_number(tab[i+2]);
-                i+=3;
-                break;
-            case "D":
-                d_vars.coup_d=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "F":
-                d_vars.fauchage=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "N":
-                d_vars.charge_i=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "i":
-                d_vars.tir_i=to_p_number(tab[i+1]);
-                i+=2;
-                break;
-            case "a":
-                d_vars.action=tab[i+1];
-                i+=2;
-                break;
-            case "H":
-                d_vars.on_hit_c+=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "A":
-                d_vars.attribute+=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "S":
-                d_vars.encaissement=to_number(tab[i+1]);
-				        d_vars.encaissement_dices="d20";
-				        if (tab[i+2]=="4") d_vars.encaissement_dices="d10";
-                i+=3;
-                break;
-            case "L":
-                d_vars.replace=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "l":
-                d_vars.add_to_all=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case "m":
-                d_vars.max_dices=to_number(tab[i+1]);
-                i+=2;
-                break;
-            case ":":
-                d_vars.player_name=tab[i+1];
-                /*if(tab[i+2].length>1){ // Fixaround, not really pretty, due to the way things are parsed
-                  d_vars.player_name+=" "+tab[i+2]; // Adding second part of name
-                  i+=1;
-                }*/
-                i+=2;
-                break;
-            default:
-                logit("Argument "+tab[i]+" unknown.");
-                i++;
-                break;
-        }
+       switch(tab[i]) {
+          case "P":
+             d_vars.perfection=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "R":
+             d_vars.rempart_p=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "M":
+             d_vars.technique_m=to_p_number(tab[i+2]);
+             i+=3;
+             break;
+          case "D":
+             d_vars.coup_d=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "F":
+             d_vars.fauchage=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "i":
+             d_vars.tir_i=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "C":
+             d_vars.charge=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "N":
+             d_vars.charge_i=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "+":
+             d_vars.nb_2add+=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "-":
+             d_vars.nb_2sub+=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "r":
+             d_vars.relances=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "s":
+             d_vars.seuil=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "a":
+             d_vars.action=tab[i+1];
+             i+=2;
+             break;
+          case "d":
+             d_vars.flat_dices[d_vars.nb_flat_dices]=to_p_number(tab[i+1]);
+             d_vars.nb_flat_dices++;
+             i+=2;
+             break;
+          case "H":
+             d_vars.on_hit_c+=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "A":
+             d_vars.attribute+=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "S":
+             d_vars.encaissement=to_number(tab[i+1]);
+             d_vars.encaissement_dices="d20";
+             if (tab[i+2]=="4") d_vars.encaissement_dices="d10";
+             i+=3;
+             break;
+          case "L":
+             d_vars.replace=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "l":
+             d_vars.add_to_all=to_number(tab[i+1]);
+             i+=2;
+             break;
+          case "m":
+             d_vars.max_dices=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case ":":
+             d_vars.player_name=tab[i+1];
+             i+=2;
+             break;
+          case "c":
+             d_vars.crit_level=to_p_number(tab[i+1]);
+             i+=2;
+             break;
+          case "I":
+             switch (tab[i+1]) {
+                case "1":
+                   d_vars.defense_i_0=to_p_number(tab[i+2]);
+                   break;
+                case "2":
+                   d_vars.defense_i_1=to_p_number(tab[i+2]);
+                   break;
+                case "4":
+                   d_vars.defense_i_2=to_p_number(tab[i+2]);
+                   break;
+             }
+             i+=3;
+             break;
+          case "E":
+             switch (tab[i+1]) {
+                case "1":
+                   d_vars.exploiter_p_0=to_p_number(tab[i+2]);
+                   break;
+                case "2":
+                   d_vars.exploiter_p_1=to_p_number(tab[i+2]);
+                   break;
+                case "4":
+                   d_vars.exploiter_p_2=to_p_number(tab[i+2]);
+                   break;
+             }
+             i+=3;
+             break;
+          case "T":
+             switch (tab[i+1]) {
+                case "2":
+                   d_vars.tir_p_0=to_p_number(tab[i+2]);
+                   break;
+                case "4":
+                   d_vars.tir_p_1=to_p_number(tab[i+2]);
+                   break;
+             }
+             i+=3;
+             break;
+          default:
+             logit("Argument "+tab[i]+" unknown.");
+             i++;
+             break;
+       }
     }
     return d_vars;
 };

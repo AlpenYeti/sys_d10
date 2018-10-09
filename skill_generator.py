@@ -19,6 +19,7 @@ except:
     print("No command specified, just outputing the help")
     command="help"
 
+EOL="\n"
 #Custom parsing
 ENCAISSEMENT_PARSE="""d_vars.encaissement=to_number(tab[i+1]);
 d_vars.encaissement_dices="d20";
@@ -72,7 +73,7 @@ list.append(['seuil','Seuil',1,'pint','s',0,0,"",None])
 list.append(['action','Type d\'Action',1,'str','a',0,'""',"",None])
 list.append(['flat_dices','Des fixes',1,'pint','d',0,"[]","+",FLAT_DICES_PARSE])
 list.append(['on_hit_c','Dégats a l\'impact critique',1,'int','H',0,0,"+",None])
-list.append(['attribute','Caractéristique',1,'int','A',0,0,"",None])
+list.append(['attribute','Caractéristique',1,'int','A',0,0,"+",None])
 list.append(['encaissement','Encaissement',1,'pint','S',0,0,"",ENCAISSEMENT_PARSE]) # It's actually 2 args but no switch
 list.append(['replace','Des de substitution',1,'int','L',0,-1,"",None])
 list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,"",None])
@@ -222,9 +223,9 @@ def reroll(args):
     reroll+=' + "+(d_vars.{}+d_vars.{}+d_vars.{})'.format(wrapper["nb_2add"].varname, wrapper["technique_result"].varname, wrapper["encaissement_result"].varname)
 
     # Last part of the command
-    reroll+=' r ?{Relances ?}"\n'
+    reroll+='+" r ?{Relances ?}";\n'
     reroll+='for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];\n'
-    reroll+='msg_relance+="\'>Relancer ce jet</a>";\''
+    reroll+='msg_relance+="\'>Relancer ce jet</a>";'
 
     return reroll
 
@@ -262,7 +263,6 @@ def find_code(args):
 def parser(args):
     "Generate the argument parser"
     tab="   "
-    EOL="\n"
     res=tab+"if (len_args>0){"+EOL
     res+=tab*2+"d_vars.nb_dices=to_p_number(tab[0]);"+EOL
     res+=tab+"}"+EOL
@@ -540,12 +540,35 @@ def test_all(args):
         #"Check the reroll inline generation"
         subclass.addTest(testParser())
 
-
     if t>0:
         subclass.test()
         status=subclass.get_status()
         return status['failure']
     return 0
+
+def export(args):
+    if len(args)>1:
+        filen=args[1]
+    try:
+        f=open(filen)
+    except:
+        filen="export.log"
+        f=open(filen,"w+")
+
+    def title(t):
+        return "{} {} {}".format("#"*10,t,"#"*10)+EOL
+
+
+    f.write(title("Relances"))
+    f.write(reroll([])+EOL)
+    f.write(title("Reroll"))
+    f.write(initialise([])+EOL)
+    f.write(title("Parse"))
+    f.write(parser([])+EOL)
+
+    f.close()
+
+    return "All data written in '{}'".format(filen)
 
 def help(args):
     "Help, print the following message"
@@ -554,7 +577,7 @@ def help(args):
         print("   {}: {}".format(key,commands[key].__doc__))
 
 commands={"init":initialise,"print":pprint,"reroll":reroll,
-"test":test_all,"code":find_code,"parser":parser,"help":help}
+"test":test_all,"code":find_code,"parser":parser,"export":export,"help":help}
 
 if __name__ == '__main__':
     wrapper=megaListWrapper()

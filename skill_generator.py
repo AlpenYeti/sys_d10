@@ -78,7 +78,6 @@ list.append(['replace','Des de substitution',1,'int','L',0,-1,"",None])
 list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,"",None])
 list.append(['max_dices','Nombre de des max',1,'pint','m',0,-1,"",None])
 list.append(['player_name','Nom du joueur',1,'str',':',0,'""',"",None])
-list.append(['crit_level','Niveau de critique',1,'pint','u',0,0,"",None])
 
 list.append(['nb_dices','Nombre de des',1,'pint','',0,0,"",None])
 list.append(['nb_flat_dices','Nombre de des fixes',1,'pint','',0,0,"",None])
@@ -228,6 +227,34 @@ def reroll(args):
 
     return reroll
 
+def find_code(args):
+    "Find the next available code for given name"
+    try:
+        code=args[1]
+    except:
+        print("One argument expected")
+        return 0
+    listFree=''
+    for letter in code:
+        Letter=letter.capitalize()
+        free,Free=1,1
+        for line in wrapper:
+            if free and letter==line.code:
+                free=0
+            if Free and Letter==line.code:
+                Free=0
+            if not free and not Free:
+                break
+        if Free and Letter not in listFree:
+            listFree+=Letter
+        if free and letter not in listFree:
+            listFree+=letter
+    if listFree:
+        return 'The codes "{}" are available.'.format(listFree)
+    else:
+        print('No letter from name "{}" is available'.format(code))
+        print(find_code([0,"abcdefghijklmnopqrstuvwxyz&_?.§!;"]))
+
 def parser(args):
     "Generate the argument parser"
     tab="   "
@@ -286,17 +313,14 @@ class testInit(minitest.simpleTestUnit):
 
     def _testInit(self):
         self.currentTest("generating test values")
-        try:
-            test_values=args[1]
-        except:
-            self.addWarning("No arguments given, using defaults",nonDestructive=True)
-            test_values={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,
-            "defense_i_2":0,"rempart_p":0,"technique_m":0,"coup_d":0,"coup_d_results":"[]",
-            "fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,"exploiter_p_2":0,"tir_p_0":0,
-            "tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,"relances":0,
-            "seuil":0,"nb_flat_dices":0,"action":'""',"flat_dices":"[]","results":"[]","technique_result":0,
-             "cleave":"[]","on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":'""',
-             "encaissement_result":0,"replace":-1,"add_to_all":0,"max_dices":-1,"player_name":'""'}
+
+        test_values={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,
+        "defense_i_2":0,"rempart_p":0,"technique_m":0,"coup_d":0,"coup_d_results":"[]",
+        "fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,"exploiter_p_2":0,"tir_p_0":0,
+        "tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,"relances":0,
+        "seuil":0,"nb_flat_dices":0,"action":'""',"flat_dices":"[]","results":"[]","technique_result":0,
+         "cleave":"[]","on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":'""',
+         "encaissement_result":0,"replace":-1,"add_to_all":0,"max_dices":-1,"player_name":'""'}
         a=len(test_values)
         b=len(list)
         try:
@@ -309,12 +333,11 @@ class testInit(minitest.simpleTestUnit):
 
         self.currentTest("testing list")
         if a<b:
-            pass
-        #    self.addFailure("Too many values in the list")
-        #    for l in dict_list.keys():
-        #        if l not in test_values:
-        #            self.currentTest(l)
-        #            self.addFailure("{} missing from the test template".format(l))
+            self.addFailure("Too many values in the list")
+            for l in dict_list.keys():
+                if l not in test_values:
+                    self.currentTest(l)
+                    self.addFailure("{} missing from the test template".format(l))
         elif b<a:
             self.addFailure("Too few values in the list")
             for t,v in test_values.items():
@@ -349,6 +372,8 @@ class testReroll(minitest.simpleTestUnit):
         roll=reroll(args)
         self.addSuccess()
 
+        # All theese MUST be in the final version, this test will be a pain
+        # to maintain since every addentum will be added to it manually
         self.currentTest("checking generated roll")
         for e in (var.findall(model)):
             if roll.find(e)<0:
@@ -356,12 +381,12 @@ class testReroll(minitest.simpleTestUnit):
                 self.addFailure("missing value")
         self.addSuccess()
 
-        #self.currentTest("checking model")
-        #for e in var.findall(roll):
-        #    if model.find(e)<0:
-        #        self.currentTest("[{}]".format(e))
-        #        self.addFailure("missing value")
-        #self.addSuccess()
+        self.currentTest("checking model")
+        for e in var.findall(roll):
+            if model.find(e)<0:
+                self.currentTest("[{}]".format(e))
+                self.addFailure("missing value")
+        self.addSuccess()
 
 class testWrapper(minitest.simpleTestUnit):
     """Check the reroll inline message"""
@@ -480,45 +505,43 @@ class testParser(minitest.simpleTestUnit):
         """for varname with symbol, find symbol
         for Special text, find special
         """
-def check_wrapper(args):
-    "Test the wrapper, only useful internally"
-    subclass=minitest.testGroup("Wrapper",term,verbose=True)
-    subclass.addTest(testWrapper()).test()
-    status=subclass.get_status()
-    return status['failure']
-
-def check_init(args):
-    "Check the initialisation message"
-    subclass=minitest.testGroup("Initialisation",term,verbose=True)
-    subclass.addTest(testInit()).test()
-    status=subclass.get_status()
-    return status['failure']
-
-def check_reroll(args):
-    "Check the reroll inline generation"
-    subclass=minitest.testGroup("Reroll",term,verbose=True)
-    subclass.addTest(testReroll()).test()
-    status=subclass.get_status()
-    return status['failure']
-
-def check_parser(args):
-    "Check the reroll inline generation"
-    subclass=minitest.testGroup("Parser",term,verbose=True)
-    subclass.addTest(testParser()).test()
-    status=subclass.get_status()
-    return status['failure']
 
 def test_all(args):
     "Execute all tests"
-    #mainClasses=minitest.testGroup("Main Classes",term,verbose=True)
     subclass=minitest.testGroup("Main Classes",term,verbose=True)
-    subclass.addTest(testReroll())
-    subclass.addTest(testInit())
-    subclass.addTest(testWrapper())
-    subclass.addTest(testParser())
-    subclass.test()
-    status=subclass.get_status()
-    return status['failure']
+    all_s,t=["reroll","init","wrapper","parser"],0
+    if len(args)>1:
+        sub=[]# A list of test to execute
+        for a in args[1:]:
+            a=a.strip("-")
+            if a in all_s or a=="all":
+                t+=1
+                sub.append(a.strip("-"))
+            else:
+                print("Argument {} unknown".format(a))
+    else:
+        sub=all_s
+        t=len(sub)
+
+    if "all" in sub or "reroll" in sub:
+        #"Check the reroll inline generation"
+        subclass.addTest(testReroll())
+    if "all" in sub or "init" in sub:
+        #"Check the initialisation message"
+        subclass.addTest(testInit())
+    if "all" in sub or "wrapper" in sub:
+        #"Test the wrapper, only useful internally"
+        subclass.addTest(testWrapper())
+    if "all" in sub or "parser" in sub:
+        #"Check the reroll inline generation"
+        subclass.addTest(testParser())
+
+
+    if t>0:
+        subclass.test()
+        status=subclass.get_status()
+        return status['failure']
+    return 0
 
 def help(args):
     "Help, print the following message"
@@ -527,8 +550,7 @@ def help(args):
         print("   {}: {}".format(key,commands[key].__doc__))
 
 commands={"init":initialise,"print":pprint,"reroll":reroll,
-"test_init":check_init,"test_wrapper":check_wrapper,
-"test":test_all,"parser":parser,"help":help}
+"test":test_all,"code":find_code,"parser":parser,"help":help}
 
 if __name__ == '__main__':
     wrapper=megaListWrapper()

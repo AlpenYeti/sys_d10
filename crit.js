@@ -170,13 +170,10 @@ function show_rolls(who,d_vars){
     var msg="<tr><td class='sheet-name'>";
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
-    var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+
-    " I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+
-    " E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+
-    " i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" - "+d_vars.nb_2sub+
-    " r ?{Relances ?}"+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" : "+d_vars.player_name;
+    var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 A "+d_vars.attribute+" L "+d_vars.replace+" T 2 "+d_vars.tir_p_0+" s "+d_vars.seuil+" R "+d_vars.rempart_p+" i "+d_vars.tir_i+" l "+d_vars.add_to_all+" - "+d_vars.nb_2sub+" C "+d_vars.charge+" c "+d_vars.crit_level+" m "+d_vars.max_dices+" F "+d_vars.fauchage+" P "+d_vars.perfection+" E 2 "+d_vars.exploiter_p_1+" E 1 "+d_vars.exploiter_p_0+" E 4 "+d_vars.exploiter_p_2+" I 4 "+d_vars.defense_i_2+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" N "+d_vars.charge_i+" n "+d_vars.player_name+" H "+d_vars.on_hit_c+" T 4 "+d_vars.tir_p_1+" a "+d_vars.action+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" r ?{Relances ?}";
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
+    logit(msg_relance);
     var sum=0;
     var m_esq=1,m_crit=1; //The multiplier from dodge or crit
 
@@ -306,12 +303,17 @@ function parse_command(message){
     // Parse a string formated in the following fashion
     // 4 P 2 I 2 4 E 4 1 T 1 4 + 11 - 22 s 2 d 4 d 5 d 8 d 1
     // And add everithing in the related Variables
-    var d_vars={"nb_dices":0,"perfection":0,"defense_i_0":0,"defense_i_1":0,"defense_i_2":0,"rempart_p":0,
-    "technique_m":0,"coup_d":0,"coup_d_results":[],"fauchage":0,"exploiter_p_0":0,"exploiter_p_1":0,
-    "exploiter_p_2":0,"tir_p_0":0,"tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,"nb_2add":0,"nb_2sub":0,
-    "relances":0,"seuil":0,"nb_flat_dices":0,"action":"","flat_dices":[],"results":[],"technique_result":0,
-    "cleave":[],"on_hit_c":0,"attribute":0,"encaissement":0,"encaissement_dices":"","encaissement_result":0,
-    "replace":0,"add_to_all":0,"max_dices":-1,"player_name":""};
+    var d_vars={"perfection":0,"defense_i_0":0,"defense_i_1":0,
+    "defense_i_2":0,"rempart_p":0,"technique_m":0,
+    "coup_d":0,"fauchage":0,"exploiter_p_0":0,
+    "exploiter_p_1":0,"exploiter_p_2":0,"tir_p_0":0,
+    "tir_p_1":0,"tir_i":0,"charge":0,"charge_i":0,
+    "nb_2add":0,"nb_2sub":0,"relances":0,"seuil":0,
+    "action":"","flat_dices":[],"on_hit_c":0,"attribute":0,
+    "encaissement":0,"replace":-1,"add_to_all":0,"max_dices":-1,
+    "player_name":"","crit_level":0,"nb_dices":0,"nb_flat_dices":0,
+    "encaissement_dices":"","results":[],"cleave":[],
+    "encaissement_result":0,"technique_result":0,"coup_d_results":[]};
     var tab=message.split(" ");
     var len_args=tab.length;
     var i;
@@ -406,7 +408,7 @@ function parse_command(message){
              d_vars.max_dices=to_p_number(tab[i+1]);
              i+=2;
              break;
-          case ":":
+          case "n":
              d_vars.player_name=tab[i+1];
              i+=2;
              break;

@@ -20,6 +20,7 @@ except:
     command="help"
 
 EOL="\n"
+tab="   "
 #Custom parsing
 ENCAISSEMENT_PARSE="""d_vars.encaissement=to_number(tab[i+1]);
 d_vars.encaissement_dices="d20";
@@ -78,7 +79,7 @@ list.append(['encaissement','Encaissement',1,'pint','S',0,0,"",ENCAISSEMENT_PARS
 list.append(['replace','Des de substitution',1,'int','L',0,-1,"",None])
 list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,"",None])
 list.append(['max_dices','Nombre de des max',1,'pint','m',0,-1,"",None])
-list.append(['player_name','Nom du joueur',1,'str',':',0,'""',"",None])
+list.append(['player_name','Nom du joueur',1,'str','n',0,'""',"",None])
 list.append(['crit_level','Niveau de critique',1,'pint','c',0,0,"",None])
 
 list.append(['nb_dices','Nombre de des',1,'pint','',0,0,"",None])
@@ -262,7 +263,6 @@ def find_code(args):
 
 def parser(args):
     "Generate the argument parser"
-    tab="   "
     res=tab+"if (len_args>0){"+EOL
     res+=tab*2+"d_vars.nb_dices=to_p_number(tab[0]);"+EOL
     res+=tab+"}"+EOL

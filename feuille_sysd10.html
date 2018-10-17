@@ -144,6 +144,16 @@
       setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
     });
   });
+  // dice_with_tanscendance
+  on("change:tmpdice change:transcendence", function() {
+    getAttrs(["tmpdice","transcendence"], function(values) {
+      if(values.transcendence<3){
+        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,3-values.transcendence))});
+      } else if (values.transcendence>3) {
+        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,values.transcendence-3))});
+      };
+    });
+  });
   </script>
 </head>
 <div class="sheet-content">
@@ -184,7 +194,7 @@
         <tr>
           <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
           <td rowspan="2">
-            <select class="sheet-dice_select sheet-dice" name="attr_dice">
+            <select class="sheet-dice_select sheet-dice" name="attr_tmpdice">
               <option value="2">d2</option>
               <option value="4">d4</option>
               <option value="6">d6</option>

@@ -294,12 +294,13 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     if (d_vars.nb_2add!=0){dices+=")";};
     if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};
     // Add everything to the sum
-    sum=Math.floor(((sum*m_esq+d_vars.on_hit_c+d_vars.attribute))*m_crit)+d_vars.nb_2add-d_vars.nb_2sub;
+    sum=Math.floor(((sum*m_esq+d_vars.on_hit_c+d_vars.attribute))*m_crit)+d_vars.nb_2add
     sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result+d_vars.encaissement_result;
     if(d_vars.transcendence>3){sum=sum*(2**(d_vars.transcendence-3));}
     else {
       if (d_vars.transcendence<3) { sum=Math.floor(sum/(2**(3-d_vars.transcendence)));}
     }
+    sum+=-d_vars.nb_2sub;
     dices+="<tr><td class='sheet-sum'> Total: "+sum+"</tr></td>";
 
     //logit(dices);

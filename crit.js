@@ -15,7 +15,9 @@ on("chat:message", function(msg) {
         d_vars.rempart_p=Math.min(10,d_vars.rempart_p);
         d_vars.nb_dices+=d_vars.tir_i;
         d_vars.fauchage=Math.min(d_vars.fauchage,d_vars.nb_dices);
+        d_vars.oseuil=d_vars.seuil;
         d_vars.seuil=Math.max(d_vars.seuil-d_vars.tir_p_0-d_vars.tir_p_1,0);
+
         //d_vars.replace=-1;
         //d_vars.add_to_all=0;
 
@@ -170,7 +172,7 @@ function show_rolls(who,d_vars){
     var msg="<tr><td class='sheet-name'>";
     var msg_foot="</tr></td></table></div>";
     var msg_adds="";
-    var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+" E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" - "+d_vars.nb_2sub+" s "+d_vars.seuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" n "+d_vars.player_name+" c "+d_vars.crit_level+" t "+d_vars.transcendence+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" r ?{Relances ?}";
+    var msg_relance="<a class='sheet-rolltemplate-d10fight' href='!crit 0 P "+d_vars.perfection+" I 1 "+d_vars.defense_i_0+" I 2 "+d_vars.defense_i_1+" I 4 "+d_vars.defense_i_2+" R "+d_vars.rempart_p+" F "+d_vars.fauchage+" E 1 "+d_vars.exploiter_p_0+" E 2 "+d_vars.exploiter_p_1+" E 4 "+d_vars.exploiter_p_2+" T 2 "+d_vars.tir_p_0+" T 4 "+d_vars.tir_p_1+" i "+d_vars.tir_i+" C "+d_vars.charge+" N "+d_vars.charge_i+" - "+d_vars.nb_2sub+" s "+d_vars.oseuil+" a "+d_vars.action+" H "+d_vars.on_hit_c+" A "+d_vars.attribute+" L "+d_vars.replace+" l "+d_vars.add_to_all+" m "+d_vars.max_dices+" n "+d_vars.player_name+" c "+d_vars.crit_level+" t "+d_vars.transcendence+" + "+(d_vars.nb_2add+d_vars.technique_result+d_vars.encaissement_result)+" r ?{Relances ?}";
     for (var i=0,len=d_vars.results.length;i<len;i++) msg_relance+=" d "+d_vars.results[i];
     msg_relance+="'>Relancer ce jet</a>";
     logit(msg_relance);

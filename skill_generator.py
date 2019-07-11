@@ -80,8 +80,11 @@ list.append(['replace','Des de substitution',1,'int','L',0,-1,"",None])
 list.append(['add_to_all','Valeur d\'ajout aux des',1,'int','l',0,0,"",None])
 list.append(['max_dices','Nombre de des max',1,'pint','m',0,-1,"",None])
 list.append(['player_name','Nom du joueur',1,'str','n',0,'""',"",None])
+
 list.append(['crit_level','Niveau de critique',1,'pint','c',0,2,"",None])
 list.append(['transcendence','Transcendence',1,'pint','t',0,3,"",None])
+list.append(['pctreceived','Pourcentage dégats recus',1,'int','v',0,0,"",None])
+list.append(['pctinflicted','Pourcentage dégats infligés',1,'int','f',0,0,"",None])
 
 list.append(['nb_dices','Nombre de des',1,'pint','',0,0,"",None])
 list.append(['nb_flat_dices','Nombre de des fixes',1,'pint','',0,0,"",None])
@@ -91,6 +94,9 @@ list.append(['cleave','Fauchage',1,'pint','',0,"[]","",None])
 list.append(['encaissement_result','Resultat d\'encaissement',1,'pint','',0,0,"",None])
 list.append(['technique_result','Dégats technique martiale',1,'int','',0,0,"",None])
 list.append(['coup_d_results','Coup déchirant results',1,'pint','',0,"[]","",None])
+
+
+
 
 class megaListWrapper():
     def __init__(self,table=list):

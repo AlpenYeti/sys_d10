@@ -6,11 +6,16 @@ import argparse, sys, os
 #   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" title="Magie" /><span></span>
 #   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Combat" /><span></span>
 
-def gen_tab(name,tabnb,checked=False):
-    check=""
-    if checked:
-        check='checked="checked"'
-    return '<input type="radio" name="attr_tab" class="sheet-tab sheet-tab{nb}" value="{nb}" title="{name}" {checked} /><span></span>'.format(name=name,nb=tabnb,checked=check)
+def printable(name):
+    return name.replace(" ","").lower()
+
+def checked(b):
+    if b==1:
+        return 'checked="checked"'
+    return ""
+
+def gen_tab(name,tab_nb):
+    return '<input type="radio" name="attr_tab" class="sheet-tab sheet-tab{nb}" value="{nb}" title="{name}" {checked} /><span></span>'.format(name=name,nb=tab_nb,checked=checked(tab_nb))
 
 
 # <div class="sheet-tab-content sheet-tab1">
@@ -18,9 +23,15 @@ def gen_tab(name,tabnb,checked=False):
 #       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab1" checked="checked" value="1" title="Générales" />
 #       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab2" value="2" title="Sociales" />
 #       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab3" value="3" title="Intellectuelles" />
-      # <div class="sheet-tab-content sheet-secondary_skills_tab1">
-def gen_sectab(name):
-    pass
+
+def gen_subtab(name,secname,tab_nb,subtab_nb):
+    if subtab_nb==1:
+        intro="""<div class="sheet-tab-content sheet-tab{}">
+    <div class='sheet-col'>""".format(tab_nb)
+    else:
+        intro=""
+    line="""<input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab{nb}" {check} value="{nb}" title="{name}" />""".format(name=name,nb=subtab_nb,check=checked(subtab_nb))
+    return intro+line
 
  # <!--INTELECTUELLES -->
  #        <h3>Compétences Intellectuelles</h3>
@@ -43,8 +54,8 @@ def gen_sectab(name):
  #        </fieldset>
  #      </div>
 
- def gen_repeating(name):
-     pass
+def gen_repeating(name):
+    pass
 
 # <!--Fauchage -->
 #       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Fauchage" disabled="true" value="Fauchage" />
@@ -66,11 +77,42 @@ def gen_sectab(name):
 #       <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Fauchage" />
 #       <br/>
 
-def gen_technique(name):
+# <div class="sheet-tab-content sheet-secondary_skills_tab1">
+def gen_technique(name,tab_name,tab_nb,first_technique):
+
+    if first_technique:
+        intro="""<div class="sheet-tab-content sheet-secondary_skills_tab{}">""".format(name)
+    else:
+        intro=""
     pass
 
 
 if __name__ == '__main__':
-    def parse():
-        pass
-    
+    # filen=sys.argv[1]
+    filen="cyberpnk.txt"
+
+    def parse(filen):
+        tab,subtab="",""
+        tab_nb,subtab_nb=0,0
+        first_technique=True
+        try:
+            with open(filen) as f:
+                for line in f.readlines():
+                    if line[0]=="#": # section
+                        first_technique=True
+                        subtab_content=gen_tab(line[1:],tab_nb)
+                        tab=printable(line[1:])
+                        print(tab,subtab_content)
+                        tab_nb+=1
+                    elif line[0]=="@":
+                        # first_technique=True
+                        subtab_content=gen_subtab(line[1:],tab,tab_nb,subtab_nb)
+                        subtab=printable(line[1:])
+                        print(subtab,subtab_content)
+                    elif line[0]==":":
+                        tech_content=gen_technique(line[1:],tab,tab_nb,first_technique)
+                        # tech=printable()
+        except FileNotFoundError:
+            print(filen,"was not found")
+
+    parse(filen)

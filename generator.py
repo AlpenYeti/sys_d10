@@ -1,37 +1,121 @@
-# Generate skills sections and others from a file, on the long run, it should be able to generate the whole sheet
+#ENCODING UTF-8
+
+# content skills sections and others from a file, on the long run, it should be able to content the whole sheet
 
 import argparse, sys, os
 
-#
-#   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" title="Magie" /><span></span>
-#   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Combat" /><span></span>
 
-def printable(name):
-    return name.replace(" ","").lower()
+class Node(object):
+    """Generic Node."""
+    def __init__(self, name,nb):
+        self.name = name.strip(" ")
+        self.number=nb
+        self.children=[]
+        self.checked=""
+        self.parent=None
+        self.pname=name.replace(" ","").lower()
+        if nb==1:
+            self.checked='checked="checked"'
 
-def checked(b):
-    if b==1:
-        return 'checked="checked"'
-    return ""
+    def content(self):
+        return ""
 
-def gen_tab(name,tab_nb):
-    return '<input type="radio" name="attr_tab" class="sheet-tab sheet-tab{nb}" value="{nb}" title="{name}" {checked} /><span></span>'.format(name=name,nb=tab_nb,checked=checked(tab_nb))
+    def header(self):
+        return ""
 
+    def css(self):
+        return ""
 
-# <div class="sheet-tab-content sheet-tab1">
-#     <div class='sheet-col'>
-#       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab1" checked="checked" value="1" title="Générales" />
-#       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab2" value="2" title="Sociales" />
-#       <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab3" value="3" title="Intellectuelles" />
+    def addchild(self,child):
+        self.children+=[child]
 
-def gen_subtab(name,secname,tab_nb,subtab_nb):
-    if subtab_nb==1:
-        intro="""<div class="sheet-tab-content sheet-tab{}">
-    <div class='sheet-col'>""".format(tab_nb)
-    else:
-        intro=""
-    line="""<input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab{nb}" {check} value="{nb}" title="{name}" />""".format(name=name,nb=subtab_nb,check=checked(subtab_nb))
-    return intro+line
+    # def printable(self,name):
+    #     return
+
+class Root(Node):
+    """docstring for Root."""
+    def __init__(self):
+        super(Root,self).__init__("",0)
+
+    def generate(self):
+        "Return the whole tree, printable"
+        return self.content()
+
+    def content(self):
+        ret=""
+        for child in self.children:
+            ret+=child.header() # Ligne de chaque tab direct, puis tout
+        for child in self.children:
+            ret+=child.content()
+            ret+="</div>\n"
+        return ret
+
+    def css(self):
+        "Return the whole css, printable"
+        ret="""div.sheet-tab-content { display: none; }"""
+        for child in self.children:
+            ret+="input.sheet-tab{}:checked ~ div.sheet-tab{},\n".format(child.number)
+        ret=ret[:-1]
+        ret+="{display: block;}"
+        return ret
+
+class Tab(Node):
+    """Tab node, contains"""
+
+    def __init__(self, name,nb):
+        super(Tab, self).__init__(name,nb)
+
+    def header(self): # Comes first
+        return '<input type="radio" name="attr_tab" class="sheet-tab sheet-tab{self.number}" value="{self.number}" title="{self.name}" {self.checked}/><span></span>\n'.format(self=self)
+
+    def content(self):
+        ret='<div class="sheet-tab-content sheet-tab{self.number}">\n  <div class="sheet-col">\n'.format(self=self) # And add all content
+        for child in self.children:
+            ret+=child.header()
+        ret+="  </div>\n"
+        for child in self.children:
+            ret+=child.content()
+        return ret
+
+class SubTab(Node):
+    def __init__(self,name,nb):
+        super(SubTab,self).__init__(name,nb)
+
+    def header(self):
+        return """    <input type="radio" name="secondary_skills_tab" class="small_tab secondary_skills_tab{self.number}" {self.checked} value="{self.number}" title="{self.name}" />\n""".format(self=self)
+
+    def content(self):
+        ret= '  <div class="sheet-tab-content sheet-secondary_skills_tab{self.number}">\n'.format(self=self)
+        ret+="    <!-- {self.name} -->\n    <h3>{self.name}</h3>\n".format(self=self)
+        for child in self.children:
+            ret+=child.content()
+        ret+="  </div>\n"
+        return ret
+
+class Skill(Node):
+    """Print a skill."""
+    def __init__(self, name,nb):
+        super(Skill, self).__init__(name,nb)
+
+    def content(self):
+        ret="""      <!--{self.name} -->
+      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_{self.pname}" disabled="true" value="{self.name}" />
+      <input type="number" min="0" value="0" name="attr_skillcost_Fauchage" title="Coût de la compétence" />
+      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_{self.pname}" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_{self.pname}">
+        <option value="@{base-Force} + @{exal-Force}">For</option>
+        <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+        <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+        <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+        <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+      </select>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_{self.pname}}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_{self.pname}}+(@{Skill_general_attribute_select_{self.pname}})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_{self.pname}}+(@{Skill_general_attribute_select_{self.pname}})]]}} "></button>
+      <br/>""".format(self=self)
+
 
  # <!--INTELECTUELLES -->
  #        <h3>Compétences Intellectuelles</h3>
@@ -54,65 +138,34 @@ def gen_subtab(name,secname,tab_nb,subtab_nb):
  #        </fieldset>
  #      </div>
 
-def gen_repeating(name):
-    pass
-
-# <!--Fauchage -->
-#       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Fauchage" disabled="true" value="Fauchage" />
-#       <input type="number" min="0" value="0" name="attr_skillcost_Fauchage" title="Coût de la compétence" />
-#       <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_Fauchage" title="Niveau dans la compétence" />
-#       <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_Fauchage">
-#         <option value="@{base-Force} + @{exal-Force}">For</option>
-#         <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
-#         <option value="@{base-Perception} + @{exal-Perception}">Per</option>
-#         <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
-#         <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
-#         <option value="@{base-Perception} + @{exal-Perception}">Per</option>
-#         <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
-#         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
-#         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
-#       </select>
-#       <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_Fauchage}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_Fauchage}+(@{Skill_general_attribute_select_Fauchage})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_Fauchage}+(@{Skill_general_attribute_select_Fauchage})]]}} "></button>
-#       <input type="checkbox" class="sheet-skill_activation" style="margin-right: 4px;" value="1" name="attr_skill_Fauchage_activation" />
-#       <input class="sheet-skill_hidden" value="0" type="number" name="attr_general_effective_Fauchage" />
-#       <br/>
-
-# <div class="sheet-tab-content sheet-secondary_skills_tab1">
-def gen_technique(name,tab_name,tab_nb,first_technique):
-
-    if first_technique:
-        intro="""<div class="sheet-tab-content sheet-secondary_skills_tab{}">""".format(name)
-    else:
-        intro=""
-    pass
-
 
 if __name__ == '__main__':
     # filen=sys.argv[1]
     filen="cyberpnk.txt"
 
     def parse(filen):
-        tab,subtab="",""
-        tab_nb,subtab_nb=0,0
-        first_technique=True
+        root=Root()
+        active_tab,active_subtab=None,None
+        tab_nb,subtab_nb,skill_nb=1,1,1
         try:
             with open(filen) as f:
                 for line in f.readlines():
-                    if line[0]=="#": # section
-                        first_technique=True
-                        subtab_content=gen_tab(line[1:],tab_nb)
-                        tab=printable(line[1:])
-                        print(tab,subtab_content)
+                    if line[0]=="@": # Tab
+                        active_tab=Tab(line[1:-1],tab_nb)
+                        root.addchild(active_tab)
                         tab_nb+=1
-                    elif line[0]=="@":
-                        # first_technique=True
-                        subtab_content=gen_subtab(line[1:],tab,tab_nb,subtab_nb)
-                        subtab=printable(line[1:])
-                        print(subtab,subtab_content)
-                    elif line[0]==":":
-                        tech_content=gen_technique(line[1:],tab,tab_nb,first_technique)
-                        # tech=printable()
+                        subtab_nb=1
+                    elif line[0]=="+":
+                        active_subtab=SubTab(line[1:-1],subtab_nb)
+                        active_tab.addchild(active_subtab)
+                        subtab_nb+=1
+                        skill_nb=1
+                    elif line[0]=="-":
+                        tech_content=Skill(line[1:-1],skill_nb)
+                        active_subtab.addchild(tech_content)
+                        skill_nb+=1
         except FileNotFoundError:
             print(filen,"was not found")
-
-    parse(filen)
+        return root
+    root=parse(filen)
+    print(root.content())

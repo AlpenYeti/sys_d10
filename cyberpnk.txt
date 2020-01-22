@@ -1,4 +1,13 @@
-@ Section
-# Sub section
-: Competence 1
-: Competence 2
+@ Compétences
++ Sub section
+- Competence 1
+- Competence 2
+. Repeating 1
++ Sub section 2
++ Sub section 3
++ Sub section 4
+@ Magie
++ Subsection 2
+@ Combat
++ Subsection 2
+- Competence2

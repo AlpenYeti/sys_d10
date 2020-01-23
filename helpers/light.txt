@@ -1,3 +1,5 @@
 @ Physique
-+ Compétences de combat
-- : Armes à feu
++ Combat
+- Armes à feu
++ Soc
+- Charisme

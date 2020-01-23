@@ -4,11 +4,13 @@
 # content skills sections and others from a file, on the long run, it should be able to content the whole sheet
 
 import argparse, sys, os
-from unidecode import unidecode
+import string
+# from unidecode import unidecode
 # import unicode
 
 def remove_non_ascii(text):
-    return unidecode(text)
+    return "".join([c for c in text if c in string.ascii_letters]).strip(" ")
+    # return unidecode(text)
 
 class Node(object):
     """Generic Node."""
@@ -59,14 +61,13 @@ class Root(Node):
         for child in self.children:
             ret+="\ninput.sheet-tab{node.number}:checked ~ div.sheet-tab{node.number},".format(node=child)
         ret=ret[:-1]
-        ret+="\n{display: block;}\n"
+        ret+="\n{\n display: block;\n}"
         for child in self.children:
             ret+=child.css()
         return ret
 
 class Tab(Node):
     """Tab node, contains"""
-
     def __init__(self, name,nb):
         super(Tab, self).__init__(name,nb)
 
@@ -74,29 +75,30 @@ class Tab(Node):
         return '<input type="radio" name="attr_tab" class="sheet-tab sheet-tab{self.number}" value="{self.number}" title="{self.name}" {self.checked}/><span></span>\n'.format(self=self)
 
     def content(self):
-        ret='<div class="sheet-tab-content sheet-tab{self.number}">\n  <div class="sheet-col">\n'.format(self=self) # And add all content
+        ret='<!--  {self.pname} -->\n<div class="sheet-tab-content sheet-tab{self.number}">\n'.format(self=self) # And add all content
         for child in self.children:
             ret+=child.header()
-        ret+="  </div>\n"
         for child in self.children:
             ret+=child.content()
         return ret
+
     def css(self):
         ret=" "
         for child in self.children:
-            ret+="\ninput.sheet-{node.pname}{child.number}:checked ~ div.sheet-{node.pname}{child.number},".format(child=child,node=self)
+            ret+="\ninput.sheet-secondary_{node.pname}_tab{child.number}:checked ~ div.sheet-secondary_{node.pname}_tab{child.number},".format(child=child,node=self)
         ret=ret[:-1]
-        ret+="\n{display: block;}\n"
+        ret+="\n{\n display: block;\n}"
         return ret
+
 class SubTab(Node):
     def __init__(self,name,nb):
         super(SubTab,self).__init__(name,nb)
 
     def header(self):
-        return """    <input type="radio" name="secondary_tab_{self.parent.pname}" class="small_tab secondary_tab_{self.parent.pname}{self.number}" {self.checked} value="{self.number}" title="{self.name}" />\n""".format(self=self)
+        return """  <input type="radio" name="secondary_{self.parent.pname}_tab" class="small_tab secondary_{self.parent.pname}_tab{self.number}" value="{self.number}" {self.checked}title="{self.name}" />\n""".format(self=self)
 
     def content(self):
-        ret= '  <div class="sheet-tab-content sheet-secondary_tab_{self.parent.pname}{self.number}">\n'.format(self=self)
+        ret= '  <div class="sheet-tab-content sheet-secondary_{self.parent.pname}_tab{self.number}">\n'.format(self=self)
         ret+="    <!-- {self.name} -->\n    <h3>{self.name}</h3>\n".format(self=self)
         for child in self.children:
             ret+=child.content()
@@ -130,28 +132,35 @@ class Skill(Node):
       <br/>\n""".format(self=self)
         return ret
 
-#
- # <!--INTELECTUELLES -->
- #        <h3>Compétences Intellectuelles</h3>
- #        <fieldset class="repeating_intelect-skills">
- #          <input class="sheet-skill_name" type="text" name="attr_intelect_skillname" />
- #          <input type="number" name="attr_intelect_skillcost" title="Coût de la compétence" />
- #          <input type="number" min="-10" max="10" name="attr_intelect_skilllevel" title="Niveau dans la compétence" />
- #          <select class="sheet-skill_select" name="attr_intelect_attribute_select">
- #            <option value="@{{base-Force}} + @{{exal-Force}}">For</option>
- #            <option value="@{{base-Agilite}} + @{{exal-Agilite}}">Agi</option>
- #            <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
- #            <option value="@{{base-Charisme}} + @{{exal-Charisme}}">Cha</option>
- #            <option value="@{{base-Intelligence}} + @{{exal-Intelligence}}">Int</option>
- #            <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
- #            <option value="@{{base-Volonte}} + @{{exal-Volonte}}">Vol</option>
- #            <option value="@{{base-Psyche}} + @{{exal-Psyche}}">Psy</option>
- #            <option value="@{{base-Chance}} + @{{exal-Chance}}">Chn</option>
- #          </select>
- #          <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{{character_name}}}} {{roll_name=@{{intelect_skillname}}}} {{dice_name=@{{dice}}}} {{result=[[@{{intelect_skilllevel}}+(@{{intelect_attribute_select}})-d@{{dice}}cs1cf@{{dice}}]]}} {{threshold=[[@{{intelect_skilllevel}}+(@{{intelect_attribute_select}})]]}}"></button>
- #        </fieldset>
- #      </div>
+class Repeating(Node):
+    """Repeating section"""
 
+    def __init__(self, name,nb):
+        super(Repeating, self).__init__(name,nb)
+
+    def content(self):
+        ret="""      <!-- {node.pname} -->
+      <fieldset class="repeating_{node.pname}-skills">
+      <input class="sheet-skill_name" type="text" name="attr_{node.pname}_skillname" />
+      <input type="number" name="attr_{node.pname}_skillcost" title="Coût de la compétence" />
+      <input type="number" min="-10" max="10" name="attr_{node.pname}_skilllevel" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" name="attr_{node.pname}_attribute_select">
+        <option value="@{{base-Force}} + @{{exal-Force}}">For</option>
+        <option value="@{{base-Agilite}} + @{{exal-Agilite}}">Agi</option>
+        <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
+        <option value="@{{base-Charisme}} + @{{exal-Charisme}}">Cha</option>
+        <option value="@{{base-Intelligence}} + @{{exal-Intelligence}}">Int</option>
+        <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
+        <option value="@{{base-Volonte}} + @{{exal-Volonte}}">Vol</option>
+        <option value="@{{base-Psyche}} + @{{exal-Psyche}}">Psy</option>
+        <option value="@{{base-Chance}} + @{{exal-Chance}}">Chn</option>
+      </select>
+      <button type='roll' class="sheet-skillbutton" value="&{{template:d10skillcheck}}{{{{name=@{{{{character_name}}}}}}}}\
+ {{{{roll_name=@{{{{{node.pname}_skillname}}}}}}}} {{{{dice_name=@{{dice}}}}}}}} {{{{result=[[@{{{{{node.pname}_skilllevel}}}}\
+ +(@{{{{{node.pname}_attribute_select}}}})-d@{{{{dice}}}}cs1cf@{{{{dice}}}}]]}}}} {{{{threshold=[[@{{{{{node.pname}_skilllevel}}}}+(@{{{{{node.pname}_attribute_select}}}})]]}}}}"></button>
+      </fieldset>
+      <br/>\n""".format(node=self)
+        return ret
 
 if __name__ == '__main__':
     # filen=sys.argv[1]
@@ -162,7 +171,7 @@ if __name__ == '__main__':
     def parse(filen):
         root=Root()
         active_tab,active_subtab=None,None
-        tab_nb,subtab_nb,skill_nb=1,1,1
+        tab_nb,subtab_nb,skill_nb,repeating_nb=1,1,1,1
         try:
             with open(filen,encoding="utf-8") as f:
                 for line in f.readlines():
@@ -180,11 +189,21 @@ if __name__ == '__main__':
                         tech_content=Skill(line[1:-1],skill_nb)
                         active_subtab.addchild(tech_content)
                         skill_nb+=1
+                    elif line[0]==".":
+                        tech_content=Repeating(line[1:-1],repeating_nb)
+                        active_subtab.addchild(tech_content)
+                        repeating_nb+=1
         except FileNotFoundError:
             print(filen,"was not found")
         return root
     root=parse(filen)
+    import base
     with open(output,"w",encoding="utf-8") as f:
+        f.write(base.head)
+        f.write(base.script)
+        f.write(base.header)
         f.write(root.content())
+        f.write(base.footer)
     with open(outcss,"w",encoding="utf-8") as f:
         f.write(root.css())
+        f.write(base.css_footer)

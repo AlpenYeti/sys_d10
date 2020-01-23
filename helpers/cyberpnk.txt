@@ -1,126 +1,125 @@
 @ Physique
-+ Compétences de combat
-- : Armes à feu
--	: Armes d'assaut
--	: Armes de poing
++ Combat
+- Armes à feu
+- &#8677; Armes d'assaut
+-	&#8677; Armes de poing
 - Armes Lourdes
--	: Projectiles autopropulsés
-- : Armement laser
+-	&#8677; Projectiles autopropulsés
+- &#8677; Armement laser
 - Artillerie
-	: Guidage de missiles
-	: Systemes de défences
-	: Balistique superlative
+	&#8677; Guidage de missiles
+	&#8677; Systemes de défences
+	&#8677; Balistique superlative
 - Combat à Mains Nues
-	: Neo Kwon Do
-	: Zero-G
+	&#8677; Neo Kwon Do
+	&#8677; Zero-G
 - Combat Armé
-	: Armes Contandantes
-	: Armes Tranchantes
+	&#8677; Armes Contandantes
+	&#8677; Armes Tranchantes
 - Maniement des Explosifs
 
-+ Compétences physiques
++ Physiques
 - Athlétisme
-- : Aerien
-- : Terrestre
-- : Maritime
-- : Zero G
+- &#8677; Aerien
+- &#8677; Terrestre
+- &#8677; Maritime
+- &#8677; Zero G
 - Survie
-- : Environnement Sauvage
-- : Environnement Urbain
-- : Environnement Spacial
+- &#8677; Environnement Sauvage
+- &#8677; Environnement Urbain
+- &#8677; Environnement Spacial
 
-+ Utilisation d’implants
++ Implants
 - Utilisation de Cyberware
-- : Utilisation de Neuro Accelerateurs
-- : Utilisation d'Interfaces de tir
-- : Overdrive Physique
+- &#8677; Utilisation de Neuro Accelerateurs
+- &#8677; Utilisation d'Interfaces de tir
+- &#8677; Overdrive Physique
 
-+ Compétences de Pilotage
++ Pilotage
 - Pilotage athmosphérique
-- : Pilotage de Chasseurs
-- : Pilotage de Navettes
+- &#8677; Pilotage de Chasseurs
+- &#8677; Pilotage de Navettes
 - Vehicules Terestres
-- : Vehicules Legers
-- : Vehicules Lourds
-- : Véhicules de Course
+- &#8677; Vehicules Legers
+- &#8677; Vehicules Lourds
+- &#8677; Véhicules de Course
 - Vaisseaux Spatiaux
-- : Batiments légers
-- : Batiments lourds
-- : Batiments super lourds
+- &#8677; Batiments légers
+- &#8677; Batiments lourds
+- &#8677; Batiments super lourds
 
 @ Intelectuelles
-
-+ Compétences Techniques
++ Techniques
 - Biotech
-- : Chirurgie d’implants
+- &#8677; Chirurgie d’implants
 - Electronique
-- : Interconnection des systèmes
-- : Verrous magnétiques
+- &#8677; Interconnection des systèmes
+- &#8677; Verrous magnétiques
 - Informatique
-- : Hardware
-- : Software
-- : Systèmes embarqués
-- Mecanique
-- : Réacteurs à Fusion
-- : Réacteurs à Fission
-- : Compensateurs d'Inertie
-- : Technologie Lightfold
-- : Systèmes de Survie
-- : Systemes de Propultion
+- &#8677; Hardware
+- &#8677; Software
+- &#8677; Systèmes embarqués
+- Mécanique
+- &#8677; Réacteurs à Fusion
+- &#8677; Réacteurs à Fission
+- &#8677; Compensateurs d'Inertie
+- &#8677; Technologie Lightfold
+- &#8677; Systèmes de Survie
+- &#8677; Systemes de Propultion
 - Prospection stellaire
-- : Corps stellaires
-- : Excavation planetaire
+- &#8677; Corps stellaires
+- &#8677; Excavation planetaire
 
 + Connaissances
 - Bioware
-- : Implants Céphaliens
-- : Implants Corporels
+- &#8677; Implants Céphaliens
+- &#8677; Implants Corporels
 - Médecine
-- : Soins Intensifs
-- : Cybernetisation
+- &#8677; Soins Intensifs
+- &#8677; Cybernetisation
 - Sciences
-- : Astromathématiques
-- : Biologie
-- : Xenobiologie
-- : Mathématiques
-- : Physique/Chimie
-- : Lightfold
-- : Sociologie
+- &#8677; Astromathématiques
+- &#8677; Biologie
+- &#8677; Xenobiologie
+- &#8677; Mathématiques
+- &#8677; Physique/Chimie
+- &#8677; Lightfold
+- &#8677; Sociologie
 
 + Culture Générale
 - Instruction Civique
-- : Administratif/Politique/Droit
-- : Finances
-- : Psychologie
+- &#8677; Administratif/Politique/Droit
+- &#8677; Finances
+- &#8677; Psychologie
 - Théorie Militaire
-- : Tactique
-- : Stratégie
+- &#8677; Tactique
+- &#8677; Stratégie
 
 @ Social
-+ Compétences Sociales
++ Sociales
 - Etiquette
-- : Alpha Centauri
-- : Eridani
-- : Banard
-- : Tau
-- : Sirius
-- : C.I.C.
-- : Sol
-- : Pègre
+- &#8677; Alpha Centauri
+- &#8677; Eridani
+- &#8677; Banard
+- &#8677; Tau
+- &#8677; Sirius
+- &#8677; C.I.C.
+- &#8677; Sol
+- &#8677; Pègre
 - Interrogation
-- : Intimidation
+- &#8677; Intimidation
 - Commandement
 - Négociation
 - Baratin
 
-+ Competences Clandestines
++ Clandestines
 - Discretion
 - Crochetage
 - Informations
 - Larcin
 - Marchés noirs
-- : Acquisition d’Objets
-- : Acquisition d’Informations
+- &#8677; Acquisition d’Objets
+- &#8677; Acquisition d’Informations
 
-+ Contacts et Réputations
++ Contacts
 . Contacts

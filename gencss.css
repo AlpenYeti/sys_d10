@@ -1,0 +1,21 @@
+div.sheet-tab-content { display: none; }
+input.sheet-tab1:checked ~ div.sheet-tab1,
+input.sheet-tab2:checked ~ div.sheet-tab2,
+input.sheet-tab3:checked ~ div.sheet-tab3
+{display: block;}
+ 
+input.sheet-physique1:checked ~ div.sheet-physique1,
+input.sheet-physique2:checked ~ div.sheet-physique2,
+input.sheet-physique3:checked ~ div.sheet-physique3,
+input.sheet-physique4:checked ~ div.sheet-physique4
+{display: block;}
+ 
+input.sheet-intelectuelles1:checked ~ div.sheet-intelectuelles1,
+input.sheet-intelectuelles2:checked ~ div.sheet-intelectuelles2,
+input.sheet-intelectuelles3:checked ~ div.sheet-intelectuelles3
+{display: block;}
+ 
+input.sheet-social1:checked ~ div.sheet-social1,
+input.sheet-social2:checked ~ div.sheet-social2,
+input.sheet-social3:checked ~ div.sheet-social3
+{display: block;}

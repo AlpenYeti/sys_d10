@@ -1,13 +1,126 @@
-@ Compétences
-+ Sub section
-- Competence 1
-- Competence 2
-. Repeating 1
-+ Sub section 2
-+ Sub section 3
-+ Sub section 4
-@ Magie
-+ Subsection 2
-@ Combat
-+ Subsection 2
-- Competence2
+@ Physique
++ Compétences de combat
+- : Armes à feu
+-	: Armes d'assaut
+-	: Armes de poing
+- Armes Lourdes
+-	: Projectiles autopropulsés
+- : Armement laser
+- Artillerie
+	: Guidage de missiles
+	: Systemes de défences
+	: Balistique superlative
+- Combat à Mains Nues
+	: Neo Kwon Do
+	: Zero-G
+- Combat Armé
+	: Armes Contandantes
+	: Armes Tranchantes
+- Maniement des Explosifs
+
++ Compétences physiques
+- Athlétisme
+- : Aerien
+- : Terrestre
+- : Maritime
+- : Zero G
+- Survie
+- : Environnement Sauvage
+- : Environnement Urbain
+- : Environnement Spacial
+
++ Utilisation d’implants
+- Utilisation de Cyberware
+- : Utilisation de Neuro Accelerateurs
+- : Utilisation d'Interfaces de tir
+- : Overdrive Physique
+
++ Compétences de Pilotage
+- Pilotage athmosphérique
+- : Pilotage de Chasseurs
+- : Pilotage de Navettes
+- Vehicules Terestres
+- : Vehicules Legers
+- : Vehicules Lourds
+- : Véhicules de Course
+- Vaisseaux Spatiaux
+- : Batiments légers
+- : Batiments lourds
+- : Batiments super lourds
+
+@ Intelectuelles
+
++ Compétences Techniques
+- Biotech
+- : Chirurgie d’implants
+- Electronique
+- : Interconnection des systèmes
+- : Verrous magnétiques
+- Informatique
+- : Hardware
+- : Software
+- : Systèmes embarqués
+- Mecanique
+- : Réacteurs à Fusion
+- : Réacteurs à Fission
+- : Compensateurs d'Inertie
+- : Technologie Lightfold
+- : Systèmes de Survie
+- : Systemes de Propultion
+- Prospection stellaire
+- : Corps stellaires
+- : Excavation planetaire
+
++ Connaissances
+- Bioware
+- : Implants Céphaliens
+- : Implants Corporels
+- Médecine
+- : Soins Intensifs
+- : Cybernetisation
+- Sciences
+- : Astromathématiques
+- : Biologie
+- : Xenobiologie
+- : Mathématiques
+- : Physique/Chimie
+- : Lightfold
+- : Sociologie
+
++ Culture Générale
+- Instruction Civique
+- : Administratif/Politique/Droit
+- : Finances
+- : Psychologie
+- Théorie Militaire
+- : Tactique
+- : Stratégie
+
+@ Social
++ Compétences Sociales
+- Etiquette
+- : Alpha Centauri
+- : Eridani
+- : Banard
+- : Tau
+- : Sirius
+- : C.I.C.
+- : Sol
+- : Pègre
+- Interrogation
+- : Intimidation
+- Commandement
+- Négociation
+- Baratin
+
++ Competences Clandestines
+- Discretion
+- Crochetage
+- Informations
+- Larcin
+- Marchés noirs
+- : Acquisition d’Objets
+- : Acquisition d’Informations
+
++ Contacts et Réputations
+. Contacts

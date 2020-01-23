@@ -2,20 +2,20 @@
 + Combat
 - Armes à feu
 - &#8677; Armes d'assaut
--	&#8677; Armes de poing
+- &#8677; Armes de poing
 - Armes Lourdes
--	&#8677; Projectiles autopropulsés
+- &#8677; Projectiles autopropulsés
 - &#8677; Armement laser
 - Artillerie
-	&#8677; Guidage de missiles
-	&#8677; Systemes de défences
-	&#8677; Balistique superlative
+- &#8677; Guidage de missiles
+- &#8677; Systemes de défences
+- &#8677; Balistique superlative
 - Combat à Mains Nues
-	&#8677; Neo Kwon Do
-	&#8677; Zero-G
+- &#8677; Neo Kwon Do
+- &#8677; Zero-G
 - Combat Armé
-	&#8677; Armes Contandantes
-	&#8677; Armes Tranchantes
+- &#8677; Armes Contandantes
+- &#8677; Armes Tranchantes
 - Maniement des Explosifs
 
 + Physiques

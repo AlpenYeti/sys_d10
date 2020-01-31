@@ -3,163 +3,30 @@ head="""<head>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
 """
 script="""  <script type="text/worker">
-
-  // Perfection
-  on("change:skill_Perfection_activation change:general_skilllevel_Perfection", function() {
-    getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
-      setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
-    });
-  });
-  // Fauchage
-  on("change:skill_Fauchage_activation change:general_skilllevel_Fauchage", function() {
-    getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
-      setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
-    });
-  });
-  // Coup_dechirant
-  on("change:skill_Coup_dechirant_activation change:general_skilllevel_Coup_dechirant", function() {
-    getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
-      setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
-    });
-  });
-  // Exploiter_les_points_faibles
-  on("change:skill_Exploiter_les_points_faibles_activation change:general_skilllevel_Exploiter_les_points_faibles", function() {
-    getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
-      setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
-    });
-  });
-  // Technique_martiale
-  on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale change:base-Agilite", function() {
-    getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
-      setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite']))});
-    });
-  });
-  // Defense_impenetrable
-  on("change:skill_Defense_impenetrable_activation change:general_skilllevel_Defense_impenetrable", function() {
-    getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
-      setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
-    });
-  });
-  // Rempart_parfait
-  on("change:skill_Rempart_parfait_activation change:general_skilllevel_Rempart_parfait", function() {
-    getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
-      setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
-    });
-  });
-  // Endurance_surnaturelle
-  on("change:skill_Endurance_surnaturelle_activation change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
-    });
-  });
-  // Encaissement
-  on("change:skill_Encaissement_activation change:general_skilllevel_Encaissement", function() {
-    getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
-      setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
-    });
-  });
-  // Tir_precis
-  on("change:skill_Tir_precis_activation change:general_skilllevel_Tir_precis", function() {
-    getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
-      setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
-    });
-  });
-  // Tir_implacable
-  on("change:skill_Tir_implacable_activation change:general_skilllevel_Tir_implacable", function() {
-    getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
-      setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
-    });
-  });
-  // Charge
-  on("change:skill_Charge_activation change:general_skilllevel_Charge", function() {
-    getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
-      setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
-    });
-  });
-  // Charge_indomptable
-  on("change:skill_Charge_indomptable_activation change:general_skilllevel_Charge_indomptable", function() {
-    getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
-      setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
-    });
-  });
-  // weapon1
-  on("change:item_weapon1_activation change:general_item_weapon1", function() {
-    getAttrs(["item_weapon1_activation", "general_item_weapon1"], function(values) {
-      setAttrs({"general_effective_weapon1":values.item_weapon1_activation*values.general_item_weapon1});
-    });
-  });
-  // weapon2
-  on("change:item_weapon2_activation change:general_item_weapon2", function() {
-    getAttrs(["item_weapon2_activation", "general_item_weapon2"], function(values) {
-      setAttrs({"general_effective_weapon2":values.item_weapon2_activation*values.general_item_weapon2});
-    });
-  });
-  // weapon3
-  on("change:item_weapon3_activation change:general_item_weapon3", function() {
-    getAttrs(["item_weapon3_activation", "general_item_weapon3"], function(values) {
-      setAttrs({"general_effective_weapon3":values.item_weapon3_activation*values.general_item_weapon3});
-    });
-  });
-
-  // shield1
-  on("change:item_shield1_activation change:general_item_shield1", function() {
-    getAttrs(["item_shield1_activation", "general_item_shield1"], function(values) {
-      setAttrs({"general_effective_shield1":values.item_shield1_activation*values.general_item_shield1});
-    });
-  });
-  // shield2
-  on("change:item_shield2_activation change:general_item_shield2", function() {
-    getAttrs(["item_shield2_activation", "general_item_shield2"], function(values) {
-      setAttrs({"general_effective_shield2":values.item_shield2_activation*values.general_item_shield2});
-    });
-  });
-  // shield3
-  on("change:item_shield3_activation change:general_item_shield3", function() {
-    getAttrs(["item_shield3_activation", "general_item_shield3"], function(values) {
-      setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
-    });
-  });
   // Life_Points
-  on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-      setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-    });
+// on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
+//   getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
+//     setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+//     setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+//   });
+// });
+// Endurance_Points
+on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
+  getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
+    setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
+    setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
   });
-  // Endurance_Points
-  on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
-      setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
-    });
-  });
-  // attr_Grievious_Wounds
-  on("change:Life_Points change:Life_Points_max change:Grievious_Wounds", function() {
-    getAttrs(["Life_Points", "Life_Points_maximum","Grievious_Wounds"], function(values) {
-      setAttrs({"Grievious_Wounds_effective":Math.min(Math.floor(Number(values.Life_Points_maximum)/4),Number(values.Grievious_Wounds)+Math.max(0,Math.floor(Number(values.Life_Points_maximum)/4-Number(values.Life_Points))))});
-    });
-  });
-  // undescored_name
-  on("change:character_name change:character_race", function() {
-    getAttrs(["character_name"], function(values) {
-      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
-    });
-  });
-  // dice_with_tanscendance
-  on("change:tmpdice change:transcendence", function() {
-    getAttrs(["tmpdice","transcendence"], function(values) {
-      if(values.transcendence<3){
-        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,3-values.transcendence))});
-      } else if (values.transcendence>3) {
-        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,values.transcendence-3))});
-      }else {
-        setAttrs({"dice":values.tmpdice});
-      };
-    });
-  });
+});
+// undescored_name
+// on("change:character_name change:character_race", function() {
+//   getAttrs(["character_name"], function(values) {
+//     setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
+//   });
+// });
+// dice_with_tanscendance
   </script>
 """
-header="""</head>
+header="""
 <div class="sheet-content">
   <div class="sheet-center">
     <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
@@ -173,19 +40,18 @@ header="""</head>
       <table class="sheet-center sheet-black">
         <tr>
           <td><h4>Points de Vie</h4></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_head" title="Tête" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_body" title="Torse" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_arm" title="Bras gauche" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_arm" title="Bras droit" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_leg" title="Jambe gauche" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_leg" title="Jambe droite" value="0"/></td>
+          <!-- <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td> -->
         </tr>
         <tr>
           <td><h4>Points de Fatigue</h4></td>
           <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
           <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/></td>
-        </tr>
-        <tr>
-          <td><h4>Dégats aggravés</h4></td>
-          <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" title="Dégats aggravés supplémentaires" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" title="Dégats aggravés actuels" value="@{Grievious_Wounds_effective}"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" title="Dégats aggravés maximum" value="floor(@{Life_Points_maximum}/4)"/></td>
         </tr>
       </table>
     </div>
@@ -198,7 +64,7 @@ header="""</head>
         <tr>
           <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
           <td rowspan="2">
-            <select class="sheet-dice_select sheet-dice" name="attr_tmpdice">
+            <select class="sheet-dice_select sheet-dice" name="attr_dice">
               <option value="2">d2</option>
               <option value="4">d4</option>
               <option value="6">d6</option>

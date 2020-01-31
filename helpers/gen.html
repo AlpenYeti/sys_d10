@@ -2,162 +2,29 @@
   <link rel="stylesheet" type="text/css" href="style.css"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
   <script type="text/worker">
-
-  // Perfection
-  on("change:skill_Perfection_activation change:general_skilllevel_Perfection", function() {
-    getAttrs(["skill_Perfection_activation", "general_skilllevel_Perfection"], function(values) {
-      setAttrs({"general_effective_Perfection":values.skill_Perfection_activation*values.general_skilllevel_Perfection});
-    });
-  });
-  // Fauchage
-  on("change:skill_Fauchage_activation change:general_skilllevel_Fauchage", function() {
-    getAttrs(["skill_Fauchage_activation", "general_skilllevel_Fauchage"], function(values) {
-      setAttrs({"general_effective_Fauchage":values.skill_Fauchage_activation*values.general_skilllevel_Fauchage});
-    });
-  });
-  // Coup_dechirant
-  on("change:skill_Coup_dechirant_activation change:general_skilllevel_Coup_dechirant", function() {
-    getAttrs(["skill_Coup_dechirant_activation", "general_skilllevel_Coup_dechirant"], function(values) {
-      setAttrs({"general_effective_Coup_dechirant":values.skill_Coup_dechirant_activation*values.general_skilllevel_Coup_dechirant});
-    });
-  });
-  // Exploiter_les_points_faibles
-  on("change:skill_Exploiter_les_points_faibles_activation change:general_skilllevel_Exploiter_les_points_faibles", function() {
-    getAttrs(["skill_Exploiter_les_points_faibles_activation", "general_skilllevel_Exploiter_les_points_faibles"], function(values) {
-      setAttrs({"general_effective_Exploiter_les_points_faibles":values.skill_Exploiter_les_points_faibles_activation*values.general_skilllevel_Exploiter_les_points_faibles});
-    });
-  });
-  // Technique_martiale
-  on("change:skill_Technique_martiale_activation change:general_skilllevel_Technique_martiale change:base-Agilite", function() {
-    getAttrs(["skill_Technique_martiale_activation", "general_skilllevel_Technique_martiale",'base-Agilite'], function(values) {
-      setAttrs({"general_effective_Technique_martiale":values.skill_Technique_martiale_activation*(Number(values.general_skilllevel_Technique_martiale)+Number(values['base-Agilite']))});
-    });
-  });
-  // Defense_impenetrable
-  on("change:skill_Defense_impenetrable_activation change:general_skilllevel_Defense_impenetrable", function() {
-    getAttrs(["skill_Defense_impenetrable_activation", "general_skilllevel_Defense_impenetrable"], function(values) {
-      setAttrs({"general_effective_Defense_impenetrable":values.skill_Defense_impenetrable_activation*values.general_skilllevel_Defense_impenetrable});
-    });
-  });
-  // Rempart_parfait
-  on("change:skill_Rempart_parfait_activation change:general_skilllevel_Rempart_parfait", function() {
-    getAttrs(["skill_Rempart_parfait_activation", "general_skilllevel_Rempart_parfait"], function(values) {
-      setAttrs({"general_effective_Rempart_parfait":values.skill_Rempart_parfait_activation*values.general_skilllevel_Rempart_parfait});
-    });
-  });
-  // Endurance_surnaturelle
-  on("change:skill_Endurance_surnaturelle_activation change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["skill_Endurance_surnaturelle_activation", "general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"general_effective_Endurance_surnaturelle":values.skill_Endurance_surnaturelle_activation*values.general_skilllevel_Endurance_surnaturelle});
-    });
-  });
-  // Encaissement
-  on("change:skill_Encaissement_activation change:general_skilllevel_Encaissement", function() {
-    getAttrs(["skill_Encaissement_activation", "general_skilllevel_Encaissement"], function(values) {
-      setAttrs({"general_effective_Encaissement":values.skill_Encaissement_activation*values.general_skilllevel_Encaissement});
-    });
-  });
-  // Tir_precis
-  on("change:skill_Tir_precis_activation change:general_skilllevel_Tir_precis", function() {
-    getAttrs(["skill_Tir_precis_activation", "general_skilllevel_Tir_precis"], function(values) {
-      setAttrs({"general_effective_Tir_precis":values.skill_Tir_precis_activation*values.general_skilllevel_Tir_precis});
-    });
-  });
-  // Tir_implacable
-  on("change:skill_Tir_implacable_activation change:general_skilllevel_Tir_implacable", function() {
-    getAttrs(["skill_Tir_implacable_activation", "general_skilllevel_Tir_implacable"], function(values) {
-      setAttrs({"general_effective_Tir_implacable":values.skill_Tir_implacable_activation*values.general_skilllevel_Tir_implacable});
-    });
-  });
-  // Charge
-  on("change:skill_Charge_activation change:general_skilllevel_Charge", function() {
-    getAttrs(["skill_Charge_activation", "general_skilllevel_Charge"], function(values) {
-      setAttrs({"general_effective_Charge":values.skill_Charge_activation*values.general_skilllevel_Charge});
-    });
-  });
-  // Charge_indomptable
-  on("change:skill_Charge_indomptable_activation change:general_skilllevel_Charge_indomptable", function() {
-    getAttrs(["skill_Charge_indomptable_activation", "general_skilllevel_Charge_indomptable"], function(values) {
-      setAttrs({"general_effective_Charge_indomptable":values.skill_Charge_indomptable_activation*values.general_skilllevel_Charge_indomptable});
-    });
-  });
-  // weapon1
-  on("change:item_weapon1_activation change:general_item_weapon1", function() {
-    getAttrs(["item_weapon1_activation", "general_item_weapon1"], function(values) {
-      setAttrs({"general_effective_weapon1":values.item_weapon1_activation*values.general_item_weapon1});
-    });
-  });
-  // weapon2
-  on("change:item_weapon2_activation change:general_item_weapon2", function() {
-    getAttrs(["item_weapon2_activation", "general_item_weapon2"], function(values) {
-      setAttrs({"general_effective_weapon2":values.item_weapon2_activation*values.general_item_weapon2});
-    });
-  });
-  // weapon3
-  on("change:item_weapon3_activation change:general_item_weapon3", function() {
-    getAttrs(["item_weapon3_activation", "general_item_weapon3"], function(values) {
-      setAttrs({"general_effective_weapon3":values.item_weapon3_activation*values.general_item_weapon3});
-    });
-  });
-
-  // shield1
-  on("change:item_shield1_activation change:general_item_shield1", function() {
-    getAttrs(["item_shield1_activation", "general_item_shield1"], function(values) {
-      setAttrs({"general_effective_shield1":values.item_shield1_activation*values.general_item_shield1});
-    });
-  });
-  // shield2
-  on("change:item_shield2_activation change:general_item_shield2", function() {
-    getAttrs(["item_shield2_activation", "general_item_shield2"], function(values) {
-      setAttrs({"general_effective_shield2":values.item_shield2_activation*values.general_item_shield2});
-    });
-  });
-  // shield3
-  on("change:item_shield3_activation change:general_item_shield3", function() {
-    getAttrs(["item_shield3_activation", "general_item_shield3"], function(values) {
-      setAttrs({"general_effective_shield3":values.item_shield3_activation*values.general_item_shield3});
-    });
-  });
   // Life_Points
-  on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-      setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-    });
+// on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
+//   getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
+//     setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+//     setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
+//   });
+// });
+// Endurance_Points
+on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
+  getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
+    setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
+    setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
   });
-  // Endurance_Points
-  on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
-    getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
-      setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
-      setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
-    });
-  });
-  // attr_Grievious_Wounds
-  on("change:Life_Points change:Life_Points_max change:Grievious_Wounds", function() {
-    getAttrs(["Life_Points", "Life_Points_maximum","Grievious_Wounds"], function(values) {
-      setAttrs({"Grievious_Wounds_effective":Math.min(Math.floor(Number(values.Life_Points_maximum)/4),Number(values.Grievious_Wounds)+Math.max(0,Math.floor(Number(values.Life_Points_maximum)/4-Number(values.Life_Points))))});
-    });
-  });
-  // undescored_name
-  on("change:character_name change:character_race", function() {
-    getAttrs(["character_name"], function(values) {
-      setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
-    });
-  });
-  // dice_with_tanscendance
-  on("change:tmpdice change:transcendence", function() {
-    getAttrs(["tmpdice","transcendence"], function(values) {
-      if(values.transcendence<3){
-        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,3-values.transcendence))});
-      } else if (values.transcendence>3) {
-        setAttrs({"dice":Math.floor(values.tmpdice/Math.pow(2,values.transcendence-3))});
-      }else {
-        setAttrs({"dice":values.tmpdice});
-      };
-    });
-  });
+});
+// undescored_name
+// on("change:character_name change:character_race", function() {
+//   getAttrs(["character_name"], function(values) {
+//     setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
+//   });
+// });
+// dice_with_tanscendance
   </script>
-</head>
+
 <div class="sheet-content">
   <div class="sheet-center">
     <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
@@ -171,19 +38,18 @@
       <table class="sheet-center sheet-black">
         <tr>
           <td><h4>Points de Vie</h4></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_head" title="Tête" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_body" title="Torse" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_arm" title="Bras gauche" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_arm" title="Bras droit" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_leg" title="Jambe gauche" value="0"/></td>
+          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_leg" title="Jambe droite" value="0"/></td>
+          <!-- <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td> -->
         </tr>
         <tr>
           <td><h4>Points de Fatigue</h4></td>
           <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
           <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/></td>
-        </tr>
-        <tr>
-          <td><h4>Dégats aggravés</h4></td>
-          <td><input class="sheet-trait" type="number" name="attr_Grievious_Wounds" title="Dégats aggravés supplémentaires" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_current" title="Dégats aggravés actuels" value="@{Grievious_Wounds_effective}"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_Grievious_Wounds_max" title="Dégats aggravés maximum" value="floor(@{Life_Points_maximum}/4)"/></td>
         </tr>
       </table>
     </div>
@@ -196,7 +62,7 @@
         <tr>
           <td><input type="number" class="sheet-trait" name="attr_Character_points_spent" value="0"/> Utilisés</td>
           <td rowspan="2">
-            <select class="sheet-dice_select sheet-dice" name="attr_tmpdice">
+            <select class="sheet-dice_select sheet-dice" name="attr_dice">
               <option value="2">d2</option>
               <option value="4">d4</option>
               <option value="6">d6</option>
@@ -321,7 +187,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesfeu}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesfeu}+(@{skill_combat_attribute_select_armesfeu})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesfeu}+(@{skill_combat_attribute_select_armesfeu})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesfeu}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesfeu}+(@{skill_combat_attribute_select_armesfeu})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesfeu}+(@{skill_combat_attribute_select_armesfeu})]]}}"></button>
       <br/>
       <!-- &#8677; Armes d'assaut -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armesdassaut" disabled="true" value=" &#8677; Armes d'assaut" />
@@ -338,7 +204,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesdassaut}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesdassaut}+(@{skill_combat_attribute_select_armesdassaut})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesdassaut}+(@{skill_combat_attribute_select_armesdassaut})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesdassaut}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesdassaut}+(@{skill_combat_attribute_select_armesdassaut})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesdassaut}+(@{skill_combat_attribute_select_armesdassaut})]]}}"></button>
       <br/>
       <!-- &#8677; Armes de poing -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armesdepoing" disabled="true" value=" &#8677; Armes de poing" />
@@ -355,7 +221,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesdepoing}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesdepoing}+(@{skill_combat_attribute_select_armesdepoing})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesdepoing}+(@{skill_combat_attribute_select_armesdepoing})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armesdepoing}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armesdepoing}+(@{skill_combat_attribute_select_armesdepoing})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armesdepoing}+(@{skill_combat_attribute_select_armesdepoing})]]}}"></button>
       <br/>
       <!-- Armes Lourdes -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armeslourdes" disabled="true" value=" Armes Lourdes" />
@@ -372,7 +238,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armeslourdes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armeslourdes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})]]}}"></button>
       <br/>
       <!-- &#8677; Projectiles autopropulsés -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_projectilesautopropulss" disabled="true" value=" &#8677; Projectiles autopropulsés" />
@@ -389,7 +255,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_projectilesautopropulss}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_projectilesautopropulss}+(@{skill_combat_attribute_select_projectilesautopropulss})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_projectilesautopropulss}+(@{skill_combat_attribute_select_projectilesautopropulss})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_projectilesautopropulss}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_projectilesautopropulss}+(@{skill_combat_attribute_select_projectilesautopropulss})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_projectilesautopropulss}+(@{skill_combat_attribute_select_projectilesautopropulss})]]}}"></button>
       <br/>
       <!-- &#8677; Armement laser -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armementlaser" disabled="true" value=" &#8677; Armement laser" />
@@ -406,7 +272,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armementlaser}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armementlaser}+(@{skill_combat_attribute_select_armementlaser})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armementlaser}+(@{skill_combat_attribute_select_armementlaser})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armementlaser}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armementlaser}+(@{skill_combat_attribute_select_armementlaser})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armementlaser}+(@{skill_combat_attribute_select_armementlaser})]]}}"></button>
       <br/>
       <!-- Artillerie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_artillerie" disabled="true" value=" Artillerie" />
@@ -423,7 +289,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_artillerie}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_artillerie}+(@{skill_combat_attribute_select_artillerie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_artillerie}+(@{skill_combat_attribute_select_artillerie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_artillerie}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_artillerie}+(@{skill_combat_attribute_select_artillerie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_artillerie}+(@{skill_combat_attribute_select_artillerie})]]}}"></button>
       <br/>
       <!-- &#8677; Guidage de missiles -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_guidagedemissiles" disabled="true" value=" &#8677; Guidage de missiles" />
@@ -440,7 +306,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_guidagedemissiles}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_guidagedemissiles}+(@{skill_combat_attribute_select_guidagedemissiles})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_guidagedemissiles}+(@{skill_combat_attribute_select_guidagedemissiles})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_guidagedemissiles}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_guidagedemissiles}+(@{skill_combat_attribute_select_guidagedemissiles})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_guidagedemissiles}+(@{skill_combat_attribute_select_guidagedemissiles})]]}}"></button>
       <br/>
       <!-- &#8677; Systemes de défences -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_systemesdedfences" disabled="true" value=" &#8677; Systemes de défences" />
@@ -457,7 +323,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_systemesdedfences}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_systemesdedfences}+(@{skill_combat_attribute_select_systemesdedfences})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_systemesdedfences}+(@{skill_combat_attribute_select_systemesdedfences})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_systemesdedfences}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_systemesdedfences}+(@{skill_combat_attribute_select_systemesdedfences})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_systemesdedfences}+(@{skill_combat_attribute_select_systemesdedfences})]]}}"></button>
       <br/>
       <!-- &#8677; Balistique superlative -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_balistiquesuperlative" disabled="true" value=" &#8677; Balistique superlative" />
@@ -474,7 +340,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_balistiquesuperlative}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_balistiquesuperlative}+(@{skill_combat_attribute_select_balistiquesuperlative})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_balistiquesuperlative}+(@{skill_combat_attribute_select_balistiquesuperlative})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_balistiquesuperlative}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_balistiquesuperlative}+(@{skill_combat_attribute_select_balistiquesuperlative})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_balistiquesuperlative}+(@{skill_combat_attribute_select_balistiquesuperlative})]]}}"></button>
       <br/>
       <!-- Combat à Mains Nues -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_combatmainsnues" disabled="true" value=" Combat à Mains Nues" />
@@ -491,7 +357,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_combatmainsnues}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_combatmainsnues}+(@{skill_combat_attribute_select_combatmainsnues})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_combatmainsnues}+(@{skill_combat_attribute_select_combatmainsnues})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_combatmainsnues}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_combatmainsnues}+(@{skill_combat_attribute_select_combatmainsnues})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_combatmainsnues}+(@{skill_combat_attribute_select_combatmainsnues})]]}}"></button>
       <br/>
       <!-- &#8677; Neo Kwon Do -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_neokwondo" disabled="true" value=" &#8677; Neo Kwon Do" />
@@ -508,7 +374,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_neokwondo}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_neokwondo}+(@{skill_combat_attribute_select_neokwondo})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_neokwondo}+(@{skill_combat_attribute_select_neokwondo})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_neokwondo}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_neokwondo}+(@{skill_combat_attribute_select_neokwondo})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_neokwondo}+(@{skill_combat_attribute_select_neokwondo})]]}}"></button>
       <br/>
       <!-- &#8677; Zero-G -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_zerog" disabled="true" value=" &#8677; Zero-G" />
@@ -525,7 +391,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_zerog}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_zerog}+(@{skill_combat_attribute_select_zerog})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_zerog}+(@{skill_combat_attribute_select_zerog})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_zerog}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_zerog}+(@{skill_combat_attribute_select_zerog})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_zerog}+(@{skill_combat_attribute_select_zerog})]]}}"></button>
       <br/>
       <!-- Combat Armé -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_combatarm" disabled="true" value=" Combat Armé" />
@@ -542,7 +408,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_combatarm}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_combatarm}+(@{skill_combat_attribute_select_combatarm})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_combatarm}+(@{skill_combat_attribute_select_combatarm})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_combatarm}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_combatarm}+(@{skill_combat_attribute_select_combatarm})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_combatarm}+(@{skill_combat_attribute_select_combatarm})]]}}"></button>
       <br/>
       <!-- &#8677; Armes Contandantes -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armescontandantes" disabled="true" value=" &#8677; Armes Contandantes" />
@@ -559,7 +425,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armescontandantes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armescontandantes}+(@{skill_combat_attribute_select_armescontandantes})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armescontandantes}+(@{skill_combat_attribute_select_armescontandantes})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armescontandantes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armescontandantes}+(@{skill_combat_attribute_select_armescontandantes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armescontandantes}+(@{skill_combat_attribute_select_armescontandantes})]]}}"></button>
       <br/>
       <!-- &#8677; Armes Tranchantes -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_armestranchantes" disabled="true" value=" &#8677; Armes Tranchantes" />
@@ -576,7 +442,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armestranchantes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armestranchantes}+(@{skill_combat_attribute_select_armestranchantes})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armestranchantes}+(@{skill_combat_attribute_select_armestranchantes})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armestranchantes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armestranchantes}+(@{skill_combat_attribute_select_armestranchantes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armestranchantes}+(@{skill_combat_attribute_select_armestranchantes})]]}}"></button>
       <br/>
       <!-- Maniement des Explosifs -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_maniementdesexplosifs" disabled="true" value=" Maniement des Explosifs" />
@@ -593,7 +459,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_maniementdesexplosifs}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_maniementdesexplosifs}+(@{skill_combat_attribute_select_maniementdesexplosifs})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_maniementdesexplosifs}+(@{skill_combat_attribute_select_maniementdesexplosifs})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_maniementdesexplosifs}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_maniementdesexplosifs}+(@{skill_combat_attribute_select_maniementdesexplosifs})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_maniementdesexplosifs}+(@{skill_combat_attribute_select_maniementdesexplosifs})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_physique_tab2">
@@ -614,7 +480,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_athltisme}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_athltisme}+(@{skill_physiques_attribute_select_athltisme})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_athltisme}+(@{skill_physiques_attribute_select_athltisme})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_athltisme}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_athltisme}+(@{skill_physiques_attribute_select_athltisme})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_athltisme}+(@{skill_physiques_attribute_select_athltisme})]]}}"></button>
       <br/>
       <!-- &#8677; Aerien -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_aerien" disabled="true" value=" &#8677; Aerien" />
@@ -631,7 +497,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_aerien}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_aerien}+(@{skill_physiques_attribute_select_aerien})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_aerien}+(@{skill_physiques_attribute_select_aerien})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_aerien}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_aerien}+(@{skill_physiques_attribute_select_aerien})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_aerien}+(@{skill_physiques_attribute_select_aerien})]]}}"></button>
       <br/>
       <!-- &#8677; Terrestre -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_terrestre" disabled="true" value=" &#8677; Terrestre" />
@@ -648,7 +514,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_terrestre}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_terrestre}+(@{skill_physiques_attribute_select_terrestre})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_terrestre}+(@{skill_physiques_attribute_select_terrestre})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_terrestre}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_terrestre}+(@{skill_physiques_attribute_select_terrestre})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_terrestre}+(@{skill_physiques_attribute_select_terrestre})]]}}"></button>
       <br/>
       <!-- &#8677; Maritime -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_maritime" disabled="true" value=" &#8677; Maritime" />
@@ -665,7 +531,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_maritime}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_maritime}+(@{skill_physiques_attribute_select_maritime})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_maritime}+(@{skill_physiques_attribute_select_maritime})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_maritime}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_maritime}+(@{skill_physiques_attribute_select_maritime})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_maritime}+(@{skill_physiques_attribute_select_maritime})]]}}"></button>
       <br/>
       <!-- &#8677; Zero G -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_zerog" disabled="true" value=" &#8677; Zero G" />
@@ -682,7 +548,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_zerog}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_zerog}+(@{skill_physiques_attribute_select_zerog})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_zerog}+(@{skill_physiques_attribute_select_zerog})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_zerog}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_zerog}+(@{skill_physiques_attribute_select_zerog})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_zerog}+(@{skill_physiques_attribute_select_zerog})]]}}"></button>
       <br/>
       <!-- Survie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_survie" disabled="true" value=" Survie" />
@@ -699,7 +565,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_survie}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_survie}+(@{skill_physiques_attribute_select_survie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_survie}+(@{skill_physiques_attribute_select_survie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_survie}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_survie}+(@{skill_physiques_attribute_select_survie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_survie}+(@{skill_physiques_attribute_select_survie})]]}}"></button>
       <br/>
       <!-- &#8677; Environnement Sauvage -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_environnementsauvage" disabled="true" value=" &#8677; Environnement Sauvage" />
@@ -716,7 +582,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementsauvage}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementsauvage}+(@{skill_physiques_attribute_select_environnementsauvage})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementsauvage}+(@{skill_physiques_attribute_select_environnementsauvage})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementsauvage}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementsauvage}+(@{skill_physiques_attribute_select_environnementsauvage})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementsauvage}+(@{skill_physiques_attribute_select_environnementsauvage})]]}}"></button>
       <br/>
       <!-- &#8677; Environnement Urbain -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_environnementurbain" disabled="true" value=" &#8677; Environnement Urbain" />
@@ -733,7 +599,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementurbain}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementurbain}+(@{skill_physiques_attribute_select_environnementurbain})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementurbain}+(@{skill_physiques_attribute_select_environnementurbain})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementurbain}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementurbain}+(@{skill_physiques_attribute_select_environnementurbain})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementurbain}+(@{skill_physiques_attribute_select_environnementurbain})]]}}"></button>
       <br/>
       <!-- &#8677; Environnement Spacial -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_physiques_skill_environnementspacial" disabled="true" value=" &#8677; Environnement Spacial" />
@@ -750,7 +616,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementspacial}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementspacial}+(@{skill_physiques_attribute_select_environnementspacial})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementspacial}+(@{skill_physiques_attribute_select_environnementspacial})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{physiques_skill_environnementspacial}}} {{dice_name=@{dice}}} {{result=[[@{physiques_skilllevel_environnementspacial}+(@{skill_physiques_attribute_select_environnementspacial})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{physiques_skilllevel_environnementspacial}+(@{skill_physiques_attribute_select_environnementspacial})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_physique_tab3">
@@ -771,7 +637,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdecyberware}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdecyberware}+(@{skill_implants_attribute_select_utilisationdecyberware})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdecyberware}+(@{skill_implants_attribute_select_utilisationdecyberware})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdecyberware}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdecyberware}+(@{skill_implants_attribute_select_utilisationdecyberware})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdecyberware}+(@{skill_implants_attribute_select_utilisationdecyberware})]]}}"></button>
       <br/>
       <!-- &#8677; Utilisation de Neuro Accelerateurs -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_implants_skill_utilisationdeneuroaccelerateurs" disabled="true" value=" &#8677; Utilisation de Neuro Accelerateurs" />
@@ -788,7 +654,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdeneuroaccelerateurs}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdeneuroaccelerateurs}+(@{skill_implants_attribute_select_utilisationdeneuroaccelerateurs})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdeneuroaccelerateurs}+(@{skill_implants_attribute_select_utilisationdeneuroaccelerateurs})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdeneuroaccelerateurs}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdeneuroaccelerateurs}+(@{skill_implants_attribute_select_utilisationdeneuroaccelerateurs})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdeneuroaccelerateurs}+(@{skill_implants_attribute_select_utilisationdeneuroaccelerateurs})]]}}"></button>
       <br/>
       <!-- &#8677; Utilisation d'Interfaces de tir -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_implants_skill_utilisationdinterfacesdetir" disabled="true" value=" &#8677; Utilisation d'Interfaces de tir" />
@@ -805,7 +671,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdinterfacesdetir}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdinterfacesdetir}+(@{skill_implants_attribute_select_utilisationdinterfacesdetir})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdinterfacesdetir}+(@{skill_implants_attribute_select_utilisationdinterfacesdetir})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_utilisationdinterfacesdetir}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_utilisationdinterfacesdetir}+(@{skill_implants_attribute_select_utilisationdinterfacesdetir})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_utilisationdinterfacesdetir}+(@{skill_implants_attribute_select_utilisationdinterfacesdetir})]]}}"></button>
       <br/>
       <!-- &#8677; Overdrive Physique -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_implants_skill_overdrivephysique" disabled="true" value=" &#8677; Overdrive Physique" />
@@ -822,7 +688,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_overdrivephysique}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_overdrivephysique}+(@{skill_implants_attribute_select_overdrivephysique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_overdrivephysique}+(@{skill_implants_attribute_select_overdrivephysique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{implants_skill_overdrivephysique}}} {{dice_name=@{dice}}} {{result=[[@{implants_skilllevel_overdrivephysique}+(@{skill_implants_attribute_select_overdrivephysique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{implants_skilllevel_overdrivephysique}+(@{skill_implants_attribute_select_overdrivephysique})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_physique_tab4">
@@ -843,7 +709,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotageathmosphrique}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotageathmosphrique}+(@{skill_pilotage_attribute_select_pilotageathmosphrique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotageathmosphrique}+(@{skill_pilotage_attribute_select_pilotageathmosphrique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotageathmosphrique}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotageathmosphrique}+(@{skill_pilotage_attribute_select_pilotageathmosphrique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotageathmosphrique}+(@{skill_pilotage_attribute_select_pilotageathmosphrique})]]}}"></button>
       <br/>
       <!-- &#8677; Pilotage de Chasseurs -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_pilotagedechasseurs" disabled="true" value=" &#8677; Pilotage de Chasseurs" />
@@ -860,7 +726,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotagedechasseurs}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotagedechasseurs}+(@{skill_pilotage_attribute_select_pilotagedechasseurs})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotagedechasseurs}+(@{skill_pilotage_attribute_select_pilotagedechasseurs})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotagedechasseurs}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotagedechasseurs}+(@{skill_pilotage_attribute_select_pilotagedechasseurs})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotagedechasseurs}+(@{skill_pilotage_attribute_select_pilotagedechasseurs})]]}}"></button>
       <br/>
       <!-- &#8677; Pilotage de Navettes -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_pilotagedenavettes" disabled="true" value=" &#8677; Pilotage de Navettes" />
@@ -877,7 +743,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotagedenavettes}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotagedenavettes}+(@{skill_pilotage_attribute_select_pilotagedenavettes})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotagedenavettes}+(@{skill_pilotage_attribute_select_pilotagedenavettes})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_pilotagedenavettes}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_pilotagedenavettes}+(@{skill_pilotage_attribute_select_pilotagedenavettes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_pilotagedenavettes}+(@{skill_pilotage_attribute_select_pilotagedenavettes})]]}}"></button>
       <br/>
       <!-- Vehicules Terestres -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_vehiculesterestres" disabled="true" value=" Vehicules Terestres" />
@@ -894,7 +760,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculesterestres}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculesterestres}+(@{skill_pilotage_attribute_select_vehiculesterestres})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculesterestres}+(@{skill_pilotage_attribute_select_vehiculesterestres})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculesterestres}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculesterestres}+(@{skill_pilotage_attribute_select_vehiculesterestres})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculesterestres}+(@{skill_pilotage_attribute_select_vehiculesterestres})]]}}"></button>
       <br/>
       <!-- &#8677; Vehicules Legers -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_vehiculeslegers" disabled="true" value=" &#8677; Vehicules Legers" />
@@ -911,7 +777,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculeslegers}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculeslegers}+(@{skill_pilotage_attribute_select_vehiculeslegers})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculeslegers}+(@{skill_pilotage_attribute_select_vehiculeslegers})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculeslegers}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculeslegers}+(@{skill_pilotage_attribute_select_vehiculeslegers})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculeslegers}+(@{skill_pilotage_attribute_select_vehiculeslegers})]]}}"></button>
       <br/>
       <!-- &#8677; Vehicules Lourds -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_vehiculeslourds" disabled="true" value=" &#8677; Vehicules Lourds" />
@@ -928,7 +794,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculeslourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculeslourds}+(@{skill_pilotage_attribute_select_vehiculeslourds})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculeslourds}+(@{skill_pilotage_attribute_select_vehiculeslourds})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vehiculeslourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vehiculeslourds}+(@{skill_pilotage_attribute_select_vehiculeslourds})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vehiculeslourds}+(@{skill_pilotage_attribute_select_vehiculeslourds})]]}}"></button>
       <br/>
       <!-- &#8677; Véhicules de Course -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_vhiculesdecourse" disabled="true" value=" &#8677; Véhicules de Course" />
@@ -945,7 +811,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vhiculesdecourse}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vhiculesdecourse}+(@{skill_pilotage_attribute_select_vhiculesdecourse})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vhiculesdecourse}+(@{skill_pilotage_attribute_select_vhiculesdecourse})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vhiculesdecourse}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vhiculesdecourse}+(@{skill_pilotage_attribute_select_vhiculesdecourse})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vhiculesdecourse}+(@{skill_pilotage_attribute_select_vhiculesdecourse})]]}}"></button>
       <br/>
       <!-- Vaisseaux Spatiaux -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_vaisseauxspatiaux" disabled="true" value=" Vaisseaux Spatiaux" />
@@ -962,7 +828,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vaisseauxspatiaux}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vaisseauxspatiaux}+(@{skill_pilotage_attribute_select_vaisseauxspatiaux})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vaisseauxspatiaux}+(@{skill_pilotage_attribute_select_vaisseauxspatiaux})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_vaisseauxspatiaux}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_vaisseauxspatiaux}+(@{skill_pilotage_attribute_select_vaisseauxspatiaux})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_vaisseauxspatiaux}+(@{skill_pilotage_attribute_select_vaisseauxspatiaux})]]}}"></button>
       <br/>
       <!-- &#8677; Batiments légers -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_batimentslgers" disabled="true" value=" &#8677; Batiments légers" />
@@ -979,7 +845,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentslgers}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentslgers}+(@{skill_pilotage_attribute_select_batimentslgers})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentslgers}+(@{skill_pilotage_attribute_select_batimentslgers})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentslgers}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentslgers}+(@{skill_pilotage_attribute_select_batimentslgers})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentslgers}+(@{skill_pilotage_attribute_select_batimentslgers})]]}}"></button>
       <br/>
       <!-- &#8677; Batiments lourds -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_batimentslourds" disabled="true" value=" &#8677; Batiments lourds" />
@@ -996,7 +862,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentslourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentslourds}+(@{skill_pilotage_attribute_select_batimentslourds})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentslourds}+(@{skill_pilotage_attribute_select_batimentslourds})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentslourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentslourds}+(@{skill_pilotage_attribute_select_batimentslourds})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentslourds}+(@{skill_pilotage_attribute_select_batimentslourds})]]}}"></button>
       <br/>
       <!-- &#8677; Batiments super lourds -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_pilotage_skill_batimentssuperlourds" disabled="true" value=" &#8677; Batiments super lourds" />
@@ -1013,7 +879,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentssuperlourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentssuperlourds}+(@{skill_pilotage_attribute_select_batimentssuperlourds})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentssuperlourds}+(@{skill_pilotage_attribute_select_batimentssuperlourds})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{pilotage_skill_batimentssuperlourds}}} {{dice_name=@{dice}}} {{result=[[@{pilotage_skilllevel_batimentssuperlourds}+(@{skill_pilotage_attribute_select_batimentssuperlourds})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{pilotage_skilllevel_batimentssuperlourds}+(@{skill_pilotage_attribute_select_batimentssuperlourds})]]}}"></button>
       <br/>
   </div>
 </div>
@@ -1040,7 +906,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_biotech}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_biotech}+(@{skill_techniques_attribute_select_biotech})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_biotech}+(@{skill_techniques_attribute_select_biotech})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_biotech}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_biotech}+(@{skill_techniques_attribute_select_biotech})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_biotech}+(@{skill_techniques_attribute_select_biotech})]]}}"></button>
       <br/>
       <!-- &#8677; Chirurgie d’implants -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_chirurgiedimplants" disabled="true" value=" &#8677; Chirurgie d’implants" />
@@ -1057,7 +923,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_chirurgiedimplants}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_chirurgiedimplants}+(@{skill_techniques_attribute_select_chirurgiedimplants})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_chirurgiedimplants}+(@{skill_techniques_attribute_select_chirurgiedimplants})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_chirurgiedimplants}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_chirurgiedimplants}+(@{skill_techniques_attribute_select_chirurgiedimplants})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_chirurgiedimplants}+(@{skill_techniques_attribute_select_chirurgiedimplants})]]}}"></button>
       <br/>
       <!-- Electronique -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_electronique" disabled="true" value=" Electronique" />
@@ -1074,7 +940,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_electronique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_electronique}+(@{skill_techniques_attribute_select_electronique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_electronique}+(@{skill_techniques_attribute_select_electronique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_electronique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_electronique}+(@{skill_techniques_attribute_select_electronique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_electronique}+(@{skill_techniques_attribute_select_electronique})]]}}"></button>
       <br/>
       <!-- &#8677; Interconnection des systèmes -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_interconnectiondessystmes" disabled="true" value=" &#8677; Interconnection des systèmes" />
@@ -1091,7 +957,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_interconnectiondessystmes}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_interconnectiondessystmes}+(@{skill_techniques_attribute_select_interconnectiondessystmes})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_interconnectiondessystmes}+(@{skill_techniques_attribute_select_interconnectiondessystmes})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_interconnectiondessystmes}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_interconnectiondessystmes}+(@{skill_techniques_attribute_select_interconnectiondessystmes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_interconnectiondessystmes}+(@{skill_techniques_attribute_select_interconnectiondessystmes})]]}}"></button>
       <br/>
       <!-- &#8677; Verrous magnétiques -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_verrousmagntiques" disabled="true" value=" &#8677; Verrous magnétiques" />
@@ -1108,7 +974,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_verrousmagntiques}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_verrousmagntiques}+(@{skill_techniques_attribute_select_verrousmagntiques})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_verrousmagntiques}+(@{skill_techniques_attribute_select_verrousmagntiques})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_verrousmagntiques}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_verrousmagntiques}+(@{skill_techniques_attribute_select_verrousmagntiques})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_verrousmagntiques}+(@{skill_techniques_attribute_select_verrousmagntiques})]]}}"></button>
       <br/>
       <!-- Informatique -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_informatique" disabled="true" value=" Informatique" />
@@ -1125,7 +991,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_informatique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_informatique}+(@{skill_techniques_attribute_select_informatique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_informatique}+(@{skill_techniques_attribute_select_informatique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_informatique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_informatique}+(@{skill_techniques_attribute_select_informatique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_informatique}+(@{skill_techniques_attribute_select_informatique})]]}}"></button>
       <br/>
       <!-- &#8677; Hardware -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_hardware" disabled="true" value=" &#8677; Hardware" />
@@ -1142,7 +1008,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_hardware}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_hardware}+(@{skill_techniques_attribute_select_hardware})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_hardware}+(@{skill_techniques_attribute_select_hardware})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_hardware}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_hardware}+(@{skill_techniques_attribute_select_hardware})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_hardware}+(@{skill_techniques_attribute_select_hardware})]]}}"></button>
       <br/>
       <!-- &#8677; Software -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_software" disabled="true" value=" &#8677; Software" />
@@ -1159,7 +1025,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_software}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_software}+(@{skill_techniques_attribute_select_software})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_software}+(@{skill_techniques_attribute_select_software})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_software}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_software}+(@{skill_techniques_attribute_select_software})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_software}+(@{skill_techniques_attribute_select_software})]]}}"></button>
       <br/>
       <!-- &#8677; Systèmes embarqués -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_systmesembarqus" disabled="true" value=" &#8677; Systèmes embarqués" />
@@ -1176,7 +1042,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systmesembarqus}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systmesembarqus}+(@{skill_techniques_attribute_select_systmesembarqus})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systmesembarqus}+(@{skill_techniques_attribute_select_systmesembarqus})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systmesembarqus}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systmesembarqus}+(@{skill_techniques_attribute_select_systmesembarqus})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systmesembarqus}+(@{skill_techniques_attribute_select_systmesembarqus})]]}}"></button>
       <br/>
       <!-- Mécanique -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_mcanique" disabled="true" value=" Mécanique" />
@@ -1193,7 +1059,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_mcanique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_mcanique}+(@{skill_techniques_attribute_select_mcanique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_mcanique}+(@{skill_techniques_attribute_select_mcanique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_mcanique}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_mcanique}+(@{skill_techniques_attribute_select_mcanique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_mcanique}+(@{skill_techniques_attribute_select_mcanique})]]}}"></button>
       <br/>
       <!-- &#8677; Réacteurs à Fusion -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_racteursfusion" disabled="true" value=" &#8677; Réacteurs à Fusion" />
@@ -1210,7 +1076,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_racteursfusion}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_racteursfusion}+(@{skill_techniques_attribute_select_racteursfusion})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_racteursfusion}+(@{skill_techniques_attribute_select_racteursfusion})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_racteursfusion}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_racteursfusion}+(@{skill_techniques_attribute_select_racteursfusion})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_racteursfusion}+(@{skill_techniques_attribute_select_racteursfusion})]]}}"></button>
       <br/>
       <!-- &#8677; Réacteurs à Fission -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_racteursfission" disabled="true" value=" &#8677; Réacteurs à Fission" />
@@ -1227,7 +1093,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_racteursfission}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_racteursfission}+(@{skill_techniques_attribute_select_racteursfission})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_racteursfission}+(@{skill_techniques_attribute_select_racteursfission})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_racteursfission}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_racteursfission}+(@{skill_techniques_attribute_select_racteursfission})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_racteursfission}+(@{skill_techniques_attribute_select_racteursfission})]]}}"></button>
       <br/>
       <!-- &#8677; Compensateurs d'Inertie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_compensateursdinertie" disabled="true" value=" &#8677; Compensateurs d'Inertie" />
@@ -1244,7 +1110,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_compensateursdinertie}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_compensateursdinertie}+(@{skill_techniques_attribute_select_compensateursdinertie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_compensateursdinertie}+(@{skill_techniques_attribute_select_compensateursdinertie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_compensateursdinertie}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_compensateursdinertie}+(@{skill_techniques_attribute_select_compensateursdinertie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_compensateursdinertie}+(@{skill_techniques_attribute_select_compensateursdinertie})]]}}"></button>
       <br/>
       <!-- &#8677; Technologie Lightfold -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_technologielightfold" disabled="true" value=" &#8677; Technologie Lightfold" />
@@ -1261,7 +1127,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_technologielightfold}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_technologielightfold}+(@{skill_techniques_attribute_select_technologielightfold})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_technologielightfold}+(@{skill_techniques_attribute_select_technologielightfold})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_technologielightfold}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_technologielightfold}+(@{skill_techniques_attribute_select_technologielightfold})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_technologielightfold}+(@{skill_techniques_attribute_select_technologielightfold})]]}}"></button>
       <br/>
       <!-- &#8677; Systèmes de Survie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_systmesdesurvie" disabled="true" value=" &#8677; Systèmes de Survie" />
@@ -1278,7 +1144,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systmesdesurvie}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systmesdesurvie}+(@{skill_techniques_attribute_select_systmesdesurvie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systmesdesurvie}+(@{skill_techniques_attribute_select_systmesdesurvie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systmesdesurvie}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systmesdesurvie}+(@{skill_techniques_attribute_select_systmesdesurvie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systmesdesurvie}+(@{skill_techniques_attribute_select_systmesdesurvie})]]}}"></button>
       <br/>
       <!-- &#8677; Systemes de Propultion -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_systemesdepropultion" disabled="true" value=" &#8677; Systemes de Propultion" />
@@ -1295,7 +1161,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systemesdepropultion}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systemesdepropultion}+(@{skill_techniques_attribute_select_systemesdepropultion})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systemesdepropultion}+(@{skill_techniques_attribute_select_systemesdepropultion})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_systemesdepropultion}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_systemesdepropultion}+(@{skill_techniques_attribute_select_systemesdepropultion})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_systemesdepropultion}+(@{skill_techniques_attribute_select_systemesdepropultion})]]}}"></button>
       <br/>
       <!-- Prospection stellaire -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_prospectionstellaire" disabled="true" value=" Prospection stellaire" />
@@ -1312,7 +1178,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_prospectionstellaire}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_prospectionstellaire}+(@{skill_techniques_attribute_select_prospectionstellaire})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_prospectionstellaire}+(@{skill_techniques_attribute_select_prospectionstellaire})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_prospectionstellaire}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_prospectionstellaire}+(@{skill_techniques_attribute_select_prospectionstellaire})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_prospectionstellaire}+(@{skill_techniques_attribute_select_prospectionstellaire})]]}}"></button>
       <br/>
       <!-- &#8677; Corps stellaires -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_corpsstellaires" disabled="true" value=" &#8677; Corps stellaires" />
@@ -1329,7 +1195,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_corpsstellaires}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_corpsstellaires}+(@{skill_techniques_attribute_select_corpsstellaires})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_corpsstellaires}+(@{skill_techniques_attribute_select_corpsstellaires})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_corpsstellaires}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_corpsstellaires}+(@{skill_techniques_attribute_select_corpsstellaires})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_corpsstellaires}+(@{skill_techniques_attribute_select_corpsstellaires})]]}}"></button>
       <br/>
       <!-- &#8677; Excavation planetaire -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_techniques_skill_excavationplanetaire" disabled="true" value=" &#8677; Excavation planetaire" />
@@ -1346,7 +1212,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_excavationplanetaire}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_excavationplanetaire}+(@{skill_techniques_attribute_select_excavationplanetaire})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_excavationplanetaire}+(@{skill_techniques_attribute_select_excavationplanetaire})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{techniques_skill_excavationplanetaire}}} {{dice_name=@{dice}}} {{result=[[@{techniques_skilllevel_excavationplanetaire}+(@{skill_techniques_attribute_select_excavationplanetaire})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{techniques_skilllevel_excavationplanetaire}+(@{skill_techniques_attribute_select_excavationplanetaire})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_intelectuelles_tab2">
@@ -1367,7 +1233,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_bioware}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_bioware}+(@{skill_connaissances_attribute_select_bioware})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_bioware}+(@{skill_connaissances_attribute_select_bioware})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_bioware}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_bioware}+(@{skill_connaissances_attribute_select_bioware})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_bioware}+(@{skill_connaissances_attribute_select_bioware})]]}}"></button>
       <br/>
       <!-- &#8677; Implants Céphaliens -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_implantscphaliens" disabled="true" value=" &#8677; Implants Céphaliens" />
@@ -1384,7 +1250,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_implantscphaliens}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_implantscphaliens}+(@{skill_connaissances_attribute_select_implantscphaliens})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_implantscphaliens}+(@{skill_connaissances_attribute_select_implantscphaliens})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_implantscphaliens}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_implantscphaliens}+(@{skill_connaissances_attribute_select_implantscphaliens})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_implantscphaliens}+(@{skill_connaissances_attribute_select_implantscphaliens})]]}}"></button>
       <br/>
       <!-- &#8677; Implants Corporels -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_implantscorporels" disabled="true" value=" &#8677; Implants Corporels" />
@@ -1401,7 +1267,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_implantscorporels}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_implantscorporels}+(@{skill_connaissances_attribute_select_implantscorporels})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_implantscorporels}+(@{skill_connaissances_attribute_select_implantscorporels})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_implantscorporels}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_implantscorporels}+(@{skill_connaissances_attribute_select_implantscorporels})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_implantscorporels}+(@{skill_connaissances_attribute_select_implantscorporels})]]}}"></button>
       <br/>
       <!-- Médecine -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_mdecine" disabled="true" value=" Médecine" />
@@ -1418,7 +1284,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_mdecine}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_mdecine}+(@{skill_connaissances_attribute_select_mdecine})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_mdecine}+(@{skill_connaissances_attribute_select_mdecine})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_mdecine}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_mdecine}+(@{skill_connaissances_attribute_select_mdecine})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_mdecine}+(@{skill_connaissances_attribute_select_mdecine})]]}}"></button>
       <br/>
       <!-- &#8677; Soins Intensifs -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_soinsintensifs" disabled="true" value=" &#8677; Soins Intensifs" />
@@ -1435,7 +1301,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_soinsintensifs}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_soinsintensifs}+(@{skill_connaissances_attribute_select_soinsintensifs})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_soinsintensifs}+(@{skill_connaissances_attribute_select_soinsintensifs})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_soinsintensifs}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_soinsintensifs}+(@{skill_connaissances_attribute_select_soinsintensifs})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_soinsintensifs}+(@{skill_connaissances_attribute_select_soinsintensifs})]]}}"></button>
       <br/>
       <!-- &#8677; Cybernetisation -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_cybernetisation" disabled="true" value=" &#8677; Cybernetisation" />
@@ -1452,7 +1318,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_cybernetisation}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_cybernetisation}+(@{skill_connaissances_attribute_select_cybernetisation})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_cybernetisation}+(@{skill_connaissances_attribute_select_cybernetisation})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_cybernetisation}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_cybernetisation}+(@{skill_connaissances_attribute_select_cybernetisation})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_cybernetisation}+(@{skill_connaissances_attribute_select_cybernetisation})]]}}"></button>
       <br/>
       <!-- Sciences -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_sciences" disabled="true" value=" Sciences" />
@@ -1469,7 +1335,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_sciences}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_sciences}+(@{skill_connaissances_attribute_select_sciences})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_sciences}+(@{skill_connaissances_attribute_select_sciences})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_sciences}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_sciences}+(@{skill_connaissances_attribute_select_sciences})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_sciences}+(@{skill_connaissances_attribute_select_sciences})]]}}"></button>
       <br/>
       <!-- &#8677; Astromathématiques -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_astromathmatiques" disabled="true" value=" &#8677; Astromathématiques" />
@@ -1486,7 +1352,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_astromathmatiques}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_astromathmatiques}+(@{skill_connaissances_attribute_select_astromathmatiques})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_astromathmatiques}+(@{skill_connaissances_attribute_select_astromathmatiques})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_astromathmatiques}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_astromathmatiques}+(@{skill_connaissances_attribute_select_astromathmatiques})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_astromathmatiques}+(@{skill_connaissances_attribute_select_astromathmatiques})]]}}"></button>
       <br/>
       <!-- &#8677; Biologie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_biologie" disabled="true" value=" &#8677; Biologie" />
@@ -1503,7 +1369,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_biologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_biologie}+(@{skill_connaissances_attribute_select_biologie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_biologie}+(@{skill_connaissances_attribute_select_biologie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_biologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_biologie}+(@{skill_connaissances_attribute_select_biologie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_biologie}+(@{skill_connaissances_attribute_select_biologie})]]}}"></button>
       <br/>
       <!-- &#8677; Xenobiologie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_xenobiologie" disabled="true" value=" &#8677; Xenobiologie" />
@@ -1520,7 +1386,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_xenobiologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_xenobiologie}+(@{skill_connaissances_attribute_select_xenobiologie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_xenobiologie}+(@{skill_connaissances_attribute_select_xenobiologie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_xenobiologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_xenobiologie}+(@{skill_connaissances_attribute_select_xenobiologie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_xenobiologie}+(@{skill_connaissances_attribute_select_xenobiologie})]]}}"></button>
       <br/>
       <!-- &#8677; Mathématiques -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_mathmatiques" disabled="true" value=" &#8677; Mathématiques" />
@@ -1537,7 +1403,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_mathmatiques}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_mathmatiques}+(@{skill_connaissances_attribute_select_mathmatiques})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_mathmatiques}+(@{skill_connaissances_attribute_select_mathmatiques})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_mathmatiques}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_mathmatiques}+(@{skill_connaissances_attribute_select_mathmatiques})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_mathmatiques}+(@{skill_connaissances_attribute_select_mathmatiques})]]}}"></button>
       <br/>
       <!-- &#8677; Physique/Chimie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_physiquechimie" disabled="true" value=" &#8677; Physique/Chimie" />
@@ -1554,7 +1420,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_physiquechimie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_physiquechimie}+(@{skill_connaissances_attribute_select_physiquechimie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_physiquechimie}+(@{skill_connaissances_attribute_select_physiquechimie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_physiquechimie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_physiquechimie}+(@{skill_connaissances_attribute_select_physiquechimie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_physiquechimie}+(@{skill_connaissances_attribute_select_physiquechimie})]]}}"></button>
       <br/>
       <!-- &#8677; Lightfold -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_lightfold" disabled="true" value=" &#8677; Lightfold" />
@@ -1571,7 +1437,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_lightfold}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_lightfold}+(@{skill_connaissances_attribute_select_lightfold})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_lightfold}+(@{skill_connaissances_attribute_select_lightfold})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_lightfold}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_lightfold}+(@{skill_connaissances_attribute_select_lightfold})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_lightfold}+(@{skill_connaissances_attribute_select_lightfold})]]}}"></button>
       <br/>
       <!-- &#8677; Sociologie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_connaissances_skill_sociologie" disabled="true" value=" &#8677; Sociologie" />
@@ -1588,7 +1454,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_sociologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_sociologie}+(@{skill_connaissances_attribute_select_sociologie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_sociologie}+(@{skill_connaissances_attribute_select_sociologie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{connaissances_skill_sociologie}}} {{dice_name=@{dice}}} {{result=[[@{connaissances_skilllevel_sociologie}+(@{skill_connaissances_attribute_select_sociologie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{connaissances_skilllevel_sociologie}+(@{skill_connaissances_attribute_select_sociologie})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_intelectuelles_tab3">
@@ -1609,7 +1475,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_instructioncivique}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_instructioncivique}+(@{skill_culturegnrale_attribute_select_instructioncivique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_instructioncivique}+(@{skill_culturegnrale_attribute_select_instructioncivique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_instructioncivique}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_instructioncivique}+(@{skill_culturegnrale_attribute_select_instructioncivique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_instructioncivique}+(@{skill_culturegnrale_attribute_select_instructioncivique})]]}}"></button>
       <br/>
       <!-- &#8677; Administratif/Politique/Droit -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_administratifpolitiquedroit" disabled="true" value=" &#8677; Administratif/Politique/Droit" />
@@ -1626,7 +1492,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_administratifpolitiquedroit}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_administratifpolitiquedroit}+(@{skill_culturegnrale_attribute_select_administratifpolitiquedroit})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_administratifpolitiquedroit}+(@{skill_culturegnrale_attribute_select_administratifpolitiquedroit})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_administratifpolitiquedroit}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_administratifpolitiquedroit}+(@{skill_culturegnrale_attribute_select_administratifpolitiquedroit})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_administratifpolitiquedroit}+(@{skill_culturegnrale_attribute_select_administratifpolitiquedroit})]]}}"></button>
       <br/>
       <!-- &#8677; Finances -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_finances" disabled="true" value=" &#8677; Finances" />
@@ -1643,7 +1509,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_finances}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_finances}+(@{skill_culturegnrale_attribute_select_finances})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_finances}+(@{skill_culturegnrale_attribute_select_finances})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_finances}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_finances}+(@{skill_culturegnrale_attribute_select_finances})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_finances}+(@{skill_culturegnrale_attribute_select_finances})]]}}"></button>
       <br/>
       <!-- &#8677; Psychologie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_psychologie" disabled="true" value=" &#8677; Psychologie" />
@@ -1660,7 +1526,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_psychologie}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_psychologie}+(@{skill_culturegnrale_attribute_select_psychologie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_psychologie}+(@{skill_culturegnrale_attribute_select_psychologie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_psychologie}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_psychologie}+(@{skill_culturegnrale_attribute_select_psychologie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_psychologie}+(@{skill_culturegnrale_attribute_select_psychologie})]]}}"></button>
       <br/>
       <!-- Théorie Militaire -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_thoriemilitaire" disabled="true" value=" Théorie Militaire" />
@@ -1677,7 +1543,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_thoriemilitaire}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_thoriemilitaire}+(@{skill_culturegnrale_attribute_select_thoriemilitaire})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_thoriemilitaire}+(@{skill_culturegnrale_attribute_select_thoriemilitaire})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_thoriemilitaire}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_thoriemilitaire}+(@{skill_culturegnrale_attribute_select_thoriemilitaire})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_thoriemilitaire}+(@{skill_culturegnrale_attribute_select_thoriemilitaire})]]}}"></button>
       <br/>
       <!-- &#8677; Tactique -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_tactique" disabled="true" value=" &#8677; Tactique" />
@@ -1694,7 +1560,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_tactique}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_tactique}+(@{skill_culturegnrale_attribute_select_tactique})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_tactique}+(@{skill_culturegnrale_attribute_select_tactique})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_tactique}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_tactique}+(@{skill_culturegnrale_attribute_select_tactique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_tactique}+(@{skill_culturegnrale_attribute_select_tactique})]]}}"></button>
       <br/>
       <!-- &#8677; Stratégie -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_culturegnrale_skill_stratgie" disabled="true" value=" &#8677; Stratégie" />
@@ -1711,7 +1577,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_stratgie}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_stratgie}+(@{skill_culturegnrale_attribute_select_stratgie})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_stratgie}+(@{skill_culturegnrale_attribute_select_stratgie})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{culturegnrale_skill_stratgie}}} {{dice_name=@{dice}}} {{result=[[@{culturegnrale_skilllevel_stratgie}+(@{skill_culturegnrale_attribute_select_stratgie})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{culturegnrale_skilllevel_stratgie}+(@{skill_culturegnrale_attribute_select_stratgie})]]}}"></button>
       <br/>
   </div>
 </div>
@@ -1738,7 +1604,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_etiquette}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_etiquette}+(@{skill_sociales_attribute_select_etiquette})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_etiquette}+(@{skill_sociales_attribute_select_etiquette})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_etiquette}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_etiquette}+(@{skill_sociales_attribute_select_etiquette})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_etiquette}+(@{skill_sociales_attribute_select_etiquette})]]}}"></button>
       <br/>
       <!-- &#8677; Alpha Centauri -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_alphacentauri" disabled="true" value=" &#8677; Alpha Centauri" />
@@ -1755,7 +1621,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_alphacentauri}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_alphacentauri}+(@{skill_sociales_attribute_select_alphacentauri})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_alphacentauri}+(@{skill_sociales_attribute_select_alphacentauri})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_alphacentauri}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_alphacentauri}+(@{skill_sociales_attribute_select_alphacentauri})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_alphacentauri}+(@{skill_sociales_attribute_select_alphacentauri})]]}}"></button>
       <br/>
       <!-- &#8677; Eridani -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_eridani" disabled="true" value=" &#8677; Eridani" />
@@ -1772,7 +1638,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_eridani}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_eridani}+(@{skill_sociales_attribute_select_eridani})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_eridani}+(@{skill_sociales_attribute_select_eridani})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_eridani}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_eridani}+(@{skill_sociales_attribute_select_eridani})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_eridani}+(@{skill_sociales_attribute_select_eridani})]]}}"></button>
       <br/>
       <!-- &#8677; Banard -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_banard" disabled="true" value=" &#8677; Banard" />
@@ -1789,7 +1655,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_banard}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_banard}+(@{skill_sociales_attribute_select_banard})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_banard}+(@{skill_sociales_attribute_select_banard})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_banard}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_banard}+(@{skill_sociales_attribute_select_banard})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_banard}+(@{skill_sociales_attribute_select_banard})]]}}"></button>
       <br/>
       <!-- &#8677; Tau -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_tau" disabled="true" value=" &#8677; Tau" />
@@ -1806,7 +1672,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_tau}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_tau}+(@{skill_sociales_attribute_select_tau})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_tau}+(@{skill_sociales_attribute_select_tau})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_tau}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_tau}+(@{skill_sociales_attribute_select_tau})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_tau}+(@{skill_sociales_attribute_select_tau})]]}}"></button>
       <br/>
       <!-- &#8677; Sirius -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_sirius" disabled="true" value=" &#8677; Sirius" />
@@ -1823,7 +1689,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_sirius}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_sirius}+(@{skill_sociales_attribute_select_sirius})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_sirius}+(@{skill_sociales_attribute_select_sirius})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_sirius}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_sirius}+(@{skill_sociales_attribute_select_sirius})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_sirius}+(@{skill_sociales_attribute_select_sirius})]]}}"></button>
       <br/>
       <!-- &#8677; C.I.C. -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_cic" disabled="true" value=" &#8677; C.I.C." />
@@ -1840,7 +1706,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_cic}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_cic}+(@{skill_sociales_attribute_select_cic})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_cic}+(@{skill_sociales_attribute_select_cic})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_cic}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_cic}+(@{skill_sociales_attribute_select_cic})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_cic}+(@{skill_sociales_attribute_select_cic})]]}}"></button>
       <br/>
       <!-- &#8677; Sol -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_sol" disabled="true" value=" &#8677; Sol" />
@@ -1857,7 +1723,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_sol}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_sol}+(@{skill_sociales_attribute_select_sol})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_sol}+(@{skill_sociales_attribute_select_sol})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_sol}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_sol}+(@{skill_sociales_attribute_select_sol})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_sol}+(@{skill_sociales_attribute_select_sol})]]}}"></button>
       <br/>
       <!-- &#8677; Pègre -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_pgre" disabled="true" value=" &#8677; Pègre" />
@@ -1874,7 +1740,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_pgre}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_pgre}+(@{skill_sociales_attribute_select_pgre})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_pgre}+(@{skill_sociales_attribute_select_pgre})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_pgre}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_pgre}+(@{skill_sociales_attribute_select_pgre})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_pgre}+(@{skill_sociales_attribute_select_pgre})]]}}"></button>
       <br/>
       <!-- Interrogation -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_interrogation" disabled="true" value=" Interrogation" />
@@ -1891,7 +1757,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_interrogation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_interrogation}+(@{skill_sociales_attribute_select_interrogation})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_interrogation}+(@{skill_sociales_attribute_select_interrogation})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_interrogation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_interrogation}+(@{skill_sociales_attribute_select_interrogation})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_interrogation}+(@{skill_sociales_attribute_select_interrogation})]]}}"></button>
       <br/>
       <!-- &#8677; Intimidation -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_intimidation" disabled="true" value=" &#8677; Intimidation" />
@@ -1908,7 +1774,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_intimidation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_intimidation}+(@{skill_sociales_attribute_select_intimidation})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_intimidation}+(@{skill_sociales_attribute_select_intimidation})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_intimidation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_intimidation}+(@{skill_sociales_attribute_select_intimidation})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_intimidation}+(@{skill_sociales_attribute_select_intimidation})]]}}"></button>
       <br/>
       <!-- Commandement -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_commandement" disabled="true" value=" Commandement" />
@@ -1925,7 +1791,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_commandement}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_commandement}+(@{skill_sociales_attribute_select_commandement})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_commandement}+(@{skill_sociales_attribute_select_commandement})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_commandement}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_commandement}+(@{skill_sociales_attribute_select_commandement})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_commandement}+(@{skill_sociales_attribute_select_commandement})]]}}"></button>
       <br/>
       <!-- Négociation -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_ngociation" disabled="true" value=" Négociation" />
@@ -1942,7 +1808,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_ngociation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_ngociation}+(@{skill_sociales_attribute_select_ngociation})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_ngociation}+(@{skill_sociales_attribute_select_ngociation})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_ngociation}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_ngociation}+(@{skill_sociales_attribute_select_ngociation})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_ngociation}+(@{skill_sociales_attribute_select_ngociation})]]}}"></button>
       <br/>
       <!-- Baratin -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_sociales_skill_baratin" disabled="true" value=" Baratin" />
@@ -1959,7 +1825,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_baratin}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_baratin}+(@{skill_sociales_attribute_select_baratin})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_baratin}+(@{skill_sociales_attribute_select_baratin})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{sociales_skill_baratin}}} {{dice_name=@{dice}}} {{result=[[@{sociales_skilllevel_baratin}+(@{skill_sociales_attribute_select_baratin})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{sociales_skilllevel_baratin}+(@{skill_sociales_attribute_select_baratin})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_social_tab2">
@@ -1980,7 +1846,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_discretion}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_discretion}+(@{skill_clandestines_attribute_select_discretion})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_discretion}+(@{skill_clandestines_attribute_select_discretion})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_discretion}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_discretion}+(@{skill_clandestines_attribute_select_discretion})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_discretion}+(@{skill_clandestines_attribute_select_discretion})]]}}"></button>
       <br/>
       <!-- Crochetage -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_crochetage" disabled="true" value=" Crochetage" />
@@ -1997,7 +1863,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_crochetage}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_crochetage}+(@{skill_clandestines_attribute_select_crochetage})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_crochetage}+(@{skill_clandestines_attribute_select_crochetage})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_crochetage}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_crochetage}+(@{skill_clandestines_attribute_select_crochetage})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_crochetage}+(@{skill_clandestines_attribute_select_crochetage})]]}}"></button>
       <br/>
       <!-- Informations -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_informations" disabled="true" value=" Informations" />
@@ -2014,7 +1880,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_informations}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_informations}+(@{skill_clandestines_attribute_select_informations})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_informations}+(@{skill_clandestines_attribute_select_informations})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_informations}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_informations}+(@{skill_clandestines_attribute_select_informations})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_informations}+(@{skill_clandestines_attribute_select_informations})]]}}"></button>
       <br/>
       <!-- Larcin -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_larcin" disabled="true" value=" Larcin" />
@@ -2031,7 +1897,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_larcin}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_larcin}+(@{skill_clandestines_attribute_select_larcin})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_larcin}+(@{skill_clandestines_attribute_select_larcin})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_larcin}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_larcin}+(@{skill_clandestines_attribute_select_larcin})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_larcin}+(@{skill_clandestines_attribute_select_larcin})]]}}"></button>
       <br/>
       <!-- Marchés noirs -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_marchsnoirs" disabled="true" value=" Marchés noirs" />
@@ -2048,7 +1914,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_marchsnoirs}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_marchsnoirs}+(@{skill_clandestines_attribute_select_marchsnoirs})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_marchsnoirs}+(@{skill_clandestines_attribute_select_marchsnoirs})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_marchsnoirs}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_marchsnoirs}+(@{skill_clandestines_attribute_select_marchsnoirs})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_marchsnoirs}+(@{skill_clandestines_attribute_select_marchsnoirs})]]}}"></button>
       <br/>
       <!-- &#8677; Acquisition d’Objets -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_acquisitiondobjets" disabled="true" value=" &#8677; Acquisition d’Objets" />
@@ -2065,7 +1931,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_acquisitiondobjets}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_acquisitiondobjets}+(@{skill_clandestines_attribute_select_acquisitiondobjets})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_acquisitiondobjets}+(@{skill_clandestines_attribute_select_acquisitiondobjets})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_acquisitiondobjets}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_acquisitiondobjets}+(@{skill_clandestines_attribute_select_acquisitiondobjets})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_acquisitiondobjets}+(@{skill_clandestines_attribute_select_acquisitiondobjets})]]}}"></button>
       <br/>
       <!-- &#8677; Acquisition d’Informations -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_clandestines_skill_acquisitiondinformations" disabled="true" value=" &#8677; Acquisition d’Informations" />
@@ -2082,7 +1948,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_acquisitiondinformations}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_acquisitiondinformations}+(@{skill_clandestines_attribute_select_acquisitiondinformations})-d@{{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_acquisitiondinformations}+(@{skill_clandestines_attribute_select_acquisitiondinformations})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{clandestines_skill_acquisitiondinformations}}} {{dice_name=@{dice}}} {{result=[[@{clandestines_skilllevel_acquisitiondinformations}+(@{skill_clandestines_attribute_select_acquisitiondinformations})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{clandestines_skilllevel_acquisitiondinformations}+(@{skill_clandestines_attribute_select_acquisitiondinformations})]]}}"></button>
       <br/>
   </div>
   <div class="sheet-tab-content sheet-secondary_social_tab3">
@@ -2104,7 +1970,7 @@
         <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{{character_name}}}} {{roll_name=@{{contacts_skillname}}}} {{dice_name=@{dice}}}} {{result=[[@{{contacts_skilllevel}} +(@{{contacts_attribute_select}})-d@{{dice}}cs1cf@{{dice}}]]}} {{threshold=[[@{{contacts_skilllevel}}+(@{{contacts_attribute_select}})]]}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{contacts_skillname}}} {{dice_name=@{dice}}} {{result=[[@{contacts_skilllevel}+(@{contacts_attribute_select})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{contacts_skilllevel}+(@{contacts_attribute_select})]]}}">      </button>
       </fieldset>
       <br/>
   </div>

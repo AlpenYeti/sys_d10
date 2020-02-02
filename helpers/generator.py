@@ -115,7 +115,7 @@ class Skill(Node):
     def content(self): # {self.parent.pname} is not needed, else _skilllevel_ cause a confict, legacy keeping I guess ?
         ret="""      <!--{self.name} -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_{self.parent.pname}_skill_{self.pname}" disabled="true" value="{self.name}" />
-      <input type="number" min="0" value="0" name="attr_skillcost_Fauchage" title="Coût de la compétence" />
+      <input type="number" min="0" value="0" name="attr_{self.parent.pname}_skillcost_{self.pname}" title="Coût de la compétence" />
       <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_{self.parent.pname}_skilllevel_{self.pname}" title="Niveau dans la compétence" />
       <select class="sheet-skill_select" style="margin-right:4px" name="attr_skill_{self.parent.pname}_attribute_select_{self.pname}">
         <option value="@{{base-Force}} + @{{exal-Force}}">For</option>

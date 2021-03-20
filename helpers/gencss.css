@@ -6,26 +6,26 @@ input.sheet-tab4:checked ~ div.sheet-tab4
 {
  display: block;
 }
-
+ 
 input.sheet-secondary_physique_tab1:checked ~ div.sheet-secondary_physique_tab1,
 input.sheet-secondary_physique_tab2:checked ~ div.sheet-secondary_physique_tab2,
 input.sheet-secondary_physique_tab3:checked ~ div.sheet-secondary_physique_tab3,
 input.sheet-secondary_physique_tab4:checked ~ div.sheet-secondary_physique_tab4
 {
  display: block;
-}
+} 
 input.sheet-secondary_intelectuelles_tab1:checked ~ div.sheet-secondary_intelectuelles_tab1,
 input.sheet-secondary_intelectuelles_tab2:checked ~ div.sheet-secondary_intelectuelles_tab2,
 input.sheet-secondary_intelectuelles_tab3:checked ~ div.sheet-secondary_intelectuelles_tab3
 {
  display: block;
-}
+} 
 input.sheet-secondary_social_tab1:checked ~ div.sheet-secondary_social_tab1,
 input.sheet-secondary_social_tab2:checked ~ div.sheet-secondary_social_tab2,
 input.sheet-secondary_social_tab3:checked ~ div.sheet-secondary_social_tab3
 {
  display: block;
-}
+} 
 input.sheet-secondary_arsenal_tab1:checked ~ div.sheet-secondary_arsenal_tab1,
 input.sheet-secondary_arsenal_tab2:checked ~ div.sheet-secondary_arsenal_tab2
 {

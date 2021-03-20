@@ -4,6 +4,7 @@
 - &#8677; Armes d'assaut
 - &#8677; Armes de poing
 - Armes Lourdes
+- &#8677; Munitions solide
 - &#8677; Projectiles autopropulsés
 - &#8677; Armement laser
 - Artillerie

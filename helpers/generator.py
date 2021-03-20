@@ -170,7 +170,7 @@ if __name__ == '__main__':
     # filen=sys.argv[1]
     # filen="light.txt"
     filen="cyberpnk.txt"
-    output="gen.html"
+    output="gen3.html"
     outcss="gencss.css"
     def parse(filen):
         root=Root()

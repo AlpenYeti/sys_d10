@@ -2027,9 +2027,9 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
            <option value="@{combat_skilllevel_guidagedemissiles}">Guidage de Missiles</option>
            <option value="@{combat_skilllevel_balistique}">Balistique Superlative</option>
            <option value="0">Aucune spécialité</option>
-          </select
-          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magC}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
-          <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] &#13;!setattr --name @{character_name} --modb --repeating_ranged-weapons_$@{wid}_ranged_ammoT|-@{ranged_magT}">Rechargement</button>
+          </select>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magA}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
+          <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] --repeating_ranged-weapons_$@{wid}_ranged_ammoT|[[{0,@{ranged_ammoT}-@{ranged_magT}}kh1]]">Rechargement</button>
         </div>
         <div class="sheet-row">
           <label>Chargeur</label>
@@ -2052,7 +2052,34 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
   </div>
   <div class="sheet-tab-content sheet-secondary_arsenal_tab2">
     <!--  Melée -->
-    <h3> Melée</h3>
+    <fieldset class="repeating_melee-weapons">
+      <div class="quickborder">
+        <div class="sheet-row">
+         <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+         <input class="sheet-skill_name" type="text" name="attr_melee_weaponname" title="Nom de l'arme" />
+         <label>P</label>
+         <input type="number" name="attr_melee_accuracy" title="Précision" />
+        </div>
+        <div class="sheet-row">
+          <label>Type</label>
+          <input type="text" name="attr_typename" title="Type d'arme" />
+          <select class="sheet-weapon_type_select" name="attr_melee_type_select">
+           <option value="@{combat_skilllevel_armescontandantes}">Arme Contandante</option>
+           <option value="@{combat_skilllevel_armestranchantes}">Arme Tranchante</option>
+           <option value="0">Aucune spécialité</option>
+          </select>
+        </div>
+        <div class="sheet-row">
+          <label>Dégats</label>
+          <input type="number" name="attr_melee_dmgBase" title="Dégats base" />
+          <label>/</label>
+          <input type="number" name="attr_melee_dmgPlus" title="Dégats additionels" />
+          <label>Spécial</label>
+          <input type="text" name="attr_melee_special" title="Spécial" />
+          <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
+      </div>
+    </fieldset>
   </div>
 </div>
 
@@ -2121,17 +2148,21 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
 			<div>
 				 <span class="tcat">Damage: </span>{{damage}}
 			</div>
+      {{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
+      {{/ammocurrent}}
 		{{/damage}}
 		{{#damagedone}}
 			<div>
 				 <span class="tcat">Damage: </span>{{damagedone}}
 			</div>
+      {{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
+      {{/ammocurrent}}
 		{{/damagedone}}
         {{#special}}
             <div>

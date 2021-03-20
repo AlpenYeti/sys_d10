@@ -215,7 +215,6 @@ footer="""
     </td></tr>
   </table>
 </rolltemplate>
-
 <rolltemplate class="sheet-rolltemplate-d10Shooting">
     <div class="container">
         <div><h1>{{name}}</h1></div>
@@ -223,25 +222,29 @@ footer="""
         <div class="arrow-container"><div class="arrow-right"></div></div>
 		{{#attack}}
 			<div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} sucesses</div>
-			{{#mode}}
-			         <div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
-            {{/mode}}
+      {{#mode}}
+			<div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
+      {{/mode}}
 		{{/attack}}
 		{{#damage}}
 			<div>
 				 <span class="tcat">Damage: </span>{{damage}}
 			</div>
+      {{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
+      {{/ammocurrent}}
 		{{/damage}}
 		{{#damagedone}}
 			<div>
 				 <span class="tcat">Damage: </span>{{damagedone}}
 			</div>
+		{{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
+      {{/ammocurrent}}
 		{{/damagedone}}
         {{#special}}
             <div>

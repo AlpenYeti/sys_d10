@@ -25,6 +25,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
 // });
 // dice_with_tanscendance
   </script>
+</head>
 """
 header="""
 <div class="sheet-content">
@@ -213,6 +214,41 @@ footer="""
       {{/rollWasFumble() result}}
     </td></tr>
   </table>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-d10Shooting">
+    <div class="container">
+        <div><h1>{{name}}</h1></div>
+        <div><span class="subheader">{{subtags}}</span></div>
+        <div class="arrow-container"><div class="arrow-right"></div></div>
+		{{#attack}}
+			<div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} sucesses</div>
+			{{#mode}}
+			         <div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
+            {{/mode}}
+		{{/attack}}
+		{{#damage}}
+			<div>
+				 <span class="tcat">Damage: </span>{{damage}}
+			</div>
+			<div>
+				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+			</div>
+		{{/damage}}
+		{{#damagedone}}
+			<div>
+				 <span class="tcat">Damage: </span>{{damagedone}}
+			</div>
+			<div>
+				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+			</div>
+		{{/damagedone}}
+        {{#special}}
+            <div>
+                 <span class="tcat">Special: </span>{{special}}
+            </div>
+        {{/special}}
+    </div>
 </rolltemplate>
 """
 css_footer="""input.sheet-tab{
@@ -466,5 +502,93 @@ select.sheet-dice_select{
 .sheet-rolltemplate-d10fight a[href^="~"]{
   text-align:right;
   background-color: #999999; !important
+}
+
+.sheet-rolltemplate-d10Shooting .sheet-container {
+    background-color: #ffffff;
+    border: 1px solid;
+    padding: 2px;
+    width: 189px;
+}
+
+.sheet-rolltemplate-d10Shooting .sheet-container h1 {
+    color: rgb(126, 45, 64);
+    font-size: 1.2em;
+    font-variant: small-caps;
+    line-height: 20px;
+}
+
+.sheet-rolltemplate-d10Shooting div {
+    padding: 2px;
+};
+
+.sheet-rolltemplate-d10Shooting span {
+    color: rgb(126, 45, 64);
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    font-variant: small-caps;
+    line-height: 1.6em;
+    padding-left: 5px;
+    text-align: left;
+}
+
+.sheet-rolltemplate-d10Shooting .sheet-subheader {
+    color: #000;
+    font-size: 1em;
+    font-style: italic;
+}
+
+.sheet-rolltemplate-d10Shooting .sheet-arrow-right {
+    border-bottom: 2px solid transparent;
+    border-left: 180px solid rgb(126, 45, 64);
+    border-top: 2px solid transparent;
+}
+
+.sheet-rolltemplate-d10Shooting .sheet-tcat {
+    font-style: italic;
+}
+
+.sheet-rolltemplate-d10Shooting .inlinerollresult  {
+    background-color: #ffffff;
+    border: none;
+}
+
+.sheet-rolltemplate-d10Shooting .inlinerollresult.fullcrit {
+    color: #3FB315;
+    border: none;
+}
+
+.sheet-rolltemplate-d10Shooting .inlinerollresult.fullfail {
+    color: #B31515;
+    border: none;
+}
+
+.sheet-rolltemplate-d10Shooting .inlinerollresult.importandivoll {
+    color: #4A57ED;
+    border: none;
+}
+
+select.sheet-weapon_type_select{
+  line-height: 0px;
+  margin-bottom:0px;
+  margin: 0px;
+}
+label {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+div.sheet-row{
+  margin: 0px;
+  padding: 3px;
+}
+div.sheet-quickborder{
+  border: 1px solid #ccc;
+  border-color: grey;
+  margin:5px;
+  padding:5px;
+}
+div.repeating_ranged-weapon{
+  margin:5px;
 }
 """

@@ -7,6 +7,7 @@
 - &#8677; Projectiles autopropulsés
 - &#8677; Armement laser
 - Artillerie
+- &#8677; Projectiles balistiques
 - &#8677; Guidage de missiles
 - &#8677; Systemes de défences
 - &#8677; Balistique superlative
@@ -123,3 +124,7 @@
 
 + Contacts
 . Contacts
+
+@ Arsenal
++ Distance
++ Melée

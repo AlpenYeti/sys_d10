@@ -61,7 +61,7 @@ class Root(Node):
         for child in self.children:
             ret+="\ninput.sheet-tab{node.number}:checked ~ div.sheet-tab{node.number},".format(node=child)
         ret=ret[:-1]
-        ret+="\n{\n display: block;\n}"
+        ret+="\n{\n display: block;\n}\n"
         for child in self.children:
             ret+=child.css()
         return ret
@@ -95,7 +95,7 @@ class SubTab(Node):
         super(SubTab,self).__init__(name,nb)
 
     def header(self):
-        return """  <input type="radio" name="secondary_{self.parent.pname}_tab" class="small_tab secondary_{self.parent.pname}_tab{self.number}" value="{self.number}" {self.checked}title="{self.name}" />\n""".format(self=self)
+        return """  <input type="radio" name="secondary_{self.parent.pname}_tab" class="small_tab secondary_{self.parent.pname}_tab{self.number}" value="{self.number}" {self.checked} title="{self.name}" />\n""".format(self=self)
 
     def content(self):
         ret= '  <div class="sheet-tab-content sheet-secondary_{self.parent.pname}_tab{self.number}">\n'.format(self=self)

@@ -1,0 +1,79 @@
+<fieldset class="repeating_ranged-weapons">
+  <div class="quickborder">
+    <div class="sheet-row">
+     <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+     <input class="sheet-skill_name" type="text" name="attr_ranged_weaponname" title="Nom de l'arme" />
+     <label>P</label>
+     <input type="number" name="attr_ranged_accuracy" title="Précision" />
+     <label>Mode</label>
+     <input type="number" name="attr_ranged_single" title="Coup par coup" />
+     <label>/</label>
+     <input type="number" name="attr_ranged_burst" title="Rafale" />
+     <label>/</label>
+     <input type="number" name="attr_ranged_auto" title="Automatique" />
+    </div>
+    <div class="sheet-row">
+      <label>Type</label>
+      <input type="text" name="attr_typename" title="Type d'arme" />
+      <select class="sheet-weapon_type_select" name="attr_ranged_type_select">
+       <option value="@{combat_skilllevel_armesdassaut}">Arme d'Assaut</option>
+       <option value="@{combat_skilllevel_armesdepoing}">Arme de Poing</option>
+       <option value="@{combat_skilllevel_projectilesbalistiques}">Arme Balistique</option>
+       <option value="@{combat_skilllevel_projectilesautopropulss}">Projectile Autopropulsé</option>
+       <option value="@{combat_skilllevel_armementlaser}">Armement Laser</option>
+       <option value="@{combat_skilllevel_guidagedemissiles}">Guidage de Missiles</option>
+       <option value="@{combat_skilllevel_balistique}">Balistique Superlative</option>
+       <option value="0">Aucune spécialité</option>
+      </select
+      <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magC}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
+      <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] &#13;!setattr --name @{character_name} --modb --repeating_ranged-weapons_$@{wid}_ranged_ammoT|-@{ranged_magT}">Rechargement</button>
+    </div>
+    <div class="sheet-row">
+      <label>Chargeur</label>
+      <input type="number" name="attr_ranged_magA" title="Chargeur Actuel" />
+      <label>/</label>
+      <input type="number" name="attr_ranged_magT" title="Chargeur Total" />
+      <label>|</label>
+      <input type="number" name="attr_ranged_ammoT" title="Munitions Totales" />
+      <label>Dégats</label>
+      <input type="number" name="attr_ranged_dmgBase" title="Dégats base" />
+      <label>/</label>
+      <input type="number" name="attr_ranged_dmgPlus" title="Dégats additionels" />
+      <label>Spécial</label>
+      <input type="text" name="attr_ranged_special" title="Spécial" />
+<button type='roll' class="sheet-skillbutton" title ="Tir simple" value="&{template:d10Shooting}{{name=@{ranged_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{ranged_type_select}+?{Seuil|4}+@{ranged_accuracy}]]cs1cf11]]}} {{mode=Single Shot}}  {{damage=@{ranged_dmgBase}/+@{ranged_dmgPlus}}} {{usedammo=@{ranged_single}}} {{magsize=@{ranged_magT}}} {{ammocurrent=[[@{ranged_magA}-@{ranged_single}]]}} {{ammototal=@{ranged_ammoT}}} {{special=@{ranged_special}}} !modattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|-@{ranged_single}!!!">S</button>
+<button type='roll' class="sheet-skillbutton" title ="Rafale" value="&{template:d10Shooting}{{name=@{ranged_weaponname}}}{{subtags=@{typename}}} {{attack=[[[[?{Dices}+1]]d10<[[@{ranged_type_select}+?{Seuil|4}+@{ranged_accuracy}]]cs1cf11]]}} {{mode=Burst}}  {{damage=@{ranged_dmgBase}/@{ranged_dmgPlus}}} {{usedammo=@{ranged_burst}}} {{magsize=@{ranged_magT}}} {{ammocurrent=[[@{ranged_magA}-@{ranged_burst}]]}} {{ammototal=@{ranged_ammoT}}} {{special=@{ranged_special}}} !modattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|-@{ranged_burst}!!!">B</button>
+<button type='roll' class="sheet-skillbutton" title ="Automatique" value="&{template:d10Shooting}{{name=@{ranged_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{ranged_type_select}+?{Seuil|4}+@{ranged_accuracy}]]cs1cf11]]}} {{mode=Auto}}  {{damage=@{ranged_dmgBase}/@{ranged_dmgPlus}}} {{usedammo=@{ranged_auto}}} {{magsize=@{ranged_magT}}} {{ammocurrent=[[@{ranged_magA}-@{ranged_auto}]]}} {{ammototal=@{ranged_ammoT}}} {{special=@{ranged_special}}} !modattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|-@{ranged_auto}!!!">A</button>
+  </div>
+</fieldset>
+
+
+
+
+<fieldset class="repeating_melee-weapons">
+  <div class="quickborder">
+    <div class="sheet-row">
+     <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+     <input class="sheet-skill_name" type="text" name="attr_melee_weaponname" title="Nom de l'arme" />
+     <label>P</label>
+     <input type="number" name="attr_melee_accuracy" title="Précision" />
+    </div>
+    <div class="sheet-row">
+      <label>Type</label>
+      <input type="text" name="attr_typename" title="Type d'arme" />
+      <select class="sheet-weapon_type_select" name="attr_melee_type_select">
+       <option value="@{combat_skilllevel_armescontandantes}">Arme Contandante</option>
+       <option value="@{combat_skilllevel_armestranchantes}">Arme Tranchante</option>
+       <option value="0">Aucune spécialité</option>
+      </select>
+    </div>
+    <div class="sheet-row">
+      <label>Dégats</label>
+      <input type="number" name="attr_melee_dmgBase" title="Dégats base" />
+      <label>/</label>
+      <input type="number" name="attr_melee_dmgPlus" title="Dégats additionels" />
+      <label>Spécial</label>
+      <input type="text" name="attr_melee_special" title="Spécial" />
+      <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
+  </div>
+</fieldset>

@@ -2027,9 +2027,8 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
            <option value="@{combat_skilllevel_guidagedemissiles}">Guidage de Missiles</option>
            <option value="@{combat_skilllevel_balistique}">Balistique Superlative</option>
            <option value="0">Aucune spécialité</option>
-          </select
-          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magC}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
-          <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] &#13;!setattr --name @{character_name} --modb --repeating_ranged-weapons_$@{wid}_ranged_ammoT|-@{ranged_magT}">Rechargement</button>
+          </select>
+          <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] &#13;!setattr --name @{character_name} --modb --repeating_ranged-weapons_$@{wid}_ranged_ammoT|-%repeating_ranged-weapons_$@{wid}_ranged_magT%">Rechargement</button>
         </div>
         <div class="sheet-row">
           <label>Chargeur</label>
@@ -2113,9 +2112,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
         <div class="arrow-container"><div class="arrow-right"></div></div>
 		{{#attack}}
 			<div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} sucesses</div>
-      {{#mode}}
 			<div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
-      {{/mode}}
 		{{/attack}}
 		{{#damage}}
 			<div>

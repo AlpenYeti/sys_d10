@@ -129,3 +129,4 @@
 @ Arsenal
 + Distance
 + Melée
++ Consommable

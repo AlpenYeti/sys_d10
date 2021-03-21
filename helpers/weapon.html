@@ -18,6 +18,7 @@
       <select class="sheet-weapon_type_select" name="attr_ranged_type_select">
        <option value="@{combat_skilllevel_armesdassaut}">Arme d'Assaut</option>
        <option value="@{combat_skilllevel_armesdepoing}">Arme de Poing</option>
+       <option value="@{combat_skilllevel_munitionssolide}">Munitions Solides</option>
        <option value="@{combat_skilllevel_projectilesbalistiques}">Arme Balistique</option>
        <option value="@{combat_skilllevel_projectilesautopropulss}">Projectile Autopropulsé</option>
        <option value="@{combat_skilllevel_armementlaser}">Armement Laser</option>
@@ -76,5 +77,22 @@
       <input type="text" name="attr_melee_special" title="Spécial" />
       <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
       <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
+  </div>
+</fieldset>
+
+
+<fieldset class="repeating_consumables">
+  <div class="quickborder">
+    <div class="sheet-row">
+     <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+     <input class="sheet-skill_name" type="text" name="attr_consumable_name" title="Nom du consommable" />
+     <input class="sheet-skill_name" type="text" name="attr_consumable_type" title="Type de consommable" />
+     <label>Nb</label>
+     <input type="number" name="attr_consumable_nb" title="Quantité" />
+    </div>
+    <div class="sheet-row">
+      <label>Type</label>
+      <input type="text" style="" name="attr_consumable_effect" title="Description (short)" />
+<button type='roll' class="sheet-skillbutton" title ="Utilisation" value="&{template:d10Shooting}{{name=@{consumable_name}}}{{subtags=@{consumable_type}}} {{special=@{consumable_effect}}} !modattr --name @{character_name} --repeating_consumables_$@{wid}_consumable_nb|-1!!!">Utiliser</button>
   </div>
 </fieldset>

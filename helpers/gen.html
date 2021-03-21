@@ -242,6 +242,25 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
       </select>
       <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armeslourdes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})]]}}"></button>
       <br/>
+
+      <!-- &#8677; Munitions solide -->
+      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_munitionssolide" disabled="true" value=" &#8677; Munitions solide" />
+      <input type="number" min="0" value="0" name="attr_combat_skillcost_munitionssolide" title="Coût de la compétence" />
+      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_combat_skilllevel_munitionssolide" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" style="margin-right:4px" name="attr_skill_combat_attribute_select_munitionssolide">
+        <option value="@{base-Force} + @{exal-Force}">For</option>
+        <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+        <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+        <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+        <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+      </select>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_munitionssolide}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_munitionssolide}+(@{skill_combat_attribute_select_munitionssolide})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_munitionssolide}+(@{skill_combat_attribute_select_munitionssolide})]]}}"></button>
+      <br/>
+
       <!-- &#8677; Projectiles autopropulsés -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_projectilesautopropulss" disabled="true" value=" &#8677; Projectiles autopropulsés" />
       <input type="number" min="0" value="0" name="attr_combat_skillcost_projectilesautopropulss" title="Coût de la compétence" />
@@ -1998,6 +2017,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
 <div class="sheet-tab-content sheet-tab4">
   <input type="radio" name="secondary_arsenal_tab" class="small_tab secondary_arsenal_tab1" value="1" checked="checked" title=" Distance" />
   <input type="radio" name="secondary_arsenal_tab" class="small_tab secondary_arsenal_tab2" value="2"  title=" Melée" />
+  <input type="radio" name="secondary_arsenal_tab" class="small_tab secondary_arsenal_tab3" value="3"  title=" Consommable" />
   <div class="sheet-tab-content sheet-secondary_arsenal_tab1">
     <!--  Distance -->
     <!--ranged -->
@@ -2021,6 +2041,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
           <select class="sheet-weapon_type_select" name="attr_ranged_type_select">
            <option value="@{combat_skilllevel_armesdassaut}">Arme d'Assaut</option>
            <option value="@{combat_skilllevel_armesdepoing}">Arme de Poing</option>
+           <option value="@{combat_skilllevel_munitionssolide}">Munitions Solides</option>
            <option value="@{combat_skilllevel_projectilesbalistiques}">Arme Balistique</option>
            <option value="@{combat_skilllevel_projectilesautopropulss}">Projectile Autopropulsé</option>
            <option value="@{combat_skilllevel_armementlaser}">Armement Laser</option>
@@ -2078,6 +2099,23 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
           <input type="text" name="attr_melee_special" title="Spécial" />
           <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
           <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
+      </div>
+    </fieldset>
+  </div>
+  <div class="sheet-tab-content sheet-secondary_arsenal_tab3">
+    <!--  Consommable -->
+    <fieldset class="repeating_consumables">
+      <div class="quickborder">
+        <div class="sheet-row">
+         <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+         <input class="sheet-skill_name" type="text" style="width:250px" name="attr_consumable_name" title="Nom du consommable" />
+         <input class="sheet-skill_name" type="text" style="width:200px" name="attr_consumable_type" title="Type de consommable" />
+         <label>Nb</label>
+         <input type="number" name="attr_consumable_nb" title="Quantité" />
+         <button type='roll' class="sheet-skillbutton" title ="Utilisation" value="&{template:d10Shooting}{{name=@{consumable_name}}}{{subtags=@{consumable_type}}} {{special=@{consumable_effect}}} !modattr --name @{character_name} --repeating_consumables_$@{wid}_consumable_nb|-1!!!">Utiliser</button>
+        </div>
+        <div class="sheet-row">
+          <input type="text" style="" name="attr_consumable_effect" style="width:100%" title="Description (short)" />
       </div>
     </fieldset>
   </div>

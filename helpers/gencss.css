@@ -27,7 +27,8 @@ input.sheet-secondary_social_tab3:checked ~ div.sheet-secondary_social_tab3
  display: block;
 } 
 input.sheet-secondary_arsenal_tab1:checked ~ div.sheet-secondary_arsenal_tab1,
-input.sheet-secondary_arsenal_tab2:checked ~ div.sheet-secondary_arsenal_tab2
+input.sheet-secondary_arsenal_tab2:checked ~ div.sheet-secondary_arsenal_tab2,
+input.sheet-secondary_arsenal_tab3:checked ~ div.sheet-secondary_arsenal_tab3
 {
  display: block;
 }input.sheet-tab{

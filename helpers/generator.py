@@ -132,6 +132,32 @@ class Skill(Node):
       <br/>\n""".format(self=self)
         return ret
 
+class SubSkill(Node):
+    """Print a subskill."""
+    def __init__(self, name,nb,superskill):
+        super(SubSkill, self).__init__(name,nb)
+        self.superskill=superskill
+        print(name,superskill.pname)
+    def content(self): # {self.parent.pname} is not needed, else _skilllevel_ cause a confict, legacy keeping I guess ?
+        ret="""      <!--{self.name} -->
+      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_{self.parent.pname}_skill_{self.pname}" disabled="true" value="{self.name}" />
+      <input type="number" min="0" value="0" name="attr_{self.parent.pname}_skillcost_{self.pname}" title="Coût de la compétence" />
+      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_{self.parent.pname}_skilllevel_{self.pname}" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" style="margin-right:4px" name="attr_skill_{self.parent.pname}_attribute_select_{self.pname}">
+        <option value="@{{base-Force}} + @{{exal-Force}}">For</option>
+        <option value="@{{base-Agilite}} + @{{exal-Agilite}}">Agi</option>
+        <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
+        <option value="@{{base-Charisme}} + @{{exal-Charisme}}">Cha</option>
+        <option value="@{{base-Intelligence}} + @{{exal-Intelligence}}">Int</option>
+        <option value="@{{base-Perception}} + @{{exal-Perception}}">Per</option>
+        <option value="@{{base-Volonte}} + @{{exal-Volonte}}">Vol</option>
+        <option value="@{{base-Psyche}} + @{{exal-Psyche}}">Psy</option>
+        <option value="@{{base-Chance}} + @{{exal-Chance}}">Chn</option>
+      </select>
+      <button type='roll' class="sheet-skillbutton" value="&{{template:d10skillcheck}} {{{{name=@{{character_name}}}}}} {{{{roll_name=@{{{self.parent.pname}_skill_{self.pname}}}}}}} {{{{dice_name=@{{dice}}}}}} {{{{result=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}})-d@{{dice}}cs1cf@{{dice}}]]}}}} {{{{threshold=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+@{{{self.parent.pname}_skilllevel_{self.superskill.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}})]]}}}}"></button>
+      <br/>\n""".format(self=self)
+        return ret
+
 class Repeating(Node):
     """Repeating section"""
 
@@ -177,6 +203,7 @@ if __name__ == '__main__':
         root=Root()
         active_tab,active_subtab=None,None
         tab_nb,subtab_nb,skill_nb,repeating_nb=1,1,1,1
+        mainskill=None
         try:
             with open(filen,encoding="utf-8") as f:
                 for line in f.readlines():
@@ -190,8 +217,13 @@ if __name__ == '__main__':
                         active_tab.addchild(active_subtab)
                         subtab_nb+=1
                         skill_nb=1
-                    elif line[0]=="-":
+                    elif line[0]=="=":
                         tech_content=Skill(line[1:-1],skill_nb)
+                        active_subtab.addchild(tech_content)
+                        mainskill=tech_content
+                        skill_nb+=1
+                    elif line[0]=="-":
+                        tech_content=SubSkill(line[1:-1],skill_nb,mainskill)
                         active_subtab.addchild(tech_content)
                         skill_nb+=1
                     elif line[0]==".":

@@ -1,85 +1,85 @@
 @ Physique
 + Combat
-- Armes à feu
+= Armes à feu
 - &#8677; Armes d'assaut
 - &#8677; Armes de poing
-- Armes Lourdes
+= Armes Lourdes
 - &#8677; Munitions solide
 - &#8677; Projectiles autopropulsés
 - &#8677; Armement laser
-- Artillerie
+= Artillerie
 - &#8677; Projectiles balistiques
 - &#8677; Guidage de missiles
 - &#8677; Systemes de défences
 - &#8677; Balistique superlative
-- Combat à Mains Nues
+= Combat à Mains Nues
 - &#8677; Neo Kwon Do
 - &#8677; Zero-G
-- Combat Armé
+= Combat Armé
 - &#8677; Armes Contandantes
 - &#8677; Armes Tranchantes
-- Maniement des Explosifs
+= Maniement des Explosifs
 
 + Physiques
-- Athlétisme
+= Athlétisme
 - &#8677; Aerien
 - &#8677; Terrestre
 - &#8677; Maritime
 - &#8677; Zero G
-- Survie
+= Survie
 - &#8677; Environnement Sauvage
 - &#8677; Environnement Urbain
 - &#8677; Environnement Spacial
 
 + Implants
-- Utilisation de Cyberware
+= Utilisation de Cyberware
 - &#8677; Utilisation de Neuro Accelerateurs
 - &#8677; Utilisation d'Interfaces de tir
 - &#8677; Overdrive Physique
 
 + Pilotage
-- Pilotage athmosphérique
+= Pilotage athmosphérique
 - &#8677; Pilotage de Chasseurs
 - &#8677; Pilotage de Navettes
-- Vehicules Terestres
+= Vehicules Terestres
 - &#8677; Vehicules Legers
 - &#8677; Vehicules Lourds
 - &#8677; Véhicules de Course
-- Vaisseaux Spatiaux
+= Vaisseaux Spatiaux
 - &#8677; Batiments légers
 - &#8677; Batiments lourds
 - &#8677; Batiments super lourds
 
 @ Intelectuelles
 + Techniques
-- Biotech
+= Biotech
 - &#8677; Chirurgie d’implants
-- Electronique
+= Electronique
 - &#8677; Interconnection des systèmes
 - &#8677; Verrous magnétiques
-- Informatique
+= Informatique
 - &#8677; Hardware
 - &#8677; Software
 - &#8677; Systèmes embarqués
-- Mécanique
+= Mécanique
 - &#8677; Réacteurs à Fusion
 - &#8677; Réacteurs à Fission
 - &#8677; Compensateurs d'Inertie
 - &#8677; Technologie Lightfold
 - &#8677; Systèmes de Survie
 - &#8677; Systemes de Propultion
-- Prospection stellaire
+= Prospection stellaire
 - &#8677; Corps stellaires
 - &#8677; Excavation planetaire
 
 + Connaissances
-- Bioware
+= Bioware
 - &#8677; Implants Céphaliens
 - &#8677; Implants Corporels
-- Médecine
+= Médecine
 - &#8677; Soins Intensifs
 - &#8677; Cybernetisation
-- Sciences
+= Sciences
 - &#8677; Astromathématiques
 - &#8677; Biologie
 - &#8677; Xenobiologie
@@ -89,17 +89,17 @@
 - &#8677; Sociologie
 
 + Culture Générale
-- Instruction Civique
+= Instruction Civique
 - &#8677; Administratif/Politique/Droit
 - &#8677; Finances
 - &#8677; Psychologie
-- Théorie Militaire
+= Théorie Militaire
 - &#8677; Tactique
 - &#8677; Stratégie
 
 @ Social
 + Sociales
-- Etiquette
+= Etiquette
 - &#8677; Alpha Centauri
 - &#8677; Eridani
 - &#8677; Banard
@@ -108,18 +108,18 @@
 - &#8677; C.I.C.
 - &#8677; Sol
 - &#8677; Pègre
-- Interrogation
+= Interrogation
 - &#8677; Intimidation
-- Commandement
-- Négociation
-- Baratin
+= Commandement
+= Négociation
+= Baratin
 
 + Clandestines
-- Discretion
-- Crochetage
-- Informations
-- Larcin
-- Marchés noirs
+= Discretion
+= Crochetage
+= Informations
+= Larcin
+= Marchés noirs
 - &#8677; Acquisition d’Objets
 - &#8677; Acquisition d’Informations
 

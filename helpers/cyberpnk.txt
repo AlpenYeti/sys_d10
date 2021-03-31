@@ -128,5 +128,8 @@
 
 @ Arsenal
 + Distance
+# DISTANCE
 + Melée
+# MELEE
 + Consommable
+# CONSOMMABLE

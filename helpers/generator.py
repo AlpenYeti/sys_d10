@@ -169,8 +169,9 @@ class Repeating(Node):
 if __name__ == '__main__':
     # filen=sys.argv[1]
     # filen="light.txt"
+    import customs as custom_skills
     filen="cyberpnk.txt"
-    output="gen3.html"
+    output="gen.html"
     outcss="gencss.css"
     def parse(filen):
         root=Root()
@@ -197,6 +198,10 @@ if __name__ == '__main__':
                         tech_content=Repeating(line[1:-1],repeating_nb)
                         active_subtab.addchild(tech_content)
                         repeating_nb+=1
+                    elif line[0]=="#":
+                        skill=custom_skills.__getattribute__(line[2:-1])("","")
+                        active_subtab.addchild(skill)
+                        repeating_nb+=1 # ???
         except FileNotFoundError:
             print(filen,"was not found")
         return root

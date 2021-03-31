@@ -58,7 +58,8 @@ class DISTANCE(generator.Node):
     <button type='roll' class="sheet-skillbutton" title ="Rafale" value="&{template:d10Shooting}{{name=@{ranged_weaponname}}}{{subtags=@{typename}}} {{attack=[[[[?{Dices}+1]]d10<[[@{ranged_type_select}+?{Seuil|4}+@{ranged_accuracy}]]cs1cf11]]}} {{mode=Burst}}  {{damage=@{ranged_dmgBase}/@{ranged_dmgPlus}}} {{usedammo=@{ranged_burst}}} {{magsize=@{ranged_magT}}} {{ammocurrent=[[@{ranged_magA}-@{ranged_burst}]]}} {{ammototal=@{ranged_ammoT}}} {{special=@{ranged_special}}} !modattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|-@{ranged_burst}!!!">B</button>
     <button type='roll' class="sheet-skillbutton" title ="Automatique" value="&{template:d10Shooting}{{name=@{ranged_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{ranged_type_select}+?{Seuil|4}+@{ranged_accuracy}]]cs1cf11]]}} {{mode=Auto}}  {{damage=@{ranged_dmgBase}/@{ranged_dmgPlus}}} {{usedammo=@{ranged_auto}}} {{magsize=@{ranged_magT}}} {{ammocurrent=[[@{ranged_magA}-@{ranged_auto}]]}} {{ammototal=@{ranged_ammoT}}} {{special=@{ranged_special}}} !modattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|-@{ranged_auto}!!!">A</button>
       </div>
-    </fieldset>"""
+    </fieldset>
+"""
         return ret
 
 
@@ -70,44 +71,7 @@ class MELEE(generator.Node):
 
     def content(self):
         ret="""    <!--  Melée -->
-            <fieldset class="repeating_melee-weapons">
-              <div class="quickborder">
-                <div class="sheet-row">
-                 <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
-                 <input class="sheet-skill_name" type="text" name="attr_melee_weaponname" title="Nom de l'arme" />
-                 <label>P</label>
-                 <input type="number" name="attr_melee_accuracy" title="Précision" />
-                </div>
-                <div class="sheet-row">
-                  <label>Type</label>
-                  <input type="text" name="attr_typename" title="Type d'arme" />
-                  <select class="sheet-weapon_type_select" name="attr_melee_type_select">
-                   <option value="@{combat_skilllevel_armescontandantes}">Arme Contandante</option>
-                   <option value="@{combat_skilllevel_armestranchantes}">Arme Tranchante</option>
-                   <option value="0">Aucune spécialité</option>
-                  </select>
-                </div>
-                <div class="sheet-row">
-                  <label>Dégats</label>
-                  <input type="number" name="attr_melee_dmgBase" title="Dégats base" />
-                  <label>/</label>
-                  <input type="number" name="attr_melee_dmgPlus" title="Dégats additionels" />
-                  <label>Spécial</label>
-                  <input type="text" name="attr_melee_special" title="Spécial" />
-                  <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
-                  <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
-              </div>
-            </fieldset>"""
-        return ret
-
-class CONSOMMABLE(generator.Node):
-    """CONSUMMABLES"""
-
-    def __init__(self, name,nb):
-        super(CONSOMMABLE, self).__init__(name,nb)
-
-    def content(self):
-        return """    <fieldset class="repeating_melee-weapons">
+    <fieldset class="repeating_melee-weapons">
       <div class="quickborder">
         <div class="sheet-row">
          <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
@@ -135,4 +99,28 @@ class CONSOMMABLE(generator.Node):
           <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
       </div>
     </fieldset>
-    """
+"""
+        return ret
+
+class CONSOMMABLE(generator.Node):
+    """CONSUMMABLES"""
+
+    def __init__(self, name,nb):
+        super(CONSOMMABLE, self).__init__(name,nb)
+
+    def content(self):
+        return """    <fieldset class="repeating_consumables">
+      <div class="quickborder">
+        <div class="sheet-row">
+         <input class="sheet-skill_name" type="number" name="attr_wid" title="Numero de ligne" />
+         <input class="sheet-skill_name" type="text" style="width:250px" name="attr_consumable_name" title="Nom du consommable" />
+         <input class="sheet-skill_name" type="text" style="width:200px" name="attr_consumable_type" title="Type de consommable" />
+         <label>Nb</label>
+         <input type="number" name="attr_consumable_nb" title="Quantité" />
+         <button type='roll' class="sheet-skillbutton" title ="Utilisation" value="&{template:d10Shooting}{{name=@{consumable_name}}}{{subtags=@{consumable_type}}} {{special=@{consumable_effect}}} !modattr --name @{character_name} --repeating_consumables_$@{wid}_consumable_nb|-1!!!">Utiliser</button>
+        </div>
+        <div class="sheet-row">
+          <input type="text" style="" name="attr_consumable_effect" style="width:100%" title="Description (short)" />
+      </div>
+    </fieldset>
+"""

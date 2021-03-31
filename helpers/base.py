@@ -230,11 +230,11 @@ footer="""
 			<div>
 				 <span class="tcat">Damage: </span>{{damage}}
 			</div>
-      {{#ammocurrent}}
+       {{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
-      {{/ammocurrent}}
+        {{/ammocurrent}}
 		{{/damage}}
 		{{#damagedone}}
 			<div>
@@ -244,7 +244,7 @@ footer="""
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
-      {{/ammocurrent}}
+    {{/ammocurrent}}
 		{{/damagedone}}
         {{#special}}
             <div>

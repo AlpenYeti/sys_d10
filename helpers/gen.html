@@ -242,7 +242,6 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
       </select>
       <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_armeslourdes}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_armeslourdes}+(@{skill_combat_attribute_select_armeslourdes})]]}}"></button>
       <br/>
-
       <!-- &#8677; Munitions solide -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_munitionssolide" disabled="true" value=" &#8677; Munitions solide" />
       <input type="number" min="0" value="0" name="attr_combat_skillcost_munitionssolide" title="Coût de la compétence" />
@@ -260,7 +259,6 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
       </select>
       <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck} {{name=@{character_name}}} {{roll_name=@{combat_skill_munitionssolide}}} {{dice_name=@{dice}}} {{result=[[@{combat_skilllevel_munitionssolide}+(@{skill_combat_attribute_select_munitionssolide})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{combat_skilllevel_munitionssolide}+(@{skill_combat_attribute_select_munitionssolide})]]}}"></button>
       <br/>
-
       <!-- &#8677; Projectiles autopropulsés -->
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_combat_skill_projectilesautopropulss" disabled="true" value=" &#8677; Projectiles autopropulsés" />
       <input type="number" min="0" value="0" name="attr_combat_skillcost_projectilesautopropulss" title="Coût de la compétence" />
@@ -2020,6 +2018,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
   <input type="radio" name="secondary_arsenal_tab" class="small_tab secondary_arsenal_tab3" value="3"  title=" Consommable" />
   <div class="sheet-tab-content sheet-secondary_arsenal_tab1">
     <!--  Distance -->
+    <h3> Distance</h3>
     <!--ranged -->
     <fieldset class="repeating_ranged-weapons">
       <div class="quickborder">
@@ -2073,6 +2072,8 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
   </div>
   <div class="sheet-tab-content sheet-secondary_arsenal_tab2">
     <!--  Melée -->
+    <h3> Melée</h3>
+    <!--  Melée -->
     <fieldset class="repeating_melee-weapons">
       <div class="quickborder">
         <div class="sheet-row">
@@ -2104,6 +2105,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
   </div>
   <div class="sheet-tab-content sheet-secondary_arsenal_tab3">
     <!--  Consommable -->
+    <h3> Consommable</h3>
     <fieldset class="repeating_consumables">
       <div class="quickborder">
         <div class="sheet-row">
@@ -2170,7 +2172,6 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
     </td></tr>
   </table>
 </rolltemplate>
-
 <rolltemplate class="sheet-rolltemplate-d10Shooting">
     <div class="container">
         <div><h1>{{name}}</h1></div>
@@ -2186,21 +2187,21 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
 			<div>
 				 <span class="tcat">Damage: </span>{{damage}}
 			</div>
-      {{#ammocurrent}}
+       {{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
-      {{/ammocurrent}}
+        {{/ammocurrent}}
 		{{/damage}}
 		{{#damagedone}}
 			<div>
 				 <span class="tcat">Damage: </span>{{damagedone}}
 			</div>
-      {{#ammocurrent}}
+		{{#ammocurrent}}
 			<div>
 				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
 			</div>
-      {{/ammocurrent}}
+    {{/ammocurrent}}
 		{{/damagedone}}
         {{#special}}
             <div>

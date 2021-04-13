@@ -154,7 +154,7 @@ class SubSkill(Node):
         <option value="@{{base-Psyche}} + @{{exal-Psyche}}">Psy</option>
         <option value="@{{base-Chance}} + @{{exal-Chance}}">Chn</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{{template:d10skillcheck}} {{{{name=@{{character_name}}}}}} {{{{roll_name=@{{{self.parent.pname}_skill_{self.pname}}}}}}} {{{{dice_name=@{{dice}}}}}} {{{{result=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}})-d@{{dice}}cs1cf@{{dice}}]]}}}} {{{{threshold=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+@{{{self.parent.pname}_skilllevel_{self.superskill.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}})]]}}}}"></button>
+      <button type='roll' class="sheet-skillbutton" value="&{{template:d10skillcheck}} {{{{name=@{{character_name}}}}}} {{{{roll_name=@{{{self.parent.pname}_skill_{self.pname}}}}}}} {{{{dice_name=@{{dice}}}}}} {{{{result=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}}+@{{{self.parent.pname}_skilllevel_{self.superskill.pname}}})-d@{{dice}}cs1cf@{{dice}}]]}}}} {{{{threshold=[[@{{{self.parent.pname}_skilllevel_{self.pname}}}+@{{{self.parent.pname}_skilllevel_{self.superskill.pname}}}+(@{{skill_{self.parent.pname}_attribute_select_{self.pname}}})]]}}}}"></button>
       <br/>\n""".format(self=self)
         return ret
 

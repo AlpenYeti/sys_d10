@@ -188,7 +188,7 @@ class Repeating(Node):
  {{{{result=[[@{{{node.pname}_skilllevel}}+(@{{{node.pname}_attribute_select}})-d@{{dice}}cs1cf@{{dice}}]]}}}}\
  {{{{threshold=[[@{{{node.pname}_skilllevel}}+(@{{{node.pname}_attribute_select}})]]}}}}">\
       </button>
-      </fieldset>
+      </fieldset> 
       <br/>\n""".format(node=self)
         return ret
 
@@ -197,7 +197,7 @@ if __name__ == '__main__':
     # filen="light.txt"
     import customs as custom_skills
     filen="cyberpnk.txt"
-    output="gen.html"
+    output="gent.html"
     outcss="gencss.css"
     def parse(filen):
         root=Root()

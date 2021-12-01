@@ -110,3 +110,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.idea/vcs.xml
+.idea/sys_d10.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/profiles_settings.xml

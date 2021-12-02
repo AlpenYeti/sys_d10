@@ -1,0 +1,135 @@
+@ Physique
++ Combat
+= Armes à feu
+- &#8677; Armes d'assaut
+- &#8677; Armes de poing
+= Armes Lourdes
+- &#8677; Munitions solide
+- &#8677; Projectiles autopropulsés
+- &#8677; Armement laser
+= Artillerie
+- &#8677; Projectiles balistiques
+- &#8677; Guidage de missiles
+- &#8677; Systemes de défenses
+- &#8677; Balistique superlative
+= Combat à Mains Nues
+- &#8677; Neo Kwon Do
+- &#8677; Zero-G
+= Combat Armé
+- &#8677; Armes Contondantes
+- &#8677; Armes Tranchantes
+= Maniement des Explosifs
+
++ Physiques
+= Athlétisme
+- &#8677; Aerien
+- &#8677; Terrestre
+- &#8677; Maritime
+- &#8677; Zero G
+= Survie
+- &#8677; Environnement Sauvage
+- &#8677; Environnement Urbain
+- &#8677; Environnement Spacial
+
++ Implants
+= Utilisation de Cyberware
+- &#8677; Utilisation de Neuro Accelerateurs
+- &#8677; Utilisation d'Interfaces de tir
+- &#8677; Overdrive Physique
+
++ Pilotage
+= Pilotage atmosphérique
+- &#8677; Pilotage de Chasseurs
+- &#8677; Pilotage de Navettes
+= Vehicules Terrestres
+- &#8677; Vehicules Légers
+- &#8677; Vehicules Lourds
+- &#8677; Véhicules de Course
+= Vaisseaux Spatiaux
+- &#8677; Bâtiments légers
+- &#8677; Bâtiments lourds
+- &#8677; Bâtiments super lourds
+
+@ Intelectuelles
++ Techniques
+= Biotech
+- &#8677; Chirurgie d’implants
+= Électronique
+- &#8677; Interconnection des systèmes
+- &#8677; Verrous magnétiques
+= Informatique
+- &#8677; Hardware
+- &#8677; Software
+- &#8677; Systèmes embarqués
+= Mécanique
+- &#8677; Réacteurs à Fusion
+- &#8677; Réacteurs à Fission
+- &#8677; Compensateurs d'Inertie
+- &#8677; Technologie Lightfold
+- &#8677; Systèmes de Survie
+- &#8677; Systèmes de Propulsion
+= Prospection stellaire
+- &#8677; Corps stellaires
+- &#8677; Excavation planetaire
+
++ Connaissances
+= Bioware
+- &#8677; Implants Céphaliens
+- &#8677; Implants Corporels
+= Médecine
+- &#8677; Soins Intensifs
+- &#8677; Cybernetisation
+= Sciences
+- &#8677; Astromathématiques
+- &#8677; Biologie
+- &#8677; Xenobiologie
+- &#8677; Mathématiques
+- &#8677; Physique/Chimie
+- &#8677; Lightfold
+- &#8677; Sociologie
+
++ Culture Générale
+= Instruction Civique
+- &#8677; Administratif/Politique/Droit
+- &#8677; Finances
+- &#8677; Psychologie
+= Théorie Militaire
+- &#8677; Tactique
+- &#8677; Stratégie
+
+@ Sociales
++ Relations humaines
+= Étiquette
+- &#8677; Alpha Centauri
+- &#8677; Eridani
+- &#8677; Banard
+- &#8677; Tau
+- &#8677; Sirius
+- &#8677; C.I.C.
+- &#8677; Sol
+- &#8677; Pègre
+= Interrogation
+- &#8677; Intimidation
+= Commandement
+= Négociation
+= Barratin
+
++ Clandestines
+= Discrétion
+= Crochetage
+= Informations
+= Larcin
+= Marchés noirs
+- &#8677; Acquisition d’Objets
+- &#8677; Acquisition d’Informations
+
++ Contacts
+. Contacts
+
+@ Arsenal
++ Distance
+# DISTANCE
++ Mêlée
+# MELEE
++ Consommable
+# CONSOMMABLE

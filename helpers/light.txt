@@ -1,0 +1,5 @@
+@ Physique
++ Combat
+- Armes à feu
++ Soc
+- Charisme

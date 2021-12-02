@@ -1,15 +1,15 @@
 ## Introduction
 Vous trouverez ici la feuille de personnage type pour le système D10. Cette feuille a été crée pour fonctionner avec Roll20.
 
-##Macros roll20
+## Macros roll20
 Peuvent etre utile a modifier ou récuperer:
- - ```shieldLife_Points / shieldLife_Points_max``` : Points de Vie
- - ```shieldEndurance_Points / shieldEndurance_Points_max``` : Points de fatigue
- - ```shieldgeneral_item_weapon1``` : La valeur de dégats de l'arme 1
- - ```shieldgeneral_item_weapon1_name``` : Le nom de l'arme 1
- - ```shieldgeneral_effective_weapon1``` : La valeur de dégats de l'arme 1 si elle est activée; 0 sinon
- - ```shieldbase_damage_dices``` : La base de dégats offensif (a priori, rien sauf compétence particulière)
- - ```shieldexal_damage_dices``` : Le modificateur de dégats (Un bonus de charge, un buff de dégats temporaires)
+ - ```Life_Points / Life_Points_maximum``` : Points de Vie
+ - ```Endurance_Points / Endurance_Points_maximum``` : Points de fatigue
+ - ```general_item_weapon1``` : La valeur de dégats de l'arme 1
+ - ```general_item_weapon1_name``` : Le nom de l'arme 1
+ - ```general_effective_weapon1``` : La valeur de dégats de l'arme 1 si elle est activée; 0 sinon
+ - ```base_damage_dices``` : La base de dégats offensif (a priori, rien sauf compétence particulière)
+ - ```exal_damage_dices``` : Le modificateur de dégats (Un bonus de charge, un buff de dégats temporaires)
 
 Exemple (avec chatSetAttr) [chatSetAttr](https://github.com/Roll20/roll20-api-scripts/blob/master/ChatSetAttr/README.md):
  - ```!setattr --sel --Life_Points|21```

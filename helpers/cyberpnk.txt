@@ -10,13 +10,13 @@
 = Artillerie
 - &#8677; Projectiles balistiques
 - &#8677; Guidage de missiles
-- &#8677; Systemes de défences
+- &#8677; Systemes de défenses
 - &#8677; Balistique superlative
 = Combat à Mains Nues
 - &#8677; Neo Kwon Do
 - &#8677; Zero-G
 = Combat Armé
-- &#8677; Armes Contandantes
+- &#8677; Armes Contondantes
 - &#8677; Armes Tranchantes
 = Maniement des Explosifs
 
@@ -38,23 +38,23 @@
 - &#8677; Overdrive Physique
 
 + Pilotage
-= Pilotage athmosphérique
+= Pilotage atmosphérique
 - &#8677; Pilotage de Chasseurs
 - &#8677; Pilotage de Navettes
-= Vehicules Terestres
-- &#8677; Vehicules Legers
+= Vehicules Terrestres
+- &#8677; Vehicules Légers
 - &#8677; Vehicules Lourds
 - &#8677; Véhicules de Course
 = Vaisseaux Spatiaux
-- &#8677; Batiments légers
-- &#8677; Batiments lourds
-- &#8677; Batiments super lourds
+- &#8677; Bâtiments légers
+- &#8677; Bâtiments lourds
+- &#8677; Bâtiments super lourds
 
 @ Intelectuelles
 + Techniques
 = Biotech
 - &#8677; Chirurgie d’implants
-= Electronique
+= Électronique
 - &#8677; Interconnection des systèmes
 - &#8677; Verrous magnétiques
 = Informatique
@@ -67,7 +67,7 @@
 - &#8677; Compensateurs d'Inertie
 - &#8677; Technologie Lightfold
 - &#8677; Systèmes de Survie
-- &#8677; Systemes de Propultion
+- &#8677; Systèmes de Propulsion
 = Prospection stellaire
 - &#8677; Corps stellaires
 - &#8677; Excavation planetaire
@@ -97,9 +97,9 @@
 - &#8677; Tactique
 - &#8677; Stratégie
 
-@ Social
-+ Sociales
-= Etiquette
+@ Sociales
++ Relations humaines
+= Étiquette
 - &#8677; Alpha Centauri
 - &#8677; Eridani
 - &#8677; Banard
@@ -112,10 +112,10 @@
 - &#8677; Intimidation
 = Commandement
 = Négociation
-= Baratin
+= Barratin
 
 + Clandestines
-= Discretion
+= Discrétion
 = Crochetage
 = Informations
 = Larcin
@@ -129,7 +129,7 @@
 @ Arsenal
 + Distance
 # DISTANCE
-+ Melée
++ Mêlée
 # MELEE
 + Consommable
 # CONSOMMABLE

@@ -1,5 +1,5 @@
 head="""<head>
-  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="systemd10cyberpunk.css"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
 """
 script="""  <script type="text/worker">
@@ -31,8 +31,8 @@ header="""
 <div class="sheet-content">
   <div class="sheet-center">
     <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
-    <span style="color:#ffffff;" name="attr_undescored_name" /><span/><br/>
-    <input type="text" class="sheet-mediumname" name="attr_character_race" placeholder="Race"/>
+    <br/>
+    <input type="text" class="sheet-mediumname" name="attr_character_race" placeholder="Origine"/>
   </div>
   <br/>
   <div class="sheet-2colrow">
@@ -47,7 +47,6 @@ header="""
           <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_arm" title="Bras droit" value="0"/></td>
           <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_leg" title="Jambe gauche" value="0"/></td>
           <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_leg" title="Jambe droite" value="0"/></td>
-          <!-- <td><input class="sheet-trait" disabled="true" name="attr_mirror_Life_Points" value="@{Life_Points_maximum}"/></td> -->
         </tr>
         <tr>
           <td><h4>Points de Fatigue</h4></td>

@@ -197,8 +197,8 @@ if __name__ == '__main__':
     # filen="light.txt"
     import customs as custom_skills
     filen="cyberpnk.txt"
-    output="gent.html"
-    outcss="gencss.css"
+    output="systemd10cyberpunk.html"
+    outcss="systemd10cyberpunk.css"
     def parse(filen):
         root=Root()
         active_tab,active_subtab=None,None

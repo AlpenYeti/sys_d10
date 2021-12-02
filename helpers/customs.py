@@ -38,7 +38,7 @@ class DISTANCE(generator.Node):
            <option value="@{combat_skilllevel_balistique}">Balistique Superlative</option>
            <option value="0">Aucune spécialité</option>
           </select>
-          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magA}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{successes}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magA}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
           <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] --repeating_ranged-weapons_$@{wid}_ranged_ammoT|[[{0,@{ranged_ammoT}-@{ranged_magT}}kh1]]">Rechargement</button>
         </div>
         <div class="sheet-row">
@@ -96,7 +96,7 @@ class MELEE(generator.Node):
           <label>Spécial</label>
           <input type="text" name="attr_melee_special" title="Spécial" />
           <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
-          <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{successes}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
       </div> </div>
     </fieldset>
 """

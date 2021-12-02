@@ -1,8 +1,9 @@
-head="""<head>
+head = """<head>
   <link rel="stylesheet" type="text/css" href="systemd10cyberpunk.css"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
 """
-script="""  <script type="text/worker">
+script = "</head>"  # The rest is kept for legacy reasons
+""""  <script type="text/worker">
   // Life_Points
 // on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
 //   getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
@@ -27,7 +28,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
   </script>
 </head>
 """
-header="""
+header = """
 <div class="sheet-content">
   <div class="sheet-center">
     <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
@@ -36,25 +37,6 @@ header="""
   </div>
   <br/>
   <div class="sheet-2colrow">
-    <div class='sheet-col'>
-      <h3 class="sheet-center">Ressources</h3>
-      <table class="sheet-center sheet-black">
-        <tr>
-          <td><h4>Points de Vie</h4></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_head" title="Tête" value="0"/></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_body" title="Torse" value="0"/></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_arm" title="Bras gauche" value="0"/></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_arm" title="Bras droit" value="0"/></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_left_leg" title="Jambe gauche" value="0"/></td>
-          <td><input type="number" class="sheet-trait" name="attr_Life_Points_right_leg" title="Jambe droite" value="0"/></td>
-        </tr>
-        <tr>
-          <td><h4>Points de Fatigue</h4></td>
-          <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/></td>
-        </tr>
-      </table>
-    </div>
     <div class="sheet-col">
       <table class="sheet-center sheet-black">
         <tr>
@@ -88,6 +70,8 @@ header="""
   <div class='sheet-2colrow'>
     <div class='sheet-col'>
       <h3 class="sheet-center">Caractéristiques</h3>
+      <div class="sheet-tab-content sheet-big_tab1">
+      <div class="sheet-tab-content sheet-big_tab2">
       <table class="">
         <tr>
           <th>Carac</th>
@@ -164,7 +148,7 @@ header="""
   <br/>
 """
 
-footer="""
+footer = """
 </div>
 <rolltemplate class="sheet-rolltemplate-d10skillcheck">
   <table class="">
@@ -188,10 +172,10 @@ footer="""
         {{/rollWasFumble() result}}
         {{#^rollWasFumble() result}}
           {{#rollGreater() result 1}}
-            <td class="roll-sucess">{{result}} degrés de réussite</td>
+            <td class="roll-success">{{result}} degrés de réussite</td>
           {{/rollGreater() result 1}}
           {{#rollBetween() result 0 1}}
-            <td class="roll-sucess">{{result}} degré de réussite</td>
+            <td class="roll-success">{{result}} degré de réussite</td>
           {{/rollBetween() result 0 1}}
           {{#rollLess() result 0}}
             <td class="roll-fail">{{result}} degrés d'échec</td>
@@ -204,7 +188,7 @@ footer="""
 <rolltemplate class="sheet-rolltemplate-d10init">
   <table class="">
     <tr><th class="roll-title">{{name}} &mdash; {{roll_name}}</th></tr>
-    <tr><td class="roll-sucess"> 1d10+{{value}} = {{result}}
+    <tr><td class="roll-success"> 1d10+{{value}} = {{result}}
       {{#rollWasCrit() result}}
         <span class="inline fullcrit">+{{base}}</span>
       {{/rollWasCrit() result}}
@@ -219,32 +203,32 @@ footer="""
         <div><h1>{{name}}</h1></div>
         <div><span class="subheader">{{subtags}}</span></div>
         <div class="arrow-container"><div class="arrow-right"></div></div>
-		{{#attack}}
-			<div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} sucesses</div>
+    {{#attack}}
+            <div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} successes</div>
       {{#mode}}
-			<div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
+            <div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
       {{/mode}}
-		{{/attack}}
-		{{#damage}}
-			<div>
-				 <span class="tcat">Damage: </span>{{damage}}
-			</div>
+        {{/attack}}
+        {{#damage}}
+            <div>
+                 <span class="tcat">Damage: </span>{{damage}}
+            </div>
        {{#ammocurrent}}
-			<div>
-				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
-			</div>
+            <div>
+                 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+            </div>
         {{/ammocurrent}}
-		{{/damage}}
-		{{#damagedone}}
-			<div>
-				 <span class="tcat">Damage: </span>{{damagedone}}
-			</div>
-		{{#ammocurrent}}
-			<div>
-				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
-			</div>
+        {{/damage}}
+        {{#damagedone}}
+            <div>
+                 <span class="tcat">Damage: </span>{{damagedone}}
+            </div>
+        {{#ammocurrent}}
+            <div>
+                 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+            </div>
     {{/ammocurrent}}
-		{{/damagedone}}
+        {{/damagedone}}
         {{#special}}
             <div>
                  <span class="tcat">Special: </span>{{special}}
@@ -253,7 +237,7 @@ footer="""
     </div>
 </rolltemplate>
 """
-css_footer="""input.sheet-tab{
+css_footer = """input.sheet-tab{
   -moz-appearance: none;
   width:150px;
   height: 20px;
@@ -380,8 +364,8 @@ select.sheet-dice_select{
     border-width: 0px;
     margin-top: -10px;
 }
-.sheet-rolltemplate-d10init .sheet-roll-sucess,
-.sheet-rolltemplate-d10skillcheck .sheet-roll-sucess ,
+.sheet-rolltemplate-d10init .sheet-roll-success,
+.sheet-rolltemplate-d10skillcheck .sheet-roll-success ,
 .sheet-rolltemplate-d10skillcheck .sheet-roll-fail {
   padding:0px;
   margin:0px;
@@ -412,16 +396,16 @@ select.sheet-dice_select{
 }
 .sheet-rolltemplate-d10skillcheck .sheet-inline.sheet-fullcrit,
 .sheet-rolltemplate-d10skillcheck .inlinerollresult.fullcrit {
-	color: #3FB315;
+    color: #3FB315;
     border: none;
 }
 .sheet-rolltemplate-d10skillcheck .sheet-inline.sheet-fullfail,
 .sheet-rolltemplate-d10skillcheck .inlinerollresult.fullfail {
-	color: #B31515;
+    color: #B31515;
   border: none;
 }
 .sheet-rolltemplate-d10skillcheck .inlinerollresult.importantroll {
-	color: #4A57ED;
+    color: #4A57ED;
   border: none;
 }
 
@@ -446,7 +430,7 @@ select.sheet-dice_select{
   text-align: right;
   padding-right:10px;
 }
-.sheet-rolltemplate-d10fight .sheet-sucess,
+.sheet-rolltemplate-d10fight .sheet-success,
 .sheet-rolltemplate-d10fight .sheet-line{
   padding:0px;
   margin:0px;

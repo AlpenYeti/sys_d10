@@ -205,11 +205,11 @@ def pprint(args):
 
 
 def pErrors(name, errors):
-    "Print sucess or error of given test"
+    "Print success or error of given test"
     if errors:
         print("{:<15}: {} errors occured".format(name, errors))
     else:
-        print("{:<15}: All test sucessful".format(name))
+        print("{:<15}: All test successful".format(name))
     return errors
 
 

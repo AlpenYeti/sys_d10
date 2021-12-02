@@ -1,31 +1,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="systemd10cyberpunk.css"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
-  <script type="text/worker">
-  // Life_Points
-// on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle", function() {
-//   getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle"], function(values) {
-//     setAttrs({"Life_Points_max":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-//     setAttrs({"Life_Points_maximum":Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite'])+Number(values.general_skilllevel_Endurance_surnaturelle)*2+10});
-//   });
-// });
-// Endurance_Points
-on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_surnaturelle", function() {
-  getAttrs(["base-Force","base-Agilite","general_skilllevel_Endurance_surnaturelle"], function(values) {
-    setAttrs({"Endurance_Points_maximum":Number(values['base-Force'])*4});
-    setAttrs({"Endurance_Points_max":Number(values['base-Force'])*4});
-  });
-});
-// undescored_name
-// on("change:character_name change:character_race", function() {
-//   getAttrs(["character_name"], function(values) {
-//     setAttrs({"undescored_name":values.character_name.replace(/ /g,"_").replace(/'/g,"/")});
-//   });
-// });
-// dice_with_tanscendance
-  </script>
 </head>
-
 <div class="sheet-content">
   <div class="sheet-center">
     <input type="text" class="sheet-bigname" name="attr_character_name" placeholder="Nom"/>
@@ -49,7 +25,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
         <tr>
           <td><h4>Points de Fatigue</h4></td>
           <td><input type="number" class="sheet-trait" name="attr_Endurance_Points" value="0"/></td>
-          <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/></td>
+          <td><input class="sheet-trait" disabled="true" name="attr_mirror_Endurance_Points" value="@{Endurance_Points_maximum}"/> </td>
         </tr>
       </table>
     </div>
@@ -2047,7 +2023,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
            <option value="@{combat_skilllevel_balistique}">Balistique Superlative</option>
            <option value="0">Aucune spécialité</option>
           </select>
-          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magA}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats" value="&{template:d10Shooting} {{name=@{ranged_weaponname}}} {{subtags=@{typename}}} {{damagedone=[[(?{successes}-1)*@{ranged_dmgPlus}+@{ranged_dmgBase}]]}} {{magsize=@{ranged_magT}}} {{ammocurrent=@{ranged_magA}}} {{ammototal=@{ranged_ammoT}}}">Dégats</button>
           <button type='roll' class="sheet-skillbutton" title ="Rechargement" value="/em reloads the @{ranged_weaponname} loosing @{ranged_magA} ammo in the process. &#13;!setattr --name @{character_name} --repeating_ranged-weapons_$@{wid}_ranged_magA|[[{@{ranged_magT},@{ranged_ammoT}}kl1]] --repeating_ranged-weapons_$@{wid}_ranged_ammoT|[[{0,@{ranged_ammoT}-@{ranged_magT}}kh1]]">Rechargement</button>
         </div>
         <div class="sheet-row">
@@ -2098,7 +2074,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
           <label>Spécial</label>
           <input type="text" name="attr_melee_special" title="Spécial" />
           <button type='roll' class="sheet-skillbutton" title ="Attaque" value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{attack=[[?{Dices}d10<[[@{melee_type_select}+?{Seuil|4}+@{melee_accuracy}]]cs1cf11]]}} {{damage=@{melee_dmgBase}/+@{melee_dmgPlus}}} {{special=@{melee_special}}}">Attaque</button>
-          <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{Sucesses}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
+          <button type='roll' class="sheet-skillbutton" title ="Dégats"  value="&{template:d10Shooting}{{name=@{melee_weaponname}}}{{subtags=@{typename}}} {{damagedone=[[(?{successes}-1)*@{melee_dmgPlus}+@{melee_dmgBase}]]}}">Dégats</button>
       </div> </div>
     </fieldset>
   </div>
@@ -2145,10 +2121,10 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
         {{/rollWasFumble() result}}
         {{#^rollWasFumble() result}}
           {{#rollGreater() result 1}}
-            <td class="roll-sucess">{{result}} degrés de réussite</td>
+            <td class="roll-success">{{result}} degrés de réussite</td>
           {{/rollGreater() result 1}}
           {{#rollBetween() result 0 1}}
-            <td class="roll-sucess">{{result}} degré de réussite</td>
+            <td class="roll-success">{{result}} degré de réussite</td>
           {{/rollBetween() result 0 1}}
           {{#rollLess() result 0}}
             <td class="roll-fail">{{result}} degrés d'échec</td>
@@ -2161,7 +2137,7 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
 <rolltemplate class="sheet-rolltemplate-d10init">
   <table class="">
     <tr><th class="roll-title">{{name}} &mdash; {{roll_name}}</th></tr>
-    <tr><td class="roll-sucess"> 1d10+{{value}} = {{result}}
+    <tr><td class="roll-success"> 1d10+{{value}} = {{result}}
       {{#rollWasCrit() result}}
         <span class="inline fullcrit">+{{base}}</span>
       {{/rollWasCrit() result}}
@@ -2176,32 +2152,32 @@ on("change:base-Force change:base-Agilite change:general_skilllevel_Endurance_su
         <div><h1>{{name}}</h1></div>
         <div><span class="subheader">{{subtags}}</span></div>
         <div class="arrow-container"><div class="arrow-right"></div></div>
-		{{#attack}}
-			<div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} sucesses</div>
+    {{#attack}}
+            <div class="rowcolor"><span class="tcat">Attack: </span>{{attack}} successes</div>
       {{#mode}}
-			<div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
+            <div class="rowcolor"><span class="tcat">Mode: </span>{{mode}} ({{usedammo}})</div>
       {{/mode}}
-		{{/attack}}
-		{{#damage}}
-			<div>
-				 <span class="tcat">Damage: </span>{{damage}}
-			</div>
+        {{/attack}}
+        {{#damage}}
+            <div>
+                 <span class="tcat">Damage: </span>{{damage}}
+            </div>
        {{#ammocurrent}}
-			<div>
-				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
-			</div>
+            <div>
+                 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+            </div>
         {{/ammocurrent}}
-		{{/damage}}
-		{{#damagedone}}
-			<div>
-				 <span class="tcat">Damage: </span>{{damagedone}}
-			</div>
-		{{#ammocurrent}}
-			<div>
-				 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
-			</div>
+        {{/damage}}
+        {{#damagedone}}
+            <div>
+                 <span class="tcat">Damage: </span>{{damagedone}}
+            </div>
+        {{#ammocurrent}}
+            <div>
+                 <span class="tcat">Ammunition: </span> {{ammocurrent}}/{{magsize}} | {{ammototal}}
+            </div>
     {{/ammocurrent}}
-		{{/damagedone}}
+        {{/damagedone}}
         {{#special}}
             <div>
                  <span class="tcat">Special: </span>{{special}}

@@ -235,7 +235,7 @@ function show_rolls(who,d_vars){
             } else if (d_vars.action=="d"||d_vars.action=="e"){
                 // Can't miss a block or a dodge, can be a shitty roll tho
             } else {
-                msg+="<tr><td class='sheet-sucess'>L'action est un succes (seuil "+d_vars.seuil+")</tr></td>";
+                msg+="<tr><td class='sheet-success'>L'action est un succes (seuil "+d_vars.seuil+")</tr></td>";
             }
         }
     } else {

@@ -159,8 +159,8 @@ select.sheet-dice_select{
     border-width: 0px;
     margin-top: -10px;
 }
-.sheet-rolltemplate-d10init .sheet-roll-sucess,
-.sheet-rolltemplate-d10skillcheck .sheet-roll-sucess ,
+.sheet-rolltemplate-d10init .sheet-roll-success,
+.sheet-rolltemplate-d10skillcheck .sheet-roll-success ,
 .sheet-rolltemplate-d10skillcheck .sheet-roll-fail {
   padding:0px;
   margin:0px;
@@ -227,7 +227,7 @@ select.sheet-dice_select{
   text-align: right;
   padding-right:10px;
 }
-.sheet-rolltemplate-d10fight .sheet-sucess,
+.sheet-rolltemplate-d10fight .sheet-success,
 .sheet-rolltemplate-d10fight .sheet-line{
   padding:0px;
   margin:0px;
